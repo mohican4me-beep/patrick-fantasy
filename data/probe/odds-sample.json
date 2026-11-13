@@ -1,0 +1,681 @@
+[
+ {
+  "id": "e422af92d1fc06c0a330838c1c2f2e08",
+  "sport_key": "soccer_uefa_champs_league",
+  "sport_title": "UEFA Champions League",
+  "commence_time": "2026-11-24T17:45:00Z",
+  "home_team": "Galatasaray",
+  "away_team": "Aston Villa",
+  "bookmakers": [
+   {
+    "key": "gtbets",
+    "title": "GTbets",
+    "last_update": "2026-11-13T12:31:30Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:30Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.42
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.62
+       },
+       {
+        "name": "Draw",
+        "price": 3.91
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:31:30Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 2.1,
+        "point": 3.5
+       },
+       {
+        "name": "Under",
+        "price": 1.71,
+        "point": 3.5
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "unibet_se",
+    "title": "Unibet (SE)",
+    "last_update": "2026-11-13T12:30:49Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:30:49Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.55
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.65
+       },
+       {
+        "name": "Draw",
+        "price": 3.9
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:30:49Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 2.07,
+        "point": 3.5
+       },
+       {
+        "name": "Under",
+        "price": 1.77,
+        "point": 3.5
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "unibet_fr",
+    "title": "Unibet (FR)",
+    "last_update": "2026-11-13T12:31:27Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:27Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.05
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.45
+       },
+       {
+        "name": "Draw",
+        "price": 3.6
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "betsson",
+    "title": "Betsson",
+    "last_update": "2026-11-13T12:30:34Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:30:34Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.45
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.65
+       },
+       {
+        "name": "Draw",
+        "price": 3.75
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "pinnacle",
+    "title": "Pinnacle",
+    "last_update": "2026-11-13T12:31:07Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:07Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.46
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.62
+       },
+       {
+        "name": "Draw",
+        "price": 3.85
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:31:07Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 1.91,
+        "point": 3.25
+       },
+       {
+        "name": "Under",
+        "price": 1.93,
+        "point": 3.25
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "winamax_fr",
+    "title": "Winamax (FR)",
+    "last_update": "2026-11-13T12:31:30Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:29Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.25
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.35
+       },
+       {
+        "name": "Draw",
+        "price": 3.65
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "nordicbet",
+    "title": "Nordic Bet",
+    "last_update": "2026-11-13T12:31:30Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:30Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.48
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.68
+       },
+       {
+        "name": "Draw",
+        "price": 3.8
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "marathonbet",
+    "title": "Marathon Bet",
+    "last_update": "2026-11-13T12:31:33Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:33Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.47
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.63
+       },
+       {
+        "name": "Draw",
+        "price": 3.88
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:31:33Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 2.13,
+        "point": 3.5
+       },
+       {
+        "name": "Under",
+        "price": 1.73,
+        "point": 3.5
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "leovegas_se",
+    "title": "LeoVegas (SE)",
+    "last_update": "2026-11-13T12:31:28Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:28Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.48
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.55
+       },
+       {
+        "name": "Draw",
+        "price": 3.7
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:31:28Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 2.07,
+        "point": 3.5
+       },
+       {
+        "name": "Under",
+        "price": 1.77,
+        "point": 3.5
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "onexbet",
+    "title": "1xBet",
+    "last_update": "2026-11-13T12:31:30Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:29Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.54
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.7
+       },
+       {
+        "name": "Draw",
+        "price": 3.98
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:31:29Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 2.2,
+        "point": 3.5
+       },
+       {
+        "name": "Under",
+        "price": 1.78,
+        "point": 3.5
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "pmu_fr",
+    "title": "PMU (FR)",
+    "last_update": "2026-11-13T12:31:27Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:27Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.32
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.38
+       },
+       {
+        "name": "Draw",
+        "price": 3.45
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:31:27Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 1.93,
+        "point": 3.5
+       },
+       {
+        "name": "Under",
+        "price": 1.65,
+        "point": 3.5
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "unibet_nl",
+    "title": "Unibet (NL)",
+    "last_update": "2026-11-13T12:31:30Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:30Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.55
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.65
+       },
+       {
+        "name": "Draw",
+        "price": 3.9
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:31:30Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 2.06,
+        "point": 3.5
+       },
+       {
+        "name": "Under",
+        "price": 1.76,
+        "point": 3.5
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "winamax_de",
+    "title": "Winamax (DE)",
+    "last_update": "2026-11-13T12:30:50Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:30:50Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.35
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.45
+       },
+       {
+        "name": "Draw",
+        "price": 3.85
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "betclic_fr",
+    "title": "Betclic (FR)",
+    "last_update": "2026-11-13T12:30:59Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:30:59Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.22
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.45
+       },
+       {
+        "name": "Draw",
+        "price": 3.58
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "coolbet",
+    "title": "Coolbet",
+    "last_update": "2026-11-13T12:31:11Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:10Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.5
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.65
+       },
+       {
+        "name": "Draw",
+        "price": 3.85
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:31:10Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 2.1,
+        "point": 3.5
+       },
+       {
+        "name": "Under",
+        "price": 1.71,
+        "point": 3.5
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "betfair_ex_eu",
+    "title": "Betfair",
+    "last_update": "2026-11-13T12:31:07Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:31:07Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.46
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.58
+       },
+       {
+        "name": "Draw",
+        "price": 4.0
+       }
+      ]
+     },
+     {
+      "key": "h2h_lay",
+      "last_update": "2026-11-13T12:31:07Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.64
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.82
+       },
+       {
+        "name": "Draw",
+        "price": 4.4
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "williamhill",
+    "title": "William Hill",
+    "last_update": "2026-11-13T12:30:50Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:30:50Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.3
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.6
+       },
+       {
+        "name": "Draw",
+        "price": 3.8
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:30:50Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 1.44,
+        "point": 2.5
+       },
+       {
+        "name": "Under",
+        "price": 2.7,
+        "point": 2.5
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "sport888",
+    "title": "888sport",
+    "last_update": "2026-11-13T12:30:49Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:30:49Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.3
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.6
+       },
+       {
+        "name": "Draw",
+        "price": 3.8
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "key": "codere_it",
+    "title": "Codere (IT)",
+    "last_update": "2026-11-13T12:30:52Z",
+    "markets": [
+     {
+      "key": "h2h",
+      "last_update": "2026-11-13T12:30:52Z",
+      "outcomes": [
+       {
+        "name": "Aston Villa",
+        "price": 2.43
+       },
+       {
+        "name": "Galatasaray",
+        "price": 2.65
+       },
+       {
+        "name": "Draw",
+        "price": 3.75
+       }
+      ]
+     },
+     {
+      "key": "totals",
+      "last_update": "2026-11-13T12:30:52Z",
+      "outcomes": [
+       {
+        "name": "Over",
+        "price": 2.03,
+        "point": 3.5
+       },
+       {
+        "name": "Under",
+        "price": 1.67,
+        "point": 3.5
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ }
+]

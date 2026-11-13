@@ -1,0 +1,134 @@
+[
+ {
+  "area": {
+   "id": 2077,
+   "name": "Europe",
+   "code": "EUR",
+   "flag": "https://crests.football-data.org/EUR.svg"
+  },
+  "competition": {
+   "id": 2001,
+   "name": "UEFA Champions League",
+   "code": "CL",
+   "type": "CUP",
+   "emblem": "https://crests.football-data.org/CL.png"
+  },
+  "season": {
+   "id": 2557,
+   "startDate": "2026-09-08",
+   "endDate": "2027-01-27",
+   "currentMatchday": 5,
+   "winner": null
+  },
+  "id": 575323,
+  "utcDate": "2026-09-08T16:45:00Z",
+  "status": "FINISHED",
+  "matchday": 1,
+  "stage": "LEAGUE_STAGE",
+  "group": null,
+  "lastUpdated": "2026-11-13T00:20:29Z",
+  "homeTeam": {
+   "id": 851,
+   "name": "Club Brugge KV",
+   "shortName": "Club Brugge",
+   "tla": "BRU",
+   "crest": "https://crests.football-data.org/851.png"
+  },
+  "awayTeam": {
+   "id": 58,
+   "name": "Aston Villa FC",
+   "shortName": "Aston Villa",
+   "tla": "AVL",
+   "crest": "https://crests.football-data.org/58.png"
+  },
+  "score": {
+   "winner": "AWAY_TEAM",
+   "duration": "REGULAR",
+   "fullTime": {
+    "home": 2,
+    "away": 3
+   },
+   "halfTime": {
+    "home": 1,
+    "away": 3
+   }
+  },
+  "odds": {
+   "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+  },
+  "referees": [
+   {
+    "id": 31823,
+    "name": "Sandro Schärer",
+    "type": "REFEREE",
+    "nationality": "Switzerland"
+   }
+  ]
+ },
+ {
+  "area": {
+   "id": 2077,
+   "name": "Europe",
+   "code": "EUR",
+   "flag": "https://crests.football-data.org/EUR.svg"
+  },
+  "competition": {
+   "id": 2001,
+   "name": "UEFA Champions League",
+   "code": "CL",
+   "type": "CUP",
+   "emblem": "https://crests.football-data.org/CL.png"
+  },
+  "season": {
+   "id": 2557,
+   "startDate": "2026-09-08",
+   "endDate": "2027-01-27",
+   "currentMatchday": 5,
+   "winner": null
+  },
+  "id": 575324,
+  "utcDate": "2026-09-08T16:45:00Z",
+  "status": "FINISHED",
+  "matchday": 1,
+  "stage": "LEAGUE_STAGE",
+  "group": null,
+  "lastUpdated": "2026-11-13T00:20:29Z",
+  "homeTeam": {
+   "id": 1899,
+   "name": "PAE AEK",
+   "shortName": "PAE AEK",
+   "tla": "AEK",
+   "crest": "https://crests.football-data.org/1899.png"
+  },
+  "awayTeam": {
+   "id": 2016,
+   "name": "LASK Linz",
+   "shortName": "LASK",
+   "tla": "LIN",
+   "crest": "https://crests.football-data.org/2016.png"
+  },
+  "score": {
+   "winner": "HOME_TEAM",
+   "duration": "REGULAR",
+   "fullTime": {
+    "home": 1,
+    "away": 0
+   },
+   "halfTime": {
+    "home": 1,
+    "away": 0
+   }
+  },
+  "odds": {
+   "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+  },
+  "referees": [
+   {
+    "id": 37629,
+    "name": "Luís Godinho",
+    "type": "REFEREE",
+    "nationality": "Portugal"
+   }
+  ]
+ }
+]
