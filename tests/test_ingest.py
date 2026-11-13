@@ -7,6 +7,7 @@ They are replaced by real samples once the probe has run (see data/probe/).
 
 import json
 from datetime import UTC, date, datetime
+from pathlib import Path
 from urllib.parse import urlsplit
 from zoneinfo import ZoneInfo
 
@@ -155,6 +156,9 @@ def test_odds_parser_takes_the_median_across_bookmakers():
     record = parse_odds_api(odds_body()).records[0]
     assert (record["home_price"], record["draw_price"], record["away_price"]) == (2.1, 3.5, 3.6)
     assert (record["over_price"], record["under_price"], record["total_line"]) == (1.9, 1.9, 2.5)
+    assert record["total_bookmakers"] == 3
+    # A line with only one side quoted is not a usable price and is left out.
+    assert [t["line"] for t in record["totals"]] == [2.5]
     assert record["bookmakers"] == 3
     assert parse_odds_api("[]").records == [] and not parse_odds_api("[]").problems
     assert parse_odds_api('{"message": "quota"}').problems
@@ -303,3 +307,30 @@ def test_fixtures_command_checks_the_deadline(tmp_path, monkeypatch, capsys):
     assert cli.main(["fixtures", "--matchday", "5"]) == 0
     out = capsys.readouterr().out
     assert "Tue 24 Nov 19:45" in out and "matches the deadline recorded from the game" in out
+
+
+# -- real responses (first record of each source, saved by the probe on 2026-11-13) ----
+
+PROBE = Path(__file__).resolve().parents[1] / "data" / "probe"
+
+
+def test_fixtures_parser_reads_a_real_response():
+    """The real football-data.org record parses with no problem and no missing field."""
+    body = json.dumps({"matches": json.loads((PROBE / "fixtures-sample.json").read_text("utf-8"))})
+    parsed = parse_football_data(body)
+    assert not parsed.problems and not parsed.fields_missing
+    record = parsed.records[0]
+    assert (record["home"], record["away"]) == ("Club Brugge KV", "Aston Villa FC")
+    assert (record["home_goals"], record["away_goals"], record["matchday"]) == (2, 3, 1)
+    assert record["kickoff_utc"] == "2026-09-08T16:45:00+00:00"
+
+
+def test_odds_parser_uses_the_line_most_bookmakers_quote_in_a_real_response():
+    """Real bookmakers quote different goal lines; the main line is the most quoted one."""
+    parsed = parse_odds_api((PROBE / "odds-sample.json").read_text("utf-8"))
+    assert not parsed.problems and not parsed.fields_missing
+    record = parsed.records[0]
+    assert (record["home"], record["away"]) == ("Galatasaray", "Aston Villa")
+    assert record["bookmakers"] == 19
+    assert (record["total_line"], record["total_bookmakers"]) == (3.5, 9)
+    assert {t["line"]: t["bookmakers"] for t in record["totals"]} == {2.5: 1, 3.25: 1, 3.5: 9}

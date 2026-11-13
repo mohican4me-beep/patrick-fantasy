@@ -5,4 +5,12 @@
 # clubs:
 #   "Manchester United FC": ["Man Utd", "Man United"]
 
-clubs: {}
+# Added 2026-11-13 from `uclfa clubs` (names used by The Odds API). Each was checked
+# against the Matchday 5 fixture with the same kick-off and opponent.
+clubs:
+  "PAE AEK": ["AEK Athens"]
+  "FC Bayern München": ["Bayern Munich"]
+  "Como 1907": ["Como"]
+  "FC Internazionale Milano": ["Inter Milan"]
+  "PSV": ["PSV Eindhoven"]
+  "Sporting Clube de Portugal": ["Sporting Lisbon"]

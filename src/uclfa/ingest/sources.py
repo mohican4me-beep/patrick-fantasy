@@ -130,7 +130,6 @@ def parse_clubelo(text: str) -> Parsed:
 # -- The Odds API: match odds -----------------------------------------------------------
 
 ODDS_FIELDS = ("id", "commence_time", "home_team", "away_team", "bookmakers")
-TOTALS_LINE = 2.5
 
 
 def _median(values: list[float]) -> float | None:
@@ -151,9 +150,9 @@ def parse_odds_api(text: str) -> Parsed:
     for e in events:
         try:
             home, away = e["home_team"], e["away_team"]
-            prices: dict[str, list[float]] = {
-                k: [] for k in ("home", "draw", "away", "over", "under")
-            }
+            prices: dict[str, list[float]] = {k: [] for k in ("home", "draw", "away")}
+            # Bookmakers quote different goal lines, so totals are kept per line.
+            lines: dict[float, dict[str, list[float]]] = {}
             books = 0
             for book in e.get("bookmakers") or []:
                 used = False
@@ -165,12 +164,26 @@ def parse_odds_api(text: str) -> Parsed:
                             if side:
                                 prices[side].append(price)
                                 used = True
-                        elif market.get("key") == "totals" and o.get("point") == TOTALS_LINE:
+                        elif market.get("key") == "totals" and o.get("point") is not None:
                             side = {"Over": "over", "Under": "under"}.get(o.get("name"))
                             if side:
-                                prices[side].append(price)
-                                used = True
+                                line = lines.setdefault(
+                                    float(o["point"]), {"over": [], "under": []}
+                                )
+                                line[side].append(price)
                 books += used
+            totals = [
+                {
+                    "line": point,
+                    "bookmakers": min(len(v["over"]), len(v["under"])),
+                    "over_price": _median(v["over"]),
+                    "under_price": _median(v["under"]),
+                }
+                for point, v in sorted(lines.items())
+                if v["over"] and v["under"]
+            ]
+            # The main line is the one most bookmakers quote; a tie goes to the lower line.
+            main = max(totals, key=lambda t: (t["bookmakers"], -t["line"]), default=None)
             out.records.append(
                 {
                     "source_id": e["id"],
@@ -181,9 +194,11 @@ def parse_odds_api(text: str) -> Parsed:
                     "home_price": _median(prices["home"]),
                     "draw_price": _median(prices["draw"]),
                     "away_price": _median(prices["away"]),
-                    "total_line": TOTALS_LINE,
-                    "over_price": _median(prices["over"]),
-                    "under_price": _median(prices["under"]),
+                    "total_line": main["line"] if main else None,
+                    "total_bookmakers": main["bookmakers"] if main else 0,
+                    "over_price": main["over_price"] if main else None,
+                    "under_price": main["under_price"] if main else None,
+                    "totals": totals,
                 }
             )
         except (KeyError, TypeError, ValueError) as exc:

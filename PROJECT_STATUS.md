@@ -7,22 +7,26 @@ Updated 13 November 2026.
 Release 1a is complete (Phase 1 and the calculators and tool server), accepted on
 13 November 2026. Release 1b (web app) is deferred by Patrick's decision.
 
-Release 2 Phase A (data ingestion) is built and on `main`, because a GitHub workflow only
-runs from the default branch. It is **not complete**: no source has been called for real.
-Three of five acceptance criteria wait for Patrick to add two keys and run the probe.
+Release 2 Phase A (data ingestion) ran for real on 13 November (probe, 12:31 UTC). Two of
+three sources work. **ClubElo failed** (HTTP 502), so the phase waits on Patrick's decision.
 
 ## Release 2 Phase A acceptance criteria
 
 | # | Criterion | Status | Evidence |
 |---|---|---|---|
-| 1 | All tests pass, output shown | Met | 224 passed; `ruff check` clean |
-| 2 | Probe report shows each source working or not, with fields found | **Open** | Needs the keys and one workflow run; see `docs/data-sources.md` |
-| 3 | Matchday 5 fixtures and kick-off times are in the repo and match the game | **Open** | Depends on 2 |
-| 4 | A broken response leaves existing data untouched | Met in tests | `test_bad_response_keeps_the_previous_snapshot`; not yet seen with a real failure |
-| 5 | No key appears in the repository or its history | Met so far | Keys are read only from the environment; `test_keys_never_reach_disk`. To re-check after the first real run |
+| 1 | All tests pass, output shown | Met | 226 passed; `ruff check` clean |
+| 2 | Probe report shows each source working or not, with fields found | Met | `data/probe/report.md`: fixtures ok (144), odds ok (18), ClubElo failed (502) |
+| 3 | Matchday 5 fixtures and kick-off times are in the repo and match the game | Met | 18 fixtures; first kick-off 24 Nov 19:45 Athens equals the deadline Patrick read from the game |
+| 4 | A broken response leaves existing data untouched | Met | Tests, and the real ClubElo failure wrote no snapshot |
+| 5 | No key appears in the repository or its history | Met | Checked after the real run: the saved odds URL shows `apiKey=REDACTED`; no token pattern in the tree |
 
-Not tested: every parser against a real response; the workflow itself; ClubElo over plain
-HTTP from GitHub; The Odds API sport key for the Champions League.
+Found by the real run and fixed: bookmakers quote different goal lines (9 of 19 at 3.5, one
+at 2.5 for Galatasaray v Aston Villa), so odds records now keep every line and name the most
+quoted one. The 13 November odds snapshot was written by the old parser: its over/under
+prices are the 2.5 line from few bookmakers. Six odds club names added to
+`data/club_aliases.yaml`; all 36 clubs now match.
+
+Still not tested: the ClubElo parser against a real response; the scheduled (non-probe) run.
 
 ## Release 1a, step 2 acceptance criteria
 

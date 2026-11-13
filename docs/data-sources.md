@@ -9,9 +9,9 @@ Three documented sources are fetched once a day by a GitHub workflow and committ
 | ClubElo | Daily club strength ratings | No | `data/snapshots/elo/` |
 | The Odds API | Match-result and over/under 2.5 odds, median across bookmakers | Yes | `data/snapshots/odds/` |
 
-Status on 13 November 2026: the code is tested against synthetic responses in each
-provider's documented format. **No source has been called for real yet.** The probe below
-is the first real test and may show that a parser needs adjusting.
+Status on 13 November 2026: football-data.org and The Odds API returned real data through
+the workflow and their parsers are tested against those responses. ClubElo answered HTTP 502
+and is untested against a real response.
 
 ## One-time setup (about ten minutes)
 
