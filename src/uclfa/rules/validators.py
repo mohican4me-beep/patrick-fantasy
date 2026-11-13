@@ -217,7 +217,8 @@ def next_free_transfers(
     return base
 
 
-def _sale_value(slot: SquadSlot, rules: RuleSet) -> float | None:
+def sale_value(slot: SquadSlot, rules: RuleSet) -> float | None:
+    """What selling this player returns: an entered value, else the confirmed rule, else None."""
     if slot.sale_value is not None:
         return slot.sale_value
     method = rules.confirmed_value("selling_value")
@@ -295,7 +296,7 @@ def validate_transfers(
         seen_in.add(t.incoming.id)
 
         buy = t.buy_price if t.buy_price is not None else t.incoming.price
-        sale = _sale_value(slot, rules)
+        sale = sale_value(slot, rules)
         if buy is None:
             out.violate(
                 "price_missing",

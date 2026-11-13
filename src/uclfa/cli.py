@@ -32,6 +32,7 @@ from uclfa.rules import (
     validate_transfers,
 )
 from uclfa.rules.model import CONFIRMABLE_VALUES
+from uclfa.rules.validators import sale_value
 
 
 def _print_result(result: Result, heading: str) -> None:
@@ -215,24 +216,27 @@ def cmd_squad_import(args: argparse.Namespace) -> int:
 
 
 def _show_squad(state: store.TeamState) -> None:
+    rules = load_rules()
     free = "unlimited" if state.free_transfers is None else state.free_transfers
     chips = ", ".join(sorted(c.value for c in state.chips_used)) or "none"
     print(
         f"Matchday {state.matchday} ({state.label})  bank {state.bank:.1f}m  "
         f"free transfers {free}  chips used: {chips}"
     )
-    for title, group in (("Starting eleven", state.squad.starters), ("Bench", state.squad.bench)):
+    positions = list(Position)
+    starters = sorted(state.squad.starters, key=lambda s: positions.index(s.player.position))
+    for title, group in (("Starting eleven", starters), ("Bench", state.squad.bench)):
         print(title)
-        for slot in sorted(
-            group, key=lambda s: (list(Position).index(s.player.position), s.bench_order or 0)
-        ):
+        for slot in group:
             mark = " (C)" if slot.is_captain else ""
             order = f"{slot.bench_order}. " if slot.bench_order else "   "
             print(
                 f"  {order}{slot.player.position.value:<4}{slot.player.name + mark:<28}"
                 f"{slot.player.club:<22}price {_money(slot.player.price):>5}  "
-                f"sale {_money(slot.sale_value):>5}"
+                f"sale {_money(sale_value(slot, rules)):>5}"
             )
+    if rules.confirmed_value("selling_value") is None:
+        print("Sale values show '-' until entered: the selling-value rule is unverified.")
 
 
 def cmd_squad_show(args: argparse.Namespace) -> int:

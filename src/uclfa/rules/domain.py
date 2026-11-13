@@ -48,7 +48,7 @@ class Squad:
     @property
     def bench(self) -> list[SquadSlot]:
         return sorted(
-            (s for s in self.slots if s.role is Role.BENCH), key=lambda s: s.bench_order or 99
+            (s for s in self.slots if s.role is Role.BENCH), key=lambda s: s.bench_order or 0
         )
 
     @property

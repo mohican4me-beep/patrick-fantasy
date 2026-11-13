@@ -2,7 +2,7 @@
 
 Each case is a points breakdown Patrick read from the UEFA Fantasy app. The events are
 what the breakdown lists; the expected total is the total the game shows. Ten cases
-covering all four positions are required. Cases present so far: 8 of 10.
+covering all four positions are required. Cases present so far: 9 of 10.
 """
 
 import pytest
@@ -73,6 +73,20 @@ REAL_PERFORMANCES = [
         MatchEvents(minutes_played=90, balls_recovered=3, goals_conceded_on_pitch=2),
         {"appearance": 1, "sixty_minutes": 1, "balls_recovered": 1},
         3,
+    ),
+    (
+        "Joao Neves, Villarreal 0-6 Paris",
+        Position.MID,
+        MatchEvents(minutes_played=90, goals=1, assists=2, balls_recovered=5),
+        {
+            "appearance": 1,
+            "sixty_minutes": 1,
+            "goals": 5,
+            "assists": 6,
+            "clean_sheet": 1,
+            "balls_recovered": 1,
+        },
+        15,
     ),
 ]
 

@@ -6,7 +6,7 @@
 matchday: 5
 label: pre_deadline
 bank: 0.8
-free_transfers: null   # NOT YET PROVIDED: the number the game shows (2 or 3)
+free_transfers: 2
 chips_used: [limitless]
 note: "Wildcard assumed unused: Patrick reported only Limitless as used. To be confirmed."
 
