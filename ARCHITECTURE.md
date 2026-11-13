@@ -10,7 +10,9 @@ PC "beast". Phase 1 contains the two bottom layers and a command line.
 | Rules engine | `uclfa.rules` | Pydantic, PyYAML | 1 (done) |
 | Storage | `uclfa.db` | SQLAlchemy, Alembic, rules types | 1 (done) |
 | Command line | `uclfa.cli` | rules, storage | 1 (done) |
-| Read-only tool server for Claude | `uclfa.mcp` | rules, storage | 1a, next |
+| Decision calculators | `uclfa.decisions` | rules | 1a (built) |
+| Read-only views | `uclfa.service` | rules, storage, decisions | 1a (built) |
+| Read-only tool server for Claude | `uclfa.mcp_server` | service, MCP SDK 2.x | 1a (built) |
 | Web API and front end | to come | all of the above | 1b |
 | Ingestion, model, optimizer | to come | | Release 2 |
 
@@ -46,6 +48,13 @@ observation time, with a `source` (`manual`, `file`, `derived`) and a `tag` (`of
 | `journal_entry` | Decisions, the estimate behind them, the outcome |
 
 Schema changes are Alembic migrations. `uclfa init-db` upgrades to the latest.
+
+## Tool server
+
+`uclfa mcp` starts an MCP server over standard input and output. It has twelve tools, all
+read-only, and opens SQLite with `mode=ro` and `query_only`, so a write fails at the
+database. Views in `uclfa.service` attach a tag to every value: `official`, `entered`,
+`analyst_estimate`, `derived_from_confirmed_rule` or `unavailable`.
 
 ## What is deliberately absent
 

@@ -32,3 +32,15 @@ Newest last. Each entry: the decision, who made it, and the reason.
 | Bench order follows the game: three outfield substitutes numbered 1 to 3, bench goalkeeper unnumbered | Seen in Patrick's squad screenshot; the first version wrongly numbered four |
 | `UCLFA_CONFIRMATIONS` can point to another confirmations file | Tests must not depend on Patrick's real confirmations |
 | Package requires Python 3.12+ and was tested on 3.13 | The planning environment had 3.13 |
+
+## 13 November 2026: Release 1a, step 2
+
+| Choice | Reason |
+|---|---|
+| MCP Python SDK 2.x (`mcp>=2.3,<3`), using `MCPServer` | The current release; version 1's `FastMCP` name no longer exists. Checked before writing code |
+| Server opens SQLite with `mode=ro` and `query_only` | Read-only is enforced by the database, not by convention |
+| SQLite write-ahead logging switched off | A read-only connection to a write-ahead-log database can need write access to the folder; a single user does not need it |
+| Calculator outputs are always tagged `analyst_estimate` | Their inputs are estimates; no model exists yet |
+| A tie is a "keep" in the captain calculator | The switch cannot be undone and gains nothing |
+| Automatic-substitution cost is the sum of probability times replacement points | Simple and stated as an approximation; it ignores formation limits and shared bench cover |
+| Tool server tests use explicit confirmations, not `rules/confirmations.yaml` | Tests must not change meaning when Patrick confirms another rule |

@@ -13,6 +13,7 @@ from pathlib import Path
 import yaml
 from sqlalchemy.orm import Session
 
+from uclfa import decisions
 from uclfa.db import store
 from uclfa.rules import (
     Chip,
@@ -345,6 +346,120 @@ def cmd_score(args: argparse.Namespace) -> int:
     return 0
 
 
+# -- decisions -----------------------------------------------------------------------
+
+
+def _parse_risks(items: list[str] | None) -> list[decisions.AutoSubRisk]:
+    """Each item: "Player|probability of not playing|replacement expected points"."""
+    risks = []
+    for item in items or []:
+        try:
+            player, probability, replacement = (part.strip() for part in item.split("|"))
+            risks.append(decisions.AutoSubRisk(player, float(probability), float(replacement)))
+        except ValueError as exc:
+            sys.exit(f'--risk must look like "Player|0.15|3.0": {exc}')
+    return risks
+
+
+def _print_decision(decision, author: str) -> None:
+    print(decision.summary())
+    print(f"  label: {decision.tag} (estimates by {author})")
+    print(f"  automatic-substitution cost: {decision.automatic_substitution_cost:.2f}")
+    print("  assumptions:")
+    for line in decision.assumptions:
+        print(f"    - {line}")
+
+
+def _log_decision(args: argparse.Namespace, kind: str, decision) -> None:
+    if not args.log:
+        return
+    with _session() as session:
+        entry = store.add_journal(
+            session,
+            kind=kind,
+            summary=decision.summary(),
+            matchday=args.matchday,
+            estimate=str(args.candidate if kind == "captain" else args.swap),
+            estimate_author=args.author,
+            decision=None,
+        )
+        session.commit()
+        print(f"  journal entry {entry.id} saved.")
+
+
+def cmd_decide_captain(args: argparse.Namespace) -> int:
+    candidates = []
+    for item in args.candidate:
+        try:
+            name, expected = item.rsplit("=", 1)
+            candidates.append(decisions.CaptainCandidate(name.strip(), float(expected)))
+        except ValueError as exc:
+            sys.exit(f'--candidate must look like "Name=6.4": {exc}')
+    decision = decisions.captain_switch_value(
+        args.points,
+        candidates,
+        load_rules(),
+        auto_sub_risks=_parse_risks(args.risk),
+        automatic_substitutions_already_disabled=args.autosubs_off,
+        estimate_author=args.author,
+    )
+    for name, gain in sorted(decision.gains.items(), key=lambda kv: kv[1], reverse=True):
+        print(f"  switch to {name:<26} gain {gain:+.2f}")
+    _print_decision(decision, args.author)
+    _log_decision(args, "captain", decision)
+    return 0
+
+
+def cmd_decide_sub(args: argparse.Namespace) -> int:
+    swaps = []
+    for item in args.swap:
+        parts = [part.strip() for part in item.split("|")]
+        try:
+            if len(parts) not in (4, 5):
+                raise ValueError("expected 4 or 5 fields")
+            out_name, out_points, in_name, in_expected = parts[:4]
+            still_to_play = len(parts) == 5 and parts[4] == "to-play"
+            if len(parts) == 5 and not still_to_play:
+                raise ValueError('the fifth field can only be "to-play"')
+            swaps.append(
+                decisions.Swap(
+                    out_name=out_name,
+                    in_name=in_name,
+                    in_expected_points=float(in_expected),
+                    out_realised_points=None if still_to_play else float(out_points),
+                    out_expected_points=float(out_points) if still_to_play else None,
+                )
+            )
+        except ValueError as exc:
+            sys.exit(
+                '--swap must look like "Out|7|In|6.4" (out has played, 7 points) or '
+                f'"Out|4.5|In|6.4|to-play": {exc}'
+            )
+    decision = decisions.substitution_value(
+        swaps,
+        load_rules(),
+        auto_sub_risks=_parse_risks(args.risk),
+        automatic_substitutions_already_disabled=args.autosubs_off,
+        estimate_author=args.author,
+    )
+    for value in decision.swaps:
+        print(
+            f"  {value.out_name} -> {value.in_name}: gives up {value.points_given_up:.2f} "
+            f"({value.points_given_up_tag}), expects {value.in_expected_points:.2f}, "
+            f"gain {value.gain:+.2f}"
+        )
+    _print_decision(decision, args.author)
+    _log_decision(args, "substitution", decision)
+    return 0
+
+
+def cmd_mcp(_args: argparse.Namespace) -> int:
+    from uclfa.mcp_server import main as run_server
+
+    run_server()
+    return 0
+
+
 # -- journal -------------------------------------------------------------------------
 
 
@@ -459,6 +574,26 @@ def build_parser() -> argparse.ArgumentParser:
     score.add_argument("--potm", action="store_true")
     score.add_argument("--red", action="store_true")
     score.set_defaults(func=cmd_score)
+
+    decide = sub.add_parser("decide", help="captain and substitution calculators")
+    decide_sub = decide.add_subparsers(dest="decide_command", required=True)
+    cap = decide_sub.add_parser("captain", help="value of moving the armband between playing days")
+    cap.add_argument("--points", type=float, required=True, help="points your captain scored")
+    cap.add_argument("--candidate", action="append", required=True, help='"Name=expected points"')
+    cap.set_defaults(func=cmd_decide_captain)
+    sw = decide_sub.add_parser("sub", help="value of manual substitutions between playing days")
+    sw.add_argument("--swap", action="append", required=True, help='"Out|points|In|expected"')
+    sw.set_defaults(func=cmd_decide_sub)
+    for p in (cap, sw):
+        p.add_argument("--author", required=True, help="who made the estimates")
+        p.add_argument("--risk", action="append", help='"Player|P(not playing)|replacement points"')
+        p.add_argument("--autosubs-off", action="store_true", help="already disabled this matchday")
+        p.add_argument("--log", action="store_true", help="save the result to the journal")
+        p.add_argument("--matchday", type=int)
+
+    sub.add_parser("mcp", help="run the read-only tool server for Claude").set_defaults(
+        func=cmd_mcp
+    )
 
     journal = sub.add_parser("journal", help="record or list decisions")
     journal_sub = journal.add_subparsers(dest="journal_command", required=True)

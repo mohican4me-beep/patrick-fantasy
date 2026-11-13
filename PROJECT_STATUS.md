@@ -4,8 +4,21 @@ Updated 13 November 2026.
 
 ## Where things stand
 
-Phase 1 (rules engine, schema, command line) is complete. All ten acceptance criteria are
-met and Patrick accepted it on 13 November 2026. Tagged `phase-1`.
+Phase 1 is complete and was accepted on 13 November 2026 (commit `2fe5fac`).
+
+Release 1a, step 2 (calculators and the read-only tool server for Claude) is built on the
+branch `release-1a-tools`. Four of its five acceptance criteria are met; the fifth is a
+check only Patrick can make on the host PC.
+
+## Release 1a, step 2 acceptance criteria
+
+| # | Criterion | Status | Evidence |
+|---|---|---|---|
+| 1 | All tests pass, output shown | Met | 204 passed; `ruff check` clean |
+| 2 | Scenarios C and D give the expected numbers and state their assumptions | Met | `test_scenario_c_keep_the_captain_on_seven` (gain -0.6, keep); `test_scenario_d_secured_points_are_lost` |
+| 3 | Calculator output is labelled `analyst_estimate` | Met | Tag fixed in `decisions.py`; asserted through the server |
+| 4 | The server exposes no tool that changes data | Met | Twelve read-only tools; the database connection refuses INSERT and DELETE; the file is byte-identical after tool calls |
+| 5 | Patrick confirms on the host that Claude can list the squad and validate a transfer | **Open** | Steps in `docs/claude-setup.md` |
 
 ## Phase 1 acceptance criteria
 
@@ -25,7 +38,7 @@ met and Patrick accepted it on 13 November 2026. Tagged `phase-1`.
 ## Last test run
 
 ```
-pytest      170 passed
+pytest      204 passed (includes launching the server as a subprocess over stdio)
 ruff check  All checks passed
 ruff format all files formatted
 ```
@@ -40,8 +53,9 @@ Run on Python 3.13 in the planning environment. Not yet run on the host PC.
 
 ## Open items for Patrick
 
-1. Approve or amend the plan for Release 1a, step 2.
-2. Install on the host PC and run the tests there (see README).
+1. Install on the host PC, run the tests there, and connect Claude (`docs/claude-setup.md`).
+2. Report whether the two checks at the end of that document work.
+3. Push the `phase-1` tag from the host: this environment could not push tags.
 3. Whether both chips can be played on one matchday (not urgent).
 
 Done on 13 November: six in-game checks answered; matchday 5 deadline time recorded.
@@ -51,8 +65,8 @@ Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host con
 
 ## Next, after Phase 1 is accepted
 
-Release 1a, step 2: the read-only tool server for Claude Desktop and Claude Code, and the
-captain and substitution calculator. Needs its own approval.
+Release 1b: web dashboard on PC and phone, squad editor, names-only screenshot import,
+player comparison, points entry, Tailscale access and backups. Needs its own approval.
 
 ## Known limits of Phase 1
 

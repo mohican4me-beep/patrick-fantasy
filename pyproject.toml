@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uclfa"
-version = "0.1.0"
+version = "0.2.0"
 description = "Personal UEFA Champions League Fantasy assistant: rules engine and squad record"
 requires-python = ">=3.12"
 dependencies = [
@@ -12,6 +12,7 @@ dependencies = [
     "PyYAML>=6.0",
     "SQLAlchemy>=2.0",
     "alembic>=1.13",
+    "mcp>=2.3,<3",
 ]
 
 [project.optional-dependencies]

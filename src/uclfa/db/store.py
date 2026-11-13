@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import sqlite3
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -39,10 +40,21 @@ def make_engine(path: Path | str | None = None) -> Engine:
     def _pragmas(dbapi_connection, _record):  # pragma: no cover - driver hook
         cursor = dbapi_connection.cursor()
         cursor.execute("PRAGMA foreign_keys=ON")
-        cursor.execute("PRAGMA journal_mode=WAL")
         cursor.close()
 
     return engine
+
+
+def make_readonly_engine(path: Path | str | None = None) -> Engine:
+    """An engine that cannot write: SQLite opens the file in read-only mode."""
+    target = (Path(path) if path is not None else db_path()).resolve()
+
+    def connect() -> sqlite3.Connection:
+        connection = sqlite3.connect(f"{target.as_uri()}?mode=ro", uri=True)
+        connection.execute("PRAGMA query_only=ON")
+        return connection
+
+    return create_engine("sqlite://", creator=connect)
 
 
 def migrate(path: Path | str | None = None) -> Path:

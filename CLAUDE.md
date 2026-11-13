@@ -35,6 +35,10 @@ uclfa --help
 - `src/uclfa/rules/`: rules model, validators, scoring. No database or web imports.
 - `src/uclfa/db/`: SQLAlchemy models and storage. Schema changes go through Alembic
   (`migrations/versions/`), never `create_all`.
+- `src/uclfa/decisions.py`: captain and substitution calculators. Outputs are always
+  `analyst_estimate`.
+- `src/uclfa/service.py`: read-only tagged views shared by the command line and tool server.
+- `src/uclfa/mcp_server.py`: read-only MCP server. Never add a tool that writes.
 - `src/uclfa/cli.py`: command line.
 - `tests/`: each rule test names its rule id in the docstring, in square brackets.
 

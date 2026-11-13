@@ -1,8 +1,8 @@
 # Patrick Fantasy
 
-A personal assistant for UEFA Champions League Fantasy. This is Phase 1 of Release 1a: a
-verified rules engine, a squad record and a command line. There is no prediction model,
-no optimizer and no web app yet.
+A personal assistant for UEFA Champions League Fantasy. This is Release 1a: a
+verified rules engine, a squad record, decision calculators, a command line and a read-only
+tool server for Claude. There is no prediction model, no optimizer and no web app yet.
 
 The app never contacts UEFA and stores no UEFA credentials. Everything it knows about the
 game is entered by you.
@@ -35,6 +35,9 @@ The database is created at `data\uclfa.db` and is not committed to Git.
 | `uclfa squad show` / `uclfa squad validate` | Shows or re-checks the saved squad |
 | `uclfa transfers check docs\transfers-template.yaml` | Checks transfers: legality, cost, bank, next free transfers |
 | `uclfa score --position DEF --minutes 90 --recoveries 7` | Scores one match with the official table |
+| `uclfa decide captain --points 7 --candidate "Name=6.4" --author Patrick` | Value of moving the armband between playing days |
+| `uclfa decide sub --swap "Out\|7\|In\|6.4" --author Patrick` | Value of a manual substitution; add `\|to-play` if the outgoing player has not played |
+| `uclfa mcp` | Runs the read-only tool server for Claude (see `docs/claude-setup.md`) |
 | `uclfa journal add ...` / `uclfa journal list` | Records and lists decisions |
 
 ## Entering your squad
