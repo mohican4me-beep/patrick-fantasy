@@ -41,12 +41,13 @@ Run on Python 3.13 in the planning environment. Not yet run on the host PC.
 
 ## Open items for Patrick
 
-1. Create the private GitHub repository so the code can be pushed.
-2. Send the matchday 5 squad: fifteen players, clubs, positions, prices, sale values if
+1. Send the matchday 5 squad: fifteen players, clubs, positions, prices, sale values if
    shown, starters, bench order, captain, bank, free transfers, chips used.
-3. Send ten points breakdowns from the game, covering all four positions.
-4. Make the six checks listed at the end of `FANTASY_RULES.md`.
-5. Send the host PC's CPU and memory.
+2. Send ten points breakdowns from the game, covering all four positions.
+3. Make the six checks listed at the end of `FANTASY_RULES.md`.
+
+Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host confirmed as
+"beast" (AMD Ryzen 5 5600X, 32 GB RAM).
 
 ## Next, after Phase 1 is accepted
 

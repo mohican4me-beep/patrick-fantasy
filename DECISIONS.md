@@ -8,7 +8,7 @@ Newest last. Each entry: the decision, who made it, and the reason.
 |---|---|---|---|
 | 1 | Fantasy data by shortlist entry only (route A). No feed file, no scripted fetch | Patrick | UEFA's terms prohibit automated collection and systematic compilation; no bulk route is clearly permitted |
 | 2 | Release 1 split into 1a (matchday 5) and 1b (matchday 6) | Patrick | A dashboard cannot be ready for matchday 5 without cutting tests |
-| 3 | Host is the Windows PC "beast" | Patrick | |
+| 3 | Host is the Windows PC "beast": AMD Ryzen 5 5600X, 32 GB RAM | Patrick | Ample for the rules engine, and for the later solver and simulation |
 | 4 | Phone access through Tailscale; nothing exposed publicly | Patrick | |
 | 5 | Screenshot import uses local recognition first | Patrick | |
 | 6 | Source probe approved, to run before Release 2 | Patrick | No API could be tested from the planning environment |
