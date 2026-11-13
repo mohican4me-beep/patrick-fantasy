@@ -259,3 +259,13 @@ def test_shortlist_score_rules_and_journal_commands(db, capsys):
     assert cli.main(["journal", "list"]) == 0
     listed = capsys.readouterr().out
     assert "Kept day-one captain" in listed and "analyst_estimate" in listed
+
+
+def test_squad_without_free_transfers_is_checked_but_not_saved(db, tmp_path, capsys):
+    """A missing free-transfer count is never read as unlimited."""
+    file = squad_file(tmp_path, free_transfers=None)
+    assert cli.main(["squad", "import", str(file)]) == 1
+    out = capsys.readouterr().out
+    assert "VALID" in out and "free_transfers is missing" in out
+    with Session(store.make_engine(db)) as session:
+        assert session.scalars(select(SquadSnapshot)).all() == []

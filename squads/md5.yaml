@@ -1,0 +1,28 @@
+# Pistolia Fc, before the matchday 5 deadline (24 November 2026, 19:45 Europe/Athens).
+# Read from Patrick's screenshots of 13 November 2026. Every value was shown in the game
+# or stated by Patrick. Sale values are not entered: the selling-value rule is confirmed
+# as current price.
+
+matchday: 5
+label: pre_deadline
+bank: 0.8
+free_transfers: null   # NOT YET PROVIDED: the number the game shows (2 or 3)
+chips_used: [limitless]
+note: "Wildcard assumed unused: Patrick reported only Limitless as used. To be confirmed."
+
+players:
+  - {name: "Joan Garcia", club: "Barcelona", position: GK, price: 5.0, role: starter}
+  - {name: "J. Gadou", club: "B. Dortmund", position: DEF, price: 4.0, role: starter}
+  - {name: "L. Geertruida", club: "PSV", position: DEF, price: 4.5, role: starter}
+  - {name: "M. Mittelstadt", club: "Stuttgart", position: DEF, price: 4.5, role: starter}
+  - {name: "Carlos Augusto", club: "Inter", position: DEF, price: 4.2, role: starter}
+  - {name: "Bruno Fernandes", club: "Man Utd", position: MID, price: 9.0, role: starter}
+  - {name: "G. Zechiel", club: "Feyenoord", position: MID, price: 4.6, role: starter}
+  - {name: "Joao Neves", club: "Paris", position: MID, price: 5.9, role: starter}
+  - {name: "Raphinha", club: "Barcelona", position: MID, price: 9.6, role: starter, captain: true}
+  - {name: "H. Kane", club: "Bayern Munchen", position: FWD, price: 11.2, role: starter}
+  - {name: "B. Mbeumo", club: "Man Utd", position: FWD, price: 7.0, role: starter}
+  - {name: "G. Kobel", club: "B. Dortmund", position: GK, price: 5.0, role: bench}
+  - {name: "Vinicius Junior", club: "Real Madrid", position: MID, price: 9.5, role: bench, bench_order: 1}
+  - {name: "K. Mbappe", club: "Real Madrid", position: FWD, price: 11.1, role: bench, bench_order: 2}
+  - {name: "R. Calafiori", club: "Arsenal", position: DEF, price: 4.5, role: bench, bench_order: 3}

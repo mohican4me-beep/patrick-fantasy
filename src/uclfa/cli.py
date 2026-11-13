@@ -144,6 +144,7 @@ def cmd_squad_import(args: argparse.Namespace) -> int:
     except (KeyError, TypeError, ValueError) as exc:
         sys.exit(f"Squad file needs matchday, bank and players: {exc}")
     free_raw = data.get("free_transfers")
+    free_known = free_raw is not None
     free = None if free_raw in (None, "unlimited") else int(free_raw)
     try:
         chips_used = frozenset(Chip(c) for c in data.get("chips_used") or [])
@@ -187,6 +188,13 @@ def cmd_squad_import(args: argparse.Namespace) -> int:
         if result.violations:
             session.rollback()
             print("Nothing was saved.")
+            return 1
+        if not free_known:
+            session.rollback()
+            print(
+                "Nothing was saved: free_transfers is missing. Enter the number the game "
+                'shows, or "unlimited".'
+            )
             return 1
         snap = store.save_squad_snapshot(
             session,

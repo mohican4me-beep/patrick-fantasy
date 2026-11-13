@@ -18,15 +18,15 @@ complete until they pass.
 | 4 | Carry gives 3 after one unused league transfer, never more; 0 after a chip or in the knockouts | Met | `test_transfers_chips.py` |
 | 5 | Over-limit squad validates with zero transfers, fails with a transfer that leaves it over | Met | `test_inherited_over_limit_squad` |
 | 6 | A transfer with an unconfirmed sale value is blocked | Met | `test_unconfirmed_sale_value_blocks_the_transfer` |
-| 7 | Scoring reproduces ten real performances from the game, all four positions | **Open: 1 of 10** | `tests/test_real_performances.py`: Raphinha (MID) 15 points reproduced exactly. Nine more needed, including GK, DEF and FWD |
+| 7 | Scoring reproduces ten real performances from the game, all four positions | **Open: 8 of 10** | `tests/test_real_performances.py`: 2 GK, 2 DEF, 1 MID, 3 FWD reproduced exactly, component by component. Two more needed |
 | 8 | A value changed in the rules file changes behaviour with no code change | Met | `test_changing_the_rules_file_changes_behaviour` |
-| 9 | Patrick's real matchday 5 squad is entered and validates | **Open** | Squad read from a screenshot: composition and formation are legal. Not saved: bank, free transfers, chips, 13 prices and two clubs are missing |
+| 9 | Patrick's real matchday 5 squad is entered and validates | **Open: validates, not saved** | `squads/md5.yaml` validates: 2-5-5-3, 4-4-2, at most 2 per club, squad value 99.6m, bank 0.8m, Limitless used. Not saved because free transfers were not provided |
 | 10 | Full test output shown | Met | 156 passed; `ruff check` clean |
 
 ## Last test run
 
 ```
-pytest      158 passed, 1 xfailed (the xfail is criterion 7: ten real cases not yet supplied)
+pytest      166 passed, 1 xfailed (the xfail is criterion 7: ten real cases not yet supplied)
 ruff check  All checks passed
 ruff format all files formatted
 ```
@@ -41,9 +41,9 @@ Run on Python 3.13 in the planning environment. Not yet run on the host PC.
 
 ## Open items for Patrick
 
-1. For the squad: bank, free transfers, chips used, the prices of the 13 players other
-   than Kane and Raphinha, and the clubs of Geertruida and Zechiel.
-2. Nine more points breakdowns: at least two goalkeepers, two defenders and two forwards.
+1. Free transfers shown in the game for matchday 5, and confirmation that Wildcard is unused.
+2. Two more points breakdowns, ideally midfielders, and one with a card, penalty or more
+   than one goal conceded by a defender if available.
 3. Whether both chips can be played on one matchday (not urgent).
 
 Done on 13 November: six in-game checks answered; matchday 5 deadline time recorded.
