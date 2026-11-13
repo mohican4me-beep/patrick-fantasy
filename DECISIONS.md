@@ -44,3 +44,4 @@ Newest last. Each entry: the decision, who made it, and the reason.
 | A tie is a "keep" in the captain calculator | The switch cannot be undone and gains nothing |
 | Automatic-substitution cost is the sum of probability times replacement points | Simple and stated as an approximation; it ignores formation limits and shared bench cover |
 | Tool server tests use explicit confirmations, not `rules/confirmations.yaml` | Tests must not change meaning when Patrick confirms another rule |
+| `tzdata` added as a dependency | Windows ships no time-zone database, so `Europe/Athens` could not be resolved on the host; found by the first test run on beast |

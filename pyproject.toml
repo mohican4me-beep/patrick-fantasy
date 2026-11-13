@@ -13,6 +13,7 @@ dependencies = [
     "SQLAlchemy>=2.0",
     "alembic>=1.13",
     "mcp>=2.3,<3",
+    "tzdata>=2024.1",  # Windows has no system time-zone database
 ]
 
 [project.optional-dependencies]
