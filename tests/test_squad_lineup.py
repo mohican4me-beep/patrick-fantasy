@@ -67,14 +67,14 @@ def test_inherited_club_limit_is_reported_not_refused(rules, squad):
 
 def test_lineup_needs_eleven(rules, squad):
     """[lineup_formation] Ten starters is not a lineup."""
-    fewer = change(squad, "m4", role=Role.BENCH, bench_order=5)
+    fewer = change(squad, "m4", role=Role.BENCH, bench_order=4)
     assert "lineup_size" in validate_lineup(fewer, rules).codes()
 
 
 def test_formation_minimum_defenders(rules, squad):
     """[lineup_formation] At least three defenders must start."""
-    lineup = change(squad, "d3", role=Role.BENCH, bench_order=3)
-    lineup = change(lineup, "d4", role=Role.BENCH, bench_order=4)
+    lineup = change(squad, "d3", role=Role.BENCH, bench_order=2)
+    lineup = change(lineup, "d4", role=Role.BENCH, bench_order=3)
     lineup = change(lineup, "m5", role=Role.STARTER, bench_order=None)
     lineup = change(lineup, "f3", role=Role.STARTER, bench_order=None)
     result = validate_lineup(lineup, rules)
@@ -85,7 +85,7 @@ def test_formation_minimum_defenders(rules, squad):
 def test_formation_exactly_one_goalkeeper(rules, squad):
     """[lineup_formation] Two goalkeepers cannot start."""
     lineup = change(squad, "gk2", role=Role.STARTER, bench_order=None)
-    lineup = change(lineup, "m4", role=Role.BENCH, bench_order=1)
+    lineup = change(lineup, "m4", role=Role.BENCH, bench_order=4)
     assert any("exactly 1 GK" in v.message for v in validate_lineup(lineup, rules).violations)
 
 
@@ -104,7 +104,7 @@ def test_exactly_one_captain(rules, squad):
 
 def test_bench_order_must_be_distinct(rules, squad):
     """[automatic_substitutions] Bench order decides automatic substitutions, so it must be set."""
-    clash = change(squad, "f3", bench_order=3)
+    clash = change(squad, "f3", bench_order=2)
     assert "bench_order" in validate_lineup(clash, rules).codes()
 
 
@@ -115,7 +115,7 @@ def test_every_legal_formation_validates(rules):
     outfield = [s for s in base.slots if s.player.position is not Position.GK]
     for _ in range(300):
         chosen = {s.player.id for s in rng.sample(outfield, 10)} | {"gk1"}
-        bench_order = iter(range(1, 5))
+        bench_order = iter(range(1, 4))
         slots = []
         for s in base.slots:
             starting = s.player.id in chosen
@@ -123,7 +123,9 @@ def test_every_legal_formation_validates(rules):
                 replace(
                     s,
                     role=Role.STARTER if starting else Role.BENCH,
-                    bench_order=None if starting else next(bench_order),
+                    bench_order=None
+                    if starting or s.player.position is Position.GK
+                    else next(bench_order),
                     is_captain=False,
                 )
             )
@@ -135,3 +137,12 @@ def test_every_legal_formation_validates(rules):
             counts[Position.DEF] >= 3 and counts[Position.MID] >= 2 and counts[Position.FWD] >= 1
         )
         assert validate_lineup(lineup, rules).ok is legal
+
+
+def test_bench_goalkeeper_needs_no_order(rules, squad):
+    """[automatic_substitutions] The game numbers the three outfield substitutes; the bench
+    goalkeeper is unnumbered."""
+    assert squad.slot("gk2").bench_order is None
+    assert validate_lineup(squad, rules).ok
+    missing = change(squad, "m5", bench_order=None)
+    assert "bench_order" in validate_lineup(missing, rules).codes()

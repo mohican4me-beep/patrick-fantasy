@@ -22,7 +22,7 @@ register, including anything you have confirmed.
 | `captain_double` | Captain's points doubled; captain must start |
 | `captain_switch` | Between playing days, to a starter yet to play; cannot move back |
 | `manual_substitutions` | Up to 4 per break; incoming player's team still to play; removed player scores 0; sent-off players cannot be removed |
-| `automatic_substitutions` | Only if no manual change of any kind was made |
+| `automatic_substitutions` | Only if no manual change of any kind was made. Outfield bench players are numbered 1 to 3; the bench goalkeeper is unnumbered |
 | `mid_matchday_changes_excluded` | None on MD8 or in the final |
 | `scoring_table` | See below |
 | `clean_sheet_on_pitch` | 60 minutes excluding added time and no goal conceded while on the pitch |
@@ -39,15 +39,32 @@ register, including anything you have confirmed.
 | `deadline_times` | Deadline is the matchday's first kick-off; dates are published | Clock times. `deadline_utc` stays empty until checked |
 | `goals_conceded_on_pitch` | Implied by the sent-off wording | Not stated outright. Affects scoring inputs, not legality |
 
-## Unverified: these block until you confirm them
+## Confirmed by Patrick in the game, 13 November 2026
+
+UEFA's page does not state these. They are recorded in `rules/confirmations.yaml`.
+
+| Rule id | Confirmed value | Meaning |
+|---|---|---|
+| `selling_value` | `current_price` | A sale returns the player's current price |
+| `goalkeeper_manual_substitution` | `allowed` | The goalkeeper can be swapped once the day's matches are over |
+| `captain_on_substituted_in` | `allowed` | The armband can go to a player just brought on |
+| `late_changes_after_kickoff` | `not_allowed` | Changes lock when the next playing day's first match starts |
+
+## Unverified: this blocks until confirmed
 
 | Rule id | Blocks | Confirm with |
 |---|---|---|
-| `selling_value` | Any transfer out of a player with no sale value entered | `uclfa rules confirm selling_value --value current_price` or `purchase_price` |
-| `goalkeeper_manual_substitution` | Substituting the goalkeeper between playing days | `--value allowed` or `not_allowed` |
-| `captain_on_substituted_in` | Captaincy for a player brought on in the same break | `--value allowed` or `not_allowed` |
-| `late_changes_after_kickoff` | Changes after the next playing day has kicked off | `--value allowed` or `not_allowed` |
-| `two_chips_same_matchday` | A second chip on a matchday with one active | `--value allowed` or `not_allowed` |
+| `two_chips_same_matchday` | A second chip on a matchday with one active | `uclfa rules confirm two_chips_same_matchday --value allowed` or `not_allowed` |
+
+## Observations from the game
+
+- A goalkeeper's points breakdown shows saves and no balls-recovered line (Patrick,
+  13 November 2026). The official table lists recoveries for all players, so the scoring
+  function still accepts them; in practice goalkeepers appear not to be credited with any.
+- The game shows appearance and 60 minutes as one line, for example "70 minutes played,
+  2 pts".
+- The bench is one goalkeeper, unnumbered, and three outfield players numbered 1 to 3.
+- Matchday 5 transfer deadline: 24 November, 19:45 Europe/Athens (17:45 UTC).
 
 ## Scoring
 
@@ -73,9 +90,10 @@ register, including anything you have confirmed.
 
 ## Checks to make in the game
 
-- [ ] Sale value shown for a player whose price has changed since you bought him.
-- [ ] Whether any goalkeeper's breakdown shows balls-recovered points.
-- [ ] Whether the goalkeeper can be swapped between playing days.
-- [ ] Whether the armband can go to a player you have just brought on.
-- [ ] The matchday 5 deadline time and its time zone.
-- [ ] Whether changes are accepted after the first kick-off of day two.
+- [x] Sale value: the current price.
+- [x] Goalkeeper breakdown: saves shown, no balls recovered.
+- [x] Goalkeeper swap between playing days: allowed.
+- [x] Armband to a player just brought on: allowed.
+- [x] Matchday 5 deadline: 19:45 Europe/Athens.
+- [x] Changes after the first kick-off of day two: not accepted.
+- [ ] Whether Wildcard and Limitless can be played on the same matchday.

@@ -6,6 +6,7 @@ hard-coded elsewhere in the package.
 
 from __future__ import annotations
 
+import os
 from datetime import date, datetime
 from enum import StrEnum
 from pathlib import Path
@@ -211,11 +212,24 @@ class RuleSet(_Strict):
         return conf.value if conf else None
 
 
+_FROM_ENVIRONMENT = object()
+
+
+def confirmations_path_in_use() -> Path:
+    """Where confirmations are read from: UCLFA_CONFIRMATIONS if set, else the repository file."""
+    return Path(os.environ.get("UCLFA_CONFIRMATIONS", DEFAULT_CONFIRMATIONS_PATH))
+
+
 def load_rules(
     rules_path: Path | str = DEFAULT_RULES_PATH,
-    confirmations_path: Path | str | None = DEFAULT_CONFIRMATIONS_PATH,
+    confirmations_path: Path | str | None | object = _FROM_ENVIRONMENT,
 ) -> RuleSet:
-    """Load the rules file and, if present, the user's confirmations."""
+    """Load the rules file and, if present, the user's confirmations.
+
+    Pass confirmations_path=None to load the official rules with nothing confirmed.
+    """
+    if confirmations_path is _FROM_ENVIRONMENT:
+        confirmations_path = confirmations_path_in_use()
     data = yaml.safe_load(Path(rules_path).read_text(encoding="utf-8"))
     confirmations: dict = {}
     if confirmations_path is not None and Path(confirmations_path).exists():
@@ -232,9 +246,11 @@ def save_confirmation(
     *,
     confirmed_on: date | None = None,
     rules_path: Path | str = DEFAULT_RULES_PATH,
-    confirmations_path: Path | str = DEFAULT_CONFIRMATIONS_PATH,
+    confirmations_path: Path | str | None = None,
 ) -> RuleSet:
     """Record a rule the user checked in the game, then return the reloaded rule set."""
+    if confirmations_path is None:
+        confirmations_path = confirmations_path_in_use()
     allowed = CONFIRMABLE_VALUES.get(rule_id)
     if allowed is None:
         raise ValueError(

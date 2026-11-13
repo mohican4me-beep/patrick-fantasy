@@ -13,22 +13,22 @@ complete until they pass.
 | # | Criterion | Status | Evidence |
 |---|---|---|---|
 | 1 | Every confirmed rule has a passing test naming its rule id | Met | `tests/`, rule ids in docstrings |
-| 2 | Every unverified rule blocks, with a test proving no default | Met | Five rules: `selling_value`, `goalkeeper_manual_substitution`, `captain_on_substituted_in`, `late_changes_after_kickoff`, `two_chips_same_matchday` |
+| 2 | Every unverified rule blocks, with a test proving no default | Met | Tests cover all five originally open rules. Four are now confirmed by Patrick; `two_chips_same_matchday` still blocks |
 | 3 | An illegal squad, lineup or transfer names the rule broken | Met | `Violation.rule_id` and message |
 | 4 | Carry gives 3 after one unused league transfer, never more; 0 after a chip or in the knockouts | Met | `test_transfers_chips.py` |
 | 5 | Over-limit squad validates with zero transfers, fails with a transfer that leaves it over | Met | `test_inherited_over_limit_squad` |
 | 6 | A transfer with an unconfirmed sale value is blocked | Met | `test_unconfirmed_sale_value_blocks_the_transfer` |
-| 7 | Scoring reproduces ten real performances from the game, all four positions | **Open** | Needs ten points breakdowns from Patrick |
+| 7 | Scoring reproduces ten real performances from the game, all four positions | **Open: 1 of 10** | `tests/test_real_performances.py`: Raphinha (MID) 15 points reproduced exactly. Nine more needed, including GK, DEF and FWD |
 | 8 | A value changed in the rules file changes behaviour with no code change | Met | `test_changing_the_rules_file_changes_behaviour` |
-| 9 | Patrick's real matchday 5 squad is entered and validates | **Open** | Needs the squad |
+| 9 | Patrick's real matchday 5 squad is entered and validates | **Open** | Squad read from a screenshot: composition and formation are legal. Not saved: bank, free transfers, chips, 13 prices and two clubs are missing |
 | 10 | Full test output shown | Met | 156 passed; `ruff check` clean |
 
 ## Last test run
 
 ```
-pytest      156 passed
+pytest      158 passed, 1 xfailed (the xfail is criterion 7: ten real cases not yet supplied)
 ruff check  All checks passed
-ruff format 25 files already formatted
+ruff format all files formatted
 ```
 
 Run on Python 3.13 in the planning environment. Not yet run on the host PC.
@@ -41,10 +41,12 @@ Run on Python 3.13 in the planning environment. Not yet run on the host PC.
 
 ## Open items for Patrick
 
-1. Send the matchday 5 squad: fifteen players, clubs, positions, prices, sale values if
-   shown, starters, bench order, captain, bank, free transfers, chips used.
-2. Send ten points breakdowns from the game, covering all four positions.
-3. Make the six checks listed at the end of `FANTASY_RULES.md`.
+1. For the squad: bank, free transfers, chips used, the prices of the 13 players other
+   than Kane and Raphinha, and the clubs of Geertruida and Zechiel.
+2. Nine more points breakdowns: at least two goalkeepers, two defenders and two forwards.
+3. Whether both chips can be played on one matchday (not urgent).
+
+Done on 13 November: six in-game checks answered; matchday 5 deadline time recorded.
 
 Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host confirmed as
 "beast" (AMD Ryzen 5 5600X, 32 GB RAM).

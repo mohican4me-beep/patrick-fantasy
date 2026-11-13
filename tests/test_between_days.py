@@ -5,7 +5,7 @@ from uclfa.rules import BreakContext, Role, Substitution, validate_between_days
 from .conftest import change
 
 # In the reference squad the starters are gk1, d1-d4, m1-m4, f1 (captain), f2 and the
-# bench is gk2 (1), d5 (2), m5 (3), f3 (4).
+# bench is gk2 (unnumbered), d5 (1), m5 (2), f3 (3).
 DAY_ONE = frozenset({"gk1", "d1", "d2", "m1", "m2", "f1"})
 
 
@@ -27,7 +27,7 @@ def test_scenario_d_legal_substitution(rules, squad):
     assert outcome.automatic_substitutions_disabled
     assert outcome.squad_after.slot("m5").role is Role.STARTER
     assert outcome.squad_after.slot("m1").role is Role.BENCH
-    assert outcome.squad_after.slot("m1").bench_order == 3
+    assert outcome.squad_after.slot("m1").bench_order == 2
     assert any("become 0" in n for n in outcome.result.notes)
     assert any("automatic substitutions" in n for n in outcome.result.notes)
 
@@ -42,7 +42,7 @@ def test_incoming_player_must_be_still_to_play(rules, squad):
 
 def test_at_most_four_substitutions(rules, squad):
     """[manual_substitutions] Four per break."""
-    bench_heavy = change(squad, "m4", role=Role.BENCH, bench_order=5)
+    bench_heavy = change(squad, "m4", role=Role.BENCH, bench_order=4)
     subs = [
         Substitution("d1", "d5"),
         Substitution("m1", "m5"),
@@ -76,9 +76,9 @@ def test_sent_off_player_cannot_be_removed(rules, squad):
 def test_substitution_must_keep_a_legal_formation(rules, squad):
     """[lineup_formation] Swapping the last forward pair for a defender is fine; dropping
     below three defenders is not."""
-    lineup = change(squad, "d4", role=Role.BENCH, bench_order=5)
+    lineup = change(squad, "d4", role=Role.BENCH, bench_order=4)
     lineup = change(lineup, "f3", role=Role.STARTER, bench_order=None)
-    lineup = change(lineup, "d4", bench_order=4)
+    lineup = change(lineup, "d4", bench_order=3)
     outcome = validate_between_days(lineup, [Substitution("d3", "m5")], None, ctx(), rules)
     assert "formation" in outcome.result.codes()
 

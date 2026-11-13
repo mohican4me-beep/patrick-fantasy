@@ -1,5 +1,7 @@
 """The rules file: values traced to UEFA's 2026/27 rules page, and the verification register."""
 
+from zoneinfo import ZoneInfo
+
 import pytest
 from pydantic import ValidationError
 
@@ -97,7 +99,10 @@ def test_remaining_deadline_dates(rules):
     """[deadline_times] Dates are published; clock times stay unconfirmed."""
     assert rules.matchday(5).deadline_date.isoformat() == "2026-11-24"
     assert rules.matchday(8).deadline_date.isoformat() == "2027-01-27"
-    assert all(md.deadline_utc is None for md in rules.matchdays.values())
+    assert rules.matchday(5).deadline_utc.isoformat() == "2026-11-24T17:45:00+00:00"
+    athens = rules.matchday(5).deadline_utc.astimezone(ZoneInfo("Europe/Athens"))
+    assert athens.strftime("%d %B, %H:%M") == "24 November, 19:45"  # as the game shows it
+    assert all(md.deadline_utc is None for n, md in rules.matchdays.items() if n != 5)
     assert rules.status("deadline_times") is Status.PARTLY_CONFIRMED
 
 

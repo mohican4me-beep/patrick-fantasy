@@ -1,12 +1,19 @@
 # Rule confirmations you have made in the game.
-#
-# Add an entry only after checking the rule yourself. Use the command line:
-#   uclfa rules confirm selling_value --value current_price --note "Checked on transfers screen"
-#
-# Allowed values:
-#   selling_value:                  current_price | purchase_price
-#   goalkeeper_manual_substitution: allowed | not_allowed
-#   captain_on_substituted_in:      allowed | not_allowed
-#   late_changes_after_kickoff:     allowed | not_allowed
-#   two_chips_same_matchday:        allowed | not_allowed
-confirmations: {}
+# Managed by `uclfa rules confirm`. See rules/2026-27.yaml for each rule's summary.
+confirmations:
+  captain_on_substituted_in:
+    confirmed_on: '2026-11-13'
+    note: Patrick, 13 Nov 2026
+    value: allowed
+  goalkeeper_manual_substitution:
+    confirmed_on: '2026-11-13'
+    note: 'Patrick, 13 Nov 2026: possible once the day''s matches are over'
+    value: allowed
+  late_changes_after_kickoff:
+    confirmed_on: '2026-11-13'
+    note: 'Patrick, 13 Nov 2026: locked once the next day''s first match starts'
+    value: not_allowed
+  selling_value:
+    confirmed_on: '2026-11-13'
+    note: 'Patrick, 13 Nov 2026: a sale returns the player''s current price'
+    value: current_price

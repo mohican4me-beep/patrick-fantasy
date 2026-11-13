@@ -31,6 +31,7 @@ EXPECTED_TABLES = {
 def db(tmp_path: Path, monkeypatch) -> Path:
     path = tmp_path / "test.db"
     monkeypatch.setenv("UCLFA_DB", str(path))
+    monkeypatch.setenv("UCLFA_CONFIRMATIONS", str(tmp_path / "no-confirmations.yaml"))
     store.migrate(path)
     return path
 

@@ -58,7 +58,7 @@ def make_player(pid: str, position: Position, club: str, price: float = 5.0) -> 
 
 
 def make_squad() -> Squad:
-    """A legal 15: 1-4-4-2 starting, bench GK, DEF, MID, FWD. Three players per club."""
+    """A legal 15: 1-4-4-2; bench GK (unnumbered), DEF 1, MID 2, FWD 3. Three per club."""
     layout = [
         ("gk1", Position.GK, Role.STARTER, None),
         ("d1", Position.DEF, Role.STARTER, None),
@@ -71,10 +71,10 @@ def make_squad() -> Squad:
         ("m4", Position.MID, Role.STARTER, None),
         ("f1", Position.FWD, Role.STARTER, None),
         ("f2", Position.FWD, Role.STARTER, None),
-        ("gk2", Position.GK, Role.BENCH, 1),
-        ("d5", Position.DEF, Role.BENCH, 2),
-        ("m5", Position.MID, Role.BENCH, 3),
-        ("f3", Position.FWD, Role.BENCH, 4),
+        ("gk2", Position.GK, Role.BENCH, None),
+        ("d5", Position.DEF, Role.BENCH, 1),
+        ("m5", Position.MID, Role.BENCH, 2),
+        ("f3", Position.FWD, Role.BENCH, 3),
     ]
     slots = []
     for index, (pid, position, role, order) in enumerate(layout):

@@ -29,4 +29,6 @@ Newest last. Each entry: the decision, who made it, and the reason.
 | Property-style tests use a seeded `random`, not Hypothesis | One fewer dependency; results are reproducible |
 | Squad import reports an over-limit club as a note | A squad copied from the game can legitimately be over the limit after a real move; the limit is enforced on the next transfer |
 | `Fixture` table created now, unused | Avoids a migration when Release 2 starts; holds nothing invented |
+| Bench order follows the game: three outfield substitutes numbered 1 to 3, bench goalkeeper unnumbered | Seen in Patrick's squad screenshot; the first version wrongly numbered four |
+| `UCLFA_CONFIRMATIONS` can point to another confirmations file | Tests must not depend on Patrick's real confirmations |
 | Package requires Python 3.12+ and was tested on 3.13 | The planning environment had 3.13 |

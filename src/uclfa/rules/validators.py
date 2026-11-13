@@ -91,12 +91,15 @@ def validate_lineup(squad: Squad, rules: RuleSet) -> Result:
                 "lineup_formation",
             )
 
-    orders = [s.bench_order for s in bench]
-    expected = list(range(1, len(bench) + 1))
+    # The game numbers the outfield substitutes 1, 2, 3. The bench goalkeeper has no number:
+    # he can only ever replace the goalkeeper.
+    outfield_bench = [s for s in bench if s.player.position is not Position.GK]
+    orders = [s.bench_order for s in outfield_bench]
+    expected = list(range(1, len(outfield_bench) + 1))
     if any(o is None for o in orders) or sorted(o for o in orders if o is not None) != expected:
         out.violate(
             "bench_order",
-            f"Bench players need distinct orders {expected}; got {orders}.",
+            f"Outfield bench players need distinct orders {expected}; got {orders}.",
             "automatic_substitutions",
         )
 

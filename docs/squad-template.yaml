@@ -6,7 +6,8 @@
 # price:           the player's current price
 # purchase_price:  what you paid, if you know it
 # sale_value:      what the transfer screen says you get for selling him; leave null if unknown
-# role:            starter or bench; bench players need bench_order 1 to 4
+# role:            starter or bench; the three outfield bench players need bench_order 1 to 3,
+#                  as the game numbers them. The bench goalkeeper has no number.
 # captain:         true for exactly one starter
 #
 # Optional: overall_rank, overall_points, mini_league_rank, note
@@ -29,7 +30,7 @@ players:
   - {name: "Midfielder Four", club: "Club D", position: MID, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
   - {name: "Forward One", club: "Club E", position: FWD, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter, captain: true}
   - {name: "Forward Two", club: "Club A", position: FWD, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
-  - {name: "Goalkeeper Two", club: "Club B", position: GK, price: 4.0, purchase_price: 4.0, sale_value: null, role: bench, bench_order: 1}
-  - {name: "Defender Five", club: "Club C", position: DEF, price: 4.0, purchase_price: 4.0, sale_value: null, role: bench, bench_order: 2}
-  - {name: "Midfielder Five", club: "Club D", position: MID, price: 4.5, purchase_price: 4.5, sale_value: null, role: bench, bench_order: 3}
-  - {name: "Forward Three", club: "Club E", position: FWD, price: 4.5, purchase_price: 4.5, sale_value: null, role: bench, bench_order: 4}
+  - {name: "Goalkeeper Two", club: "Club B", position: GK, price: 4.0, purchase_price: 4.0, sale_value: null, role: bench}
+  - {name: "Defender Five", club: "Club C", position: DEF, price: 4.0, purchase_price: 4.0, sale_value: null, role: bench, bench_order: 1}
+  - {name: "Midfielder Five", club: "Club D", position: MID, price: 4.5, purchase_price: 4.5, sale_value: null, role: bench, bench_order: 2}
+  - {name: "Forward Three", club: "Club E", position: FWD, price: 4.5, purchase_price: 4.5, sale_value: null, role: bench, bench_order: 3}

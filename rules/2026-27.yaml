@@ -52,7 +52,7 @@ matchdays:
   2:  {stage: league_phase, free_transfers: 2, carry_in: false, mid_matchday_changes: true, deadline_date: null, deadline_utc: null}
   3:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: null, deadline_utc: null}
   4:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: "2026-11-03", deadline_utc: null}
-  5:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: "2026-11-24", deadline_utc: null}
+  5:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: "2026-11-24", deadline_utc: "2026-11-24T17:45:00Z"}  # game shows 19:45 Europe/Athens
   6:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: "2026-12-08", deadline_utc: null}
   7:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: "2027-01-19", deadline_utc: null}
   8:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: false, deadline_date: "2027-01-27", deadline_utc: null}
@@ -163,7 +163,7 @@ register:
     summary: "The squad returns after Limitless. The bank and price effects are not described."
   deadline_times:
     status: partly_confirmed
-    summary: "The deadline is the first kick-off of the matchday. Only dates are published on the rules page."
+    summary: "The deadline is the first kick-off of the matchday. Only dates are published on the rules page. Matchday 5 time read from the game: 19:45 Europe/Athens."
   scoring_table:
     status: confirmed
     summary: "Points per event as listed under `scoring`."
