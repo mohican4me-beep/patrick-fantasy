@@ -4,11 +4,25 @@ Updated 13 November 2026.
 
 ## Where things stand
 
-Phase 1 is complete and was accepted on 13 November 2026 (commit `2fe5fac`).
+Release 1a is complete (Phase 1 and the calculators and tool server), accepted on
+13 November 2026. Release 1b (web app) is deferred by Patrick's decision.
 
-Release 1a, step 2 (calculators and the read-only tool server for Claude) is complete and
-merged to `main` on 13 November 2026. Patrick chose to use Claude as analyst from a chat
-with the repository attached; criterion 5 was reworded accordingly and is met.
+Release 2 Phase A (data ingestion) is built and on `main`, because a GitHub workflow only
+runs from the default branch. It is **not complete**: no source has been called for real.
+Three of five acceptance criteria wait for Patrick to add two keys and run the probe.
+
+## Release 2 Phase A acceptance criteria
+
+| # | Criterion | Status | Evidence |
+|---|---|---|---|
+| 1 | All tests pass, output shown | Met | 224 passed; `ruff check` clean |
+| 2 | Probe report shows each source working or not, with fields found | **Open** | Needs the keys and one workflow run; see `docs/data-sources.md` |
+| 3 | Matchday 5 fixtures and kick-off times are in the repo and match the game | **Open** | Depends on 2 |
+| 4 | A broken response leaves existing data untouched | Met in tests | `test_bad_response_keeps_the_previous_snapshot`; not yet seen with a real failure |
+| 5 | No key appears in the repository or its history | Met so far | Keys are read only from the environment; `test_keys_never_reach_disk`. To re-check after the first real run |
+
+Not tested: every parser against a real response; the workflow itself; ClubElo over plain
+HTTP from GitHub; The Odds API sport key for the Champions League.
 
 ## Release 1a, step 2 acceptance criteria
 
@@ -38,7 +52,7 @@ with the repository attached; criterion 5 was reworded accordingly and is met.
 ## Last test run
 
 ```
-pytest      206 passed in the planning environment (includes launching the server over stdio).
+pytest      224 passed in the planning environment (includes launching the server over stdio).
             On the host: 203 of 204 passed before the tzdata fix; the rerun was not reported.
 ruff check  All checks passed
 ruff format all files formatted
@@ -54,9 +68,11 @@ Run on Python 3.13 in the planning environment. Not yet run on the host PC.
 
 ## Open items for Patrick
 
-1. On the host: `git checkout main`, `git pull`, reinstall and report the `pytest` result.
-2. Push the `phase-1` tag from the host: this environment could not push tags.
-3. Before matchday 5 (24 November, 19:45): send any transfers you are weighing.
+1. Create the two free keys, add them as repository secrets and run the "Fetch data"
+   workflow with the probe box ticked (`docs/data-sources.md`).
+2. On the host: `git checkout main`, `git pull`, reinstall and report the `pytest` result.
+3. Push the `phase-1` tag from the host: this environment could not push tags.
+4. Before matchday 5 (24 November, 19:45): send any transfers you are weighing.
 3. Whether both chips can be played on one matchday (not urgent).
 
 Done on 13 November: six in-game checks answered; matchday 5 deadline time recorded.
@@ -66,8 +82,8 @@ Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host con
 
 ## Next, after Phase 1 is accepted
 
-Release 1b: web dashboard on PC and phone, squad editor, names-only screenshot import,
-player comparison, points entry, Tailscale access and backups. Needs its own approval.
+Release 2 Phase B: the match model (team goal expectations from odds and Elo) once real
+fixtures, ratings and odds are flowing. Needs its own approval.
 
 ## Known limits of Phase 1
 

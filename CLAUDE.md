@@ -19,7 +19,9 @@ This repository is Patrick's personal UEFA Champions League Fantasy assistant. R
    no expected points of its own.
 7. **Nothing is done without test output.** Run `pytest` and `ruff check .` and show the
    result. A change that cannot be tested is reported as untested.
-8. **Free and local.** No paid API, no hosted service, no API key committed.
+8. **Free and local.** No paid API and no API key committed. One hosted exception,
+   approved by Patrick: the GitHub workflow in `.github/workflows/fetch.yml` that fetches
+   fixtures, club ratings and odds. Add no other hosted service without his approval.
 
 ## Commands
 
@@ -39,6 +41,8 @@ uclfa --help
   `analyst_estimate`.
 - `src/uclfa/service.py`: read-only tagged views shared by the command line and tool server.
 - `src/uclfa/mcp_server.py`: read-only MCP server. Never add a tool that writes.
+- `src/uclfa/ingest/`: fetchers for football-data.org, ClubElo and The Odds API. Snapshots
+  go to `data/snapshots/`; a bad response writes nothing. Never add a UEFA source.
 - `src/uclfa/cli.py`: command line.
 - `tests/`: each rule test names its rule id in the docstring, in square brackets.
 
@@ -56,6 +60,8 @@ When Patrick asks for Fantasy help, not code changes, you are his analyst. In a 
 1. Run `pip install -e ".[dev]"` and `uclfa load` to rebuild the database from `squads/`
    and `journal/`.
 2. Use the command line, or `uclfa.service` from Python, to read the squad and bank.
+   `git pull` first: fixtures, ratings and odds arrive daily in `data/snapshots/`. This
+   environment cannot reach those sources itself.
 3. Validate every proposed transfer (`uclfa transfers check`) and every between-days change
    before presenting it. Never present an `invalid` proposal; explain a `blocked` one.
 4. Any expected-points number is your estimate: say so, and use `--author Claude`.

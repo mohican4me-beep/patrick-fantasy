@@ -398,6 +398,104 @@ def cmd_load(args: argparse.Namespace) -> int:
     return 0
 
 
+# -- ingestion -----------------------------------------------------------------------
+
+
+def _print_outcomes(outcomes) -> int:
+    for o in outcomes:
+        print(f"{o.status.upper():<9}{o.title}")
+        print(f"         {o.message}")
+        if o.quota:
+            print("         quota: " + ", ".join(f"{k}={v}" for k, v in o.quota.items()))
+        if o.problems:
+            print(f"         {len(o.problems)} record(s) could not be read; first: {o.problems[0]}")
+    # A skipped source (no key) is not a failure; a failed or rejected one is.
+    return 1 if any(o.status in ("failed", "rejected") for o in outcomes) else 0
+
+
+def cmd_fetch(args: argparse.Namespace) -> int:
+    from uclfa.ingest.run import fetch_all
+
+    try:
+        outcomes = fetch_all(args.source or None)
+    except ValueError as exc:
+        sys.exit(str(exc))
+    return _print_outcomes(outcomes)
+
+
+def cmd_probe(_args: argparse.Namespace) -> int:
+    from uclfa.ingest.run import fetch_all, write_probe_report
+
+    outcomes = fetch_all()
+    report = write_probe_report(outcomes)
+    _print_outcomes(outcomes)
+    print(f"Report written to {report}")
+    return 0
+
+
+def cmd_fixtures(args: argparse.Namespace) -> int:
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    from uclfa.ingest.run import latest_snapshot
+
+    snapshot = latest_snapshot("fixtures")
+    if snapshot is None:
+        print("No fixtures have been fetched yet. Fixtures are unavailable.")
+        return 1
+    athens = ZoneInfo("Europe/Athens")
+    rows = [
+        r for r in snapshot["records"] if args.matchday is None or r["matchday"] == args.matchday
+    ]
+    rows.sort(key=lambda r: r["kickoff_utc"])
+    print(f"Source: {snapshot['title']}, fetched {snapshot['fetched_at'][:16]} UTC")
+    for r in rows:
+        kickoff = datetime.fromisoformat(r["kickoff_utc"]).astimezone(athens)
+        score = (
+            f"{r['home_goals']}-{r['away_goals']}" if r["home_goals"] is not None else r["status"]
+        )
+        print(
+            f"  MD{r['matchday']}  {kickoff:%a %d %b %H:%M}  {r['home']} v {r['away']}  [{score}]"
+        )
+    if args.matchday is not None and rows:
+        rules = load_rules()
+        deadline = rules.matchday(args.matchday).deadline_utc
+        first = datetime.fromisoformat(rows[0]["kickoff_utc"])
+        if deadline is None:
+            print(
+                f"First kick-off {first.astimezone(athens):%d %b %H:%M} Athens; no deadline "
+                "time is recorded in the rules file to compare with."
+            )
+        elif deadline == first:
+            print("First kick-off matches the deadline recorded from the game.")
+        else:
+            print(
+                f"WARNING: first kick-off {first.isoformat()} differs from the recorded "
+                f"deadline {deadline.isoformat()}. Check the game."
+            )
+    return 0
+
+
+def cmd_clubs(_args: argparse.Namespace) -> int:
+    from uclfa.ingest.clubs import match_report
+
+    report = match_report()
+    if "error" in report:
+        print(report["error"])
+        return 1
+    print(f"Clubs in the fixtures: {report['reference_clubs']}")
+    if "elo" in report:
+        missing = report["elo"]["fixture_clubs_without_rating"]
+        print(f"Elo ratings matched: {report['elo']['matched']}; without a rating: {len(missing)}")
+        for name in missing:
+            print(f"  no rating matched for: {name}")
+    if "odds" in report:
+        print(f"Odds names matched: {report['odds']['matched']}")
+        for name in report["odds"]["unmatched_names"]:
+            print(f"  unmatched odds name: {name}")
+    return 0
+
+
 # -- decisions -----------------------------------------------------------------------
 
 
@@ -645,6 +743,21 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("mcp", help="run the read-only tool server for Claude").set_defaults(
         func=cmd_mcp
+    )
+
+    fetch = sub.add_parser(
+        "fetch", help="fetch fixtures, club ratings and odds into data/snapshots"
+    )
+    fetch.add_argument("--source", action="append", choices=["fixtures", "elo", "odds"])
+    fetch.set_defaults(func=cmd_fetch)
+    sub.add_parser(
+        "probe", help="test each source once and write data/probe/report.md"
+    ).set_defaults(func=cmd_probe)
+    fx = sub.add_parser("fixtures", help="list fetched fixtures in Athens time")
+    fx.add_argument("--matchday", type=int)
+    fx.set_defaults(func=cmd_fixtures)
+    sub.add_parser("clubs", help="report club names that do not match across sources").set_defaults(
+        func=cmd_clubs
     )
 
     load = sub.add_parser("load", help="rebuild the database from squads/ and journal/")

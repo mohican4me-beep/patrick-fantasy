@@ -53,3 +53,15 @@ Newest last. Each entry: the decision, who made it, and the reason.
 | Claude acts as analyst from a chat with the repository attached (option A) | Patrick | Works now and from the phone; the desktop connector needed a config location that differs by app build |
 | Squad states and the journal are files in the repository; `uclfa load` rebuilds the database | Claude, following A | A session's database does not persist, so the files are the record |
 | Release 1a acceptance criterion 5 reworded to "Claude can list the squad and validate a transfer from a chat with the repository attached" | Patrick | Demonstrated on 13 November; the desktop connector is built and tested but not connected on the host |
+
+## 13 November 2026: Release 1b deferred, Release 2 Phase A
+
+| Decision | By | Reason |
+|---|---|---|
+| Release 1b (web dashboard, editor, screenshot screen, Tailscale) deferred | Patrick | The chat route already covers squad entry, validation and phone access |
+| Next is Release 2, starting with data ingestion | Patrick | Predictions are the priority |
+| Daily fetch runs on GitHub Actions (option 2) | Patrick | The chat environment cannot reach the sources; no machine has to stay on. This is the one approved exception to "no hosted service" |
+| Keys are GitHub encrypted secrets, never in the repository | Claude | Standard practice; tests assert no key reaches disk |
+| Snapshots are JSON files in the repository, one per source per day | Claude | Any Claude session gets them with `git pull`; history is kept by Git |
+| Parsers tested on synthetic samples until the probe supplies real ones | Claude | No real response could be obtained from the build environment; stated in the tests and status |
+| HTTP client refuses any uefa.com host | Claude | Makes decision 1 impossible to break by accident |

@@ -39,6 +39,8 @@ The database is created at `data\uclfa.db` and is not committed to Git.
 | `uclfa score --position DEF --minutes 90 --recoveries 7` | Scores one match with the official table |
 | `uclfa decide captain --points 7 --candidate "Name=6.4" --author Patrick` | Value of moving the armband between playing days |
 | `uclfa decide sub --swap "Out\|7\|In\|6.4" --author Patrick` | Value of a manual substitution; add `\|to-play` if the outgoing player has not played |
+| `uclfa fetch` / `uclfa probe` / `uclfa fixtures` / `uclfa clubs` | Daily data: see `docs/data-sources.md` |
+| `uclfa load` | Rebuilds the database from `squads/` and `journal/` |
 | `uclfa mcp` | Runs the read-only tool server for Claude (see `docs/claude-setup.md`) |
 | `uclfa journal add ...` / `uclfa journal list` | Records and lists decisions |
 

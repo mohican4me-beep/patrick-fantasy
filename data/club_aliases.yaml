@@ -1,0 +1,8 @@
+# Club name aliases. The reference name is the one football-data.org uses in the fixtures
+# snapshot; list under it the spellings other sources or the UEFA game use.
+# Add an alias only after seeing it reported as unmatched by `uclfa clubs`. Never guess.
+#
+# clubs:
+#   "Manchester United FC": ["Man Utd", "Man United"]
+
+clubs: {}
