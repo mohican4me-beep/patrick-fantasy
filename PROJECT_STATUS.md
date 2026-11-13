@@ -4,8 +4,8 @@ Updated 13 November 2026.
 
 ## Where things stand
 
-Phase 1 (rules engine, schema, command line) is built and all ten acceptance criteria are
-met. It awaits Patrick's acceptance; the work is on the branch `phase-1-acceptance`.
+Phase 1 (rules engine, schema, command line) is complete. All ten acceptance criteria are
+met and Patrick accepted it on 13 November 2026. Tagged `phase-1`.
 
 ## Phase 1 acceptance criteria
 
@@ -40,8 +40,8 @@ Run on Python 3.13 in the planning environment. Not yet run on the host PC.
 
 ## Open items for Patrick
 
-1. Accept Phase 1, so the branch can be merged and tagged.
-2. Confirm that Wildcard is unused.
+1. Approve or amend the plan for Release 1a, step 2.
+2. Install on the host PC and run the tests there (see README).
 3. Whether both chips can be played on one matchday (not urgent).
 
 Done on 13 November: six in-game checks answered; matchday 5 deadline time recorded.

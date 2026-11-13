@@ -8,7 +8,7 @@ label: pre_deadline
 bank: 0.8
 free_transfers: 2
 chips_used: [limitless]
-note: "Wildcard assumed unused: Patrick reported only Limitless as used. To be confirmed."
+note: "Limitless used; Wildcard unused (confirmed by Patrick, 13 November 2026)."
 
 players:
   - {name: "Joan Garcia", club: "Barcelona", position: GK, price: 5.0, role: starter}
