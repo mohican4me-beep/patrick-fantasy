@@ -1,0 +1,7 @@
+# Decision journal. One entry per decision; newest last.
+#
+# Each entry: kind, summary, and optionally matchday, estimate, estimate_author,
+# estimate_tag (official | entered | analyst_estimate), decision, outcome.
+# Entries are added in a Claude session or by hand, then committed. `uclfa load` reads them.
+
+entries: []

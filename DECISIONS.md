@@ -45,3 +45,11 @@ Newest last. Each entry: the decision, who made it, and the reason.
 | Automatic-substitution cost is the sum of probability times replacement points | Simple and stated as an approximation; it ignores formation limits and shared bench cover |
 | Tool server tests use explicit confirmations, not `rules/confirmations.yaml` | Tests must not change meaning when Patrick confirms another rule |
 | `tzdata` added as a dependency | Windows ships no time-zone database, so `Europe/Athens` could not be resolved on the host; found by the first test run on beast |
+
+## 13 November 2026: analyst route
+
+| Decision | By | Reason |
+|---|---|---|
+| Claude acts as analyst from a chat with the repository attached (option A) | Patrick | Works now and from the phone; the desktop connector needed a config location that differs by app build |
+| Squad states and the journal are files in the repository; `uclfa load` rebuilds the database | Claude, following A | A session's database does not persist, so the files are the record |
+| Release 1a acceptance criterion 5 reworded to "Claude can list the squad and validate a transfer from a chat with the repository attached" | Patrick | Demonstrated on 13 November; the desktop connector is built and tested but not connected on the host |

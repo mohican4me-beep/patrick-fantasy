@@ -346,6 +346,58 @@ def cmd_score(args: argparse.Namespace) -> int:
     return 0
 
 
+# -- load from the repository ---------------------------------------------------------
+
+
+def cmd_load(args: argparse.Namespace) -> int:
+    """Rebuild the database from the files kept in the repository.
+
+    Used at the start of a Claude session, where the database does not persist: squads
+    are imported in file-name order, so the last file is the current state, and the
+    journal file is loaded after them.
+    """
+    from uclfa.rules.model import REPO_ROOT
+
+    root = Path(args.root) if args.root else REPO_ROOT
+    path = store.db_path()
+    if path.exists() and not args.keep:
+        path.unlink()
+    store.migrate(path)
+    squad_files = sorted((root / "squads").glob("*.yaml"))
+    if not squad_files:
+        print(f"No squad files found in {root / 'squads'}.")
+    for file in squad_files:
+        print(f"-- {file.name}")
+        code = cmd_squad_import(argparse.Namespace(file=str(file)))
+        if code != 0:
+            print(f"Stopped: {file.name} did not import.")
+            return code
+    journal_file = root / "journal" / "journal.yaml"
+    count = 0
+    if journal_file.exists():
+        data = yaml.safe_load(journal_file.read_text(encoding="utf-8")) or {}
+        with _session() as session:
+            for item in data.get("entries") or []:
+                try:
+                    entry = store.add_journal(
+                        session,
+                        kind=item["kind"],
+                        summary=item["summary"],
+                        matchday=item.get("matchday"),
+                        estimate=item.get("estimate"),
+                        estimate_author=item.get("estimate_author"),
+                        estimate_tag=item.get("estimate_tag", "analyst_estimate"),
+                        decision=item.get("decision"),
+                    )
+                    entry.outcome = item.get("outcome")
+                except KeyError as exc:
+                    sys.exit(f"Journal entry needs kind and summary; missing {exc}: {item!r}")
+                count += 1
+            session.commit()
+    print(f"Loaded {len(squad_files)} squad file(s); journal entries: {count}.")
+    return 0
+
+
 # -- decisions -----------------------------------------------------------------------
 
 
@@ -594,6 +646,11 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("mcp", help="run the read-only tool server for Claude").set_defaults(
         func=cmd_mcp
     )
+
+    load = sub.add_parser("load", help="rebuild the database from squads/ and journal/")
+    load.add_argument("--root", help="repository folder; defaults to this one")
+    load.add_argument("--keep", action="store_true", help="add to the existing database")
+    load.set_defaults(func=cmd_load)
 
     journal = sub.add_parser("journal", help="record or list decisions")
     journal_sub = journal.add_subparsers(dest="journal_command", required=True)

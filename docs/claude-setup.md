@@ -19,7 +19,7 @@ py -m venv .venv
 .venv\Scripts\python -m pip install -e ".[dev]"
 .venv\Scripts\python -m pytest
 .venv\Scripts\uclfa init-db
-.venv\Scripts\uclfa squad import squads\md5.yaml
+.venv\Scripts\uclfa squad import squads\md05-1-pre-deadline.yaml
 .venv\Scripts\uclfa squad show
 ```
 

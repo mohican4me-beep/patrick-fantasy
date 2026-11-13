@@ -269,3 +269,52 @@ def test_squad_without_free_transfers_is_checked_but_not_saved(db, tmp_path, cap
     assert "VALID" in out and "free_transfers is missing" in out
     with Session(store.make_engine(db)) as session:
         assert session.scalars(select(SquadSnapshot)).all() == []
+
+
+def test_load_rebuilds_the_database_from_repository_files(db, tmp_path, capsys):
+    """A fresh Claude session rebuilds its database from squads/ and journal/."""
+    root = tmp_path / "repo"
+    (root / "squads").mkdir(parents=True)
+    (root / "journal").mkdir()
+    first = squad_file(tmp_path, label="pre_deadline")
+    (root / "squads" / "md05-1-pre-deadline.yaml").write_text(first.read_text())
+    second = squad_file(tmp_path, label="after_day_1", bank=0.4)
+    (root / "squads" / "md05-2-after-day-1.yaml").write_text(second.read_text())
+    (root / "journal" / "journal.yaml").write_text(
+        yaml.safe_dump(
+            {
+                "entries": [
+                    {
+                        "kind": "captain",
+                        "summary": "Kept the day-one captain",
+                        "matchday": 5,
+                        "estimate": "alternative 6.4",
+                        "estimate_author": "Claude",
+                        "outcome": "captain scored 7",
+                    }
+                ]
+            }
+        )
+    )
+    cli.main(["journal", "add", "--kind", "note", "--summary", "stale entry to be replaced"])
+    assert cli.main(["load", "--root", str(root)]) == 0
+    assert "Loaded 2 squad file(s); journal entries: 1." in capsys.readouterr().out
+    with Session(store.make_engine(db)) as session:
+        state = store.latest_team_state(session)
+        assert state.label == "after_day_1" and state.bank == 0.4  # last file is current
+        assert len(session.scalars(select(SquadSnapshot)).all()) == 2
+    cli.main(["journal", "list"])
+    listed = capsys.readouterr().out
+    assert "Kept the day-one captain" in listed and "outcome: captain scored 7" in listed
+    assert "stale entry" not in listed  # the database was rebuilt, not appended to
+
+
+def test_load_stops_on_an_illegal_squad_file(db, tmp_path, capsys):
+    root = tmp_path / "repo"
+    (root / "squads").mkdir(parents=True)
+    file = squad_file(tmp_path)
+    data = yaml.safe_load(file.read_text())
+    data["players"][-1]["position"] = "MID"
+    (root / "squads" / "md05-1-bad.yaml").write_text(yaml.safe_dump(data))
+    assert cli.main(["load", "--root", str(root)]) == 1
+    assert "did not import" in capsys.readouterr().out

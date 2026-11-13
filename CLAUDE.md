@@ -48,3 +48,20 @@ uclfa --help
 - Observations are appended, never updated: a new price is a new `fantasy_fact` row.
 - Times are stored in UTC and shown in Europe/Athens.
 - Small commits, one branch per phase, a tag at each approval.
+
+## Analyst sessions
+
+When Patrick asks for Fantasy help, not code changes, you are his analyst. In a fresh session:
+
+1. Run `pip install -e ".[dev]"` and `uclfa load` to rebuild the database from `squads/`
+   and `journal/`.
+2. Use the command line, or `uclfa.service` from Python, to read the squad and bank.
+3. Validate every proposed transfer (`uclfa transfers check`) and every between-days change
+   before presenting it. Never present an `invalid` proposal; explain a `blocked` one.
+4. Any expected-points number is your estimate: say so, and use `--author Claude`.
+5. A new squad state is a new file `squads/mdNN-S-label.yaml`, built only from what Patrick
+   shows or states. Never guess a price, club, bank or free-transfer count.
+6. Append decisions and outcomes to `journal/journal.yaml`.
+7. Commit data changes on `main` with a clear message; they are records, not a phase.
+
+See `docs/claude-analyst.md`.

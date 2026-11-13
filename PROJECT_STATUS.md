@@ -6,9 +6,9 @@ Updated 13 November 2026.
 
 Phase 1 is complete and was accepted on 13 November 2026 (commit `2fe5fac`).
 
-Release 1a, step 2 (calculators and the read-only tool server for Claude) is built on the
-branch `release-1a-tools`. Four of its five acceptance criteria are met; the fifth is a
-check only Patrick can make on the host PC.
+Release 1a, step 2 (calculators and the read-only tool server for Claude) is complete and
+merged to `main` on 13 November 2026. Patrick chose to use Claude as analyst from a chat
+with the repository attached; criterion 5 was reworded accordingly and is met.
 
 ## Release 1a, step 2 acceptance criteria
 
@@ -18,7 +18,7 @@ check only Patrick can make on the host PC.
 | 2 | Scenarios C and D give the expected numbers and state their assumptions | Met | `test_scenario_c_keep_the_captain_on_seven` (gain -0.6, keep); `test_scenario_d_secured_points_are_lost` |
 | 3 | Calculator output is labelled `analyst_estimate` | Met | Tag fixed in `decisions.py`; asserted through the server |
 | 4 | The server exposes no tool that changes data | Met | Twelve read-only tools; the database connection refuses INSERT and DELETE; the file is byte-identical after tool calls |
-| 5 | Patrick confirms on the host that Claude can list the squad and validate a transfer | **Open** | Steps in `docs/claude-setup.md` |
+| 5 | Claude can list the squad and validate a transfer from a chat with the repository attached (reworded by Patrick) | Met | Done on 13 November: squad valid; Gadou for a 4.5m defender valid, 0 points, bank 0.3m. The desktop connector is built and tested but was not connected on the host |
 
 ## Phase 1 acceptance criteria
 
@@ -32,13 +32,14 @@ check only Patrick can make on the host PC.
 | 6 | A transfer with an unconfirmed sale value is blocked | Met | `test_unconfirmed_sale_value_blocks_the_transfer` |
 | 7 | Scoring reproduces ten real performances from the game, all four positions | Met | `tests/test_real_performances.py`: 11 real breakdowns (2 GK, 4 DEF, 2 MID, 3 FWD) reproduced exactly, component by component |
 | 8 | A value changed in the rules file changes behaviour with no code change | Met | `test_changing_the_rules_file_changes_behaviour` |
-| 9 | Patrick's real matchday 5 squad is entered and validates | Met | `squads/md5.yaml` imports as VALID: 2-5-5-3, 4-4-2, at most 2 per club against a limit of 3, squad value 99.6m, bank 0.8m, 2 free transfers, Limitless used. Imported on a scratch database; the real database is created on the host at install |
+| 9 | Patrick's real matchday 5 squad is entered and validates | Met | `squads/md05-1-pre-deadline.yaml` imports as VALID: 2-5-5-3, 4-4-2, at most 2 per club against a limit of 3, squad value 99.6m, bank 0.8m, 2 free transfers, Limitless used. Imported on a scratch database; the real database is created on the host at install |
 | 10 | Full test output shown | Met | 156 passed; `ruff check` clean |
 
 ## Last test run
 
 ```
-pytest      204 passed (includes launching the server as a subprocess over stdio)
+pytest      206 passed in the planning environment (includes launching the server over stdio).
+            On the host: 203 of 204 passed before the tzdata fix; the rerun was not reported.
 ruff check  All checks passed
 ruff format all files formatted
 ```
@@ -53,9 +54,9 @@ Run on Python 3.13 in the planning environment. Not yet run on the host PC.
 
 ## Open items for Patrick
 
-1. Install on the host PC, run the tests there, and connect Claude (`docs/claude-setup.md`).
-2. Report whether the two checks at the end of that document work.
-3. Push the `phase-1` tag from the host: this environment could not push tags.
+1. On the host: `git checkout main`, `git pull`, reinstall and report the `pytest` result.
+2. Push the `phase-1` tag from the host: this environment could not push tags.
+3. Before matchday 5 (24 November, 19:45): send any transfers you are weighing.
 3. Whether both chips can be played on one matchday (not urgent).
 
 Done on 13 November: six in-game checks answered; matchday 5 deadline time recorded.

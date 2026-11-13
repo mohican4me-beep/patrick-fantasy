@@ -18,7 +18,7 @@ from uclfa.db import store
 from uclfa.mcp_server import INSTRUCTIONS, build_server
 from uclfa.rules.model import REPO_ROOT
 
-REAL_SQUAD = REPO_ROOT / "squads" / "md5.yaml"
+REAL_SQUAD = REPO_ROOT / "squads" / "md05-1-pre-deadline.yaml"
 
 EXPECTED_TOOLS = {
     "get_squad",
