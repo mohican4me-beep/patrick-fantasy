@@ -2,7 +2,7 @@
 
 Each case is a points breakdown Patrick read from the UEFA Fantasy app. The events are
 what the breakdown lists; the expected total is the total the game shows. Ten cases
-covering all four positions are required. Cases present so far: 9 of 10.
+covering all four positions are required. Cases present: 11 (2 GK, 4 DEF, 2 MID, 3 FWD).
 """
 
 import pytest
@@ -88,6 +88,20 @@ REAL_PERFORMANCES = [
         },
         15,
     ),
+    (
+        "Lutsharel Geertruida, PSV 1-2 Club Brugge",
+        Position.DEF,
+        MatchEvents(minutes_played=90, balls_recovered=5, goals_conceded_on_pitch=2),
+        {"appearance": 1, "sixty_minutes": 1, "balls_recovered": 1, "goals_conceded": -1},
+        2,
+    ),
+    (
+        "Maximilian Mittelstadt, Galatasaray 2-0 Stuttgart",
+        Position.DEF,
+        MatchEvents(minutes_played=90, balls_recovered=7, goals_conceded_on_pitch=2),
+        {"appearance": 1, "sixty_minutes": 1, "balls_recovered": 2, "goals_conceded": -1},
+        3,
+    ),
 ]
 
 REQUIRED_CASES = 10
@@ -105,7 +119,7 @@ def test_engine_reproduces_real_points(rules, label, position, events, component
     assert breakdown.total == expected_total
 
 
-@pytest.mark.xfail(strict=True, reason="criterion 7 open: ten real cases over four positions")
 def test_ten_real_cases_cover_all_positions():
+    """Acceptance criterion 7: at least ten real cases, all four positions."""
     assert len(REAL_PERFORMANCES) >= REQUIRED_CASES
     assert {case[1] for case in REAL_PERFORMANCES} == set(Position)
