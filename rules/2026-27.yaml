@@ -1,0 +1,184 @@
+# UEFA Champions League Fantasy rules, season 2026/27.
+#
+# Every value here was read from UEFA's official rules page on 2026-11-13:
+# https://www.uefa.com/uefachampionsleague/news/025f-0fd4b42cc0a7-74498b7df63b-1000--uefa-champions-league-fantasy-football-rules-2026-27/
+#
+# The engine reads its behaviour from this file. Nothing below is duplicated in code.
+# Each entry under `register` records whether a rule is confirmed, partly confirmed or
+# unverified. Unverified rules are never given a default: the engine blocks the action
+# that depends on them until the rule is confirmed in rules/confirmations.yaml.
+
+season: "2026-27"
+source_url: "https://www.uefa.com/uefachampionsleague/news/025f-0fd4b42cc0a7-74498b7df63b-1000--uefa-champions-league-fantasy-football-rules-2026-27/"
+read_on: "2026-11-13"
+
+squad:
+  size: 15
+  positions: {GK: 2, DEF: 5, MID: 5, FWD: 3}
+
+lineup:
+  size: 11
+  exact: {GK: 1}
+  minimum: {DEF: 3, MID: 2, FWD: 1}
+
+stages:
+  league_phase: {budget: 100.0, club_limit: 3}
+  playoffs: {budget: 105.0, club_limit: 4}
+  round_of_16: {budget: 105.0, club_limit: 4}
+  quarter_finals: {budget: 105.0, club_limit: 5}
+  semi_finals: {budget: 105.0, club_limit: 6}
+  final: {budget: 105.0, club_limit: 8}
+
+transfers:
+  hit_cost: 4          # points deducted per transfer beyond the free allowance
+  league_phase_carry: 1  # unused free transfers that may roll to the next league-phase matchday
+
+chips:
+  names: [wildcard, limitless]
+  uses_each: 1
+  blocked_matchdays: [1, 9, 11]
+  wildcard: {permanent: true, budget_applies: true, club_limit_applies: true}
+  limitless: {permanent: false, budget_applies: false, club_limit_applies: true}
+
+manual_changes:
+  max_substitutions_per_break: 4
+
+# free_transfers: an integer, or "unlimited".
+# carry_in: whether an unused transfer from the previous matchday may be added.
+# mid_matchday_changes: whether substitutions and captain switches are possible between playing days.
+# deadline_date: the date UEFA publishes. deadline_utc stays null until confirmed against the game.
+matchdays:
+  1:  {stage: league_phase, free_transfers: unlimited, carry_in: false, mid_matchday_changes: true, deadline_date: "2026-09-08", deadline_utc: null}
+  2:  {stage: league_phase, free_transfers: 2, carry_in: false, mid_matchday_changes: true, deadline_date: null, deadline_utc: null}
+  3:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: null, deadline_utc: null}
+  4:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: "2026-11-03", deadline_utc: null}
+  5:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: "2026-11-24", deadline_utc: null}
+  6:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: "2026-12-08", deadline_utc: null}
+  7:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: true, deadline_date: "2027-01-19", deadline_utc: null}
+  8:  {stage: league_phase, free_transfers: 2, carry_in: true, mid_matchday_changes: false, deadline_date: "2027-01-27", deadline_utc: null}
+  9:  {stage: playoffs, free_transfers: unlimited, carry_in: false, mid_matchday_changes: true, deadline_date: "2027-02-16", deadline_utc: null}
+  10: {stage: playoffs, free_transfers: 2, carry_in: false, mid_matchday_changes: true, deadline_date: "2027-02-23", deadline_utc: null}
+  11: {stage: round_of_16, free_transfers: unlimited, carry_in: false, mid_matchday_changes: true, deadline_date: "2027-03-09", deadline_utc: null}
+  12: {stage: round_of_16, free_transfers: 3, carry_in: false, mid_matchday_changes: true, deadline_date: "2027-03-16", deadline_utc: null}
+  13: {stage: quarter_finals, free_transfers: 5, carry_in: false, mid_matchday_changes: true, deadline_date: "2027-04-06", deadline_utc: null}
+  14: {stage: quarter_finals, free_transfers: 3, carry_in: false, mid_matchday_changes: true, deadline_date: "2027-04-13", deadline_utc: null}
+  15: {stage: semi_finals, free_transfers: 5, carry_in: false, mid_matchday_changes: true, deadline_date: "2027-04-27", deadline_utc: null}
+  16: {stage: semi_finals, free_transfers: 3, carry_in: false, mid_matchday_changes: true, deadline_date: "2027-05-04", deadline_utc: null}
+  17: {stage: final, free_transfers: 5, carry_in: false, mid_matchday_changes: false, deadline_date: "2027-06-05", deadline_utc: null}
+
+scoring:
+  appearance: 1
+  sixty_minutes: 1
+  sixty_minutes_threshold: 60     # minutes on the pitch, excluding added time
+  goal: {GK: 6, DEF: 6, MID: 5, FWD: 4}
+  goal_outside_box_bonus: 1
+  assist: 3
+  clean_sheet: {GK: 4, DEF: 4, MID: 1, FWD: 0}
+  balls_recovered_block: 3        # 1 point per whole block, every position
+  balls_recovered_points: 1
+  saves_block: 3                  # goalkeepers only
+  saves_points: 1
+  penalty_save: 5                 # goalkeepers only
+  goals_conceded_block: 2         # goalkeepers and defenders only
+  goals_conceded_points: -1
+  goals_conceded_positions: [GK, DEF]
+  player_of_the_match: 3
+  penalty_won: 2                  # not awarded when the penalty is for handball
+  penalty_conceded: -1
+  penalty_missed: -2
+  yellow_card: -1
+  red_card: -3                    # a yellow followed by a red counts as the red only
+  own_goal: -2
+  captain_multiplier: 2
+
+# Verification register. status: confirmed | partly_confirmed | unverified
+register:
+  squad_composition:
+    status: confirmed
+    summary: "15 players: 2 GK, 5 DEF, 5 MID, 3 FWD."
+  lineup_formation:
+    status: confirmed
+    summary: "11 starters: exactly 1 GK, at least 3 DEF, 2 MID, 1 FWD."
+  budget_by_stage:
+    status: confirmed
+    summary: "EUR 100m, rising to EUR 105m after the league phase."
+  club_limit_by_stage:
+    status: confirmed
+    summary: "3 per club in the league phase, then 4, 4, 5, 6 and 8 in the final."
+  club_limit_inherited:
+    status: confirmed
+    summary: "A squad pushed over the limit by a real-world move must be fixed the next time transfers are made."
+  free_transfers_table:
+    status: confirmed
+    summary: "Unlimited before MD1, MD9 and MD11; 2 per league matchday and MD10; 3 before second legs; 5 before QF, SF first legs and the final."
+  transfer_hit:
+    status: confirmed
+    summary: "Each transfer beyond the free allowance costs 4 points."
+  transfer_carry:
+    status: confirmed
+    summary: "One unused free transfer carries to the next matchday in the league phase only; none after a chip or in the knockouts."
+  chips:
+    status: confirmed
+    summary: "Wildcard and Limitless, one use each, not on MD1, MD9 or MD11. Limitless ignores budget for one matchday, then the old squad returns."
+  two_chips_same_matchday:
+    status: unverified
+    summary: "Whether Wildcard and Limitless can both be played on one matchday is not stated."
+    blocks: "playing a second chip on a matchday where one is already active"
+  captain_double:
+    status: confirmed
+    summary: "The captain's points are doubled; the captain must be in the starting eleven."
+  captain_switch:
+    status: confirmed
+    summary: "Between playing days the armband may move to a starter who has not played. It cannot move back, and not to a player who has played."
+  captain_on_substituted_in:
+    status: unverified
+    summary: "Whether the armband can go to a player brought on by a manual substitution in the same break is not stated."
+    blocks: "giving the captaincy to a player substituted in during the same break"
+  manual_substitutions:
+    status: confirmed
+    summary: "Up to 4 per break; incoming players' teams must be still to play; a removed player scores 0; a sent-off player cannot be removed."
+  substitution_limit_reset:
+    status: partly_confirmed
+    summary: "4 per break is stated. Whether it resets at a second break is not; no remaining 2026/27 matchday has two breaks."
+  goalkeeper_manual_substitution:
+    status: unverified
+    summary: "No goalkeeper-specific wording. The formation rule implies only a goalkeeper can replace a goalkeeper."
+    blocks: "substituting the goalkeeper between playing days"
+  late_changes_after_kickoff:
+    status: unverified
+    summary: "Whether changes are accepted after the first kick-off of a later playing day, for players in later matches, is not stated."
+    blocks: "between-days changes made after the next playing day has kicked off"
+  automatic_substitutions:
+    status: confirmed
+    summary: "Applied only if no manual change was made. Any manual substitution, captain change or bench reorder disables them."
+  mid_matchday_changes_excluded:
+    status: confirmed
+    summary: "Matchday 8 and the final allow no mid-matchday changes."
+  selling_value:
+    status: unverified
+    summary: "The rules page does not say whether a sale returns the current price, the purchase price or something else."
+    blocks: "any transfer out of a player whose sale value has not been entered from the game"
+  chip_restoration:
+    status: partly_confirmed
+    summary: "The squad returns after Limitless. The bank and price effects are not described."
+  deadline_times:
+    status: partly_confirmed
+    summary: "The deadline is the first kick-off of the matchday. Only dates are published on the rules page."
+  scoring_table:
+    status: confirmed
+    summary: "Points per event as listed under `scoring`."
+  clean_sheet_on_pitch:
+    status: confirmed
+    summary: "At least 60 minutes excluding added time and no goal conceded while on the pitch."
+  goals_conceded_on_pitch:
+    status: partly_confirmed
+    summary: "Counting only while on the pitch is implied by the sent-off wording, not stated. Affects projections, not legality."
+  red_card_rules:
+    status: confirmed
+    summary: "Minus 3; yellow then red counts as the red only; sent-off players keep losing points for goals conceded."
+  extra_time:
+    status: confirmed
+    summary: "Extra time counts; no second appearance or clean-sheet award for 120 minutes; shoot-outs score nothing."
+  goalkeeper_ball_recoveries:
+    status: confirmed
+    summary: "Balls recovered are listed for all players. Observed goalkeeper counts are a data matter."

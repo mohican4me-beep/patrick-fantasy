@@ -1,0 +1,9 @@
+# Transfers to check against your saved squad. Replace the placeholders.
+#
+# out:   the name of a player in your saved squad, exactly as you entered it
+# in:    the player you want, with his current price from the game
+# chip:  optional, wildcard or limitless
+
+transfers:
+  - out: "Midfielder One"
+    in: {name: "New Midfielder", club: "Club F", position: MID, price: 5.5}

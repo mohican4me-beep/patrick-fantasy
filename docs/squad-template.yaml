@@ -1,0 +1,35 @@
+# Your squad, copied from the UEFA Fantasy app. Replace every placeholder.
+#
+# bank:            money remaining, in EUR millions, as the game shows it
+# free_transfers:  the number the game shows, or "unlimited"
+# chips_used:      any of [wildcard, limitless]
+# price:           the player's current price
+# purchase_price:  what you paid, if you know it
+# sale_value:      what the transfer screen says you get for selling him; leave null if unknown
+# role:            starter or bench; bench players need bench_order 1 to 4
+# captain:         true for exactly one starter
+#
+# Optional: overall_rank, overall_points, mini_league_rank, note
+
+matchday: 5
+label: pre_deadline
+bank: 0.0
+free_transfers: 2
+chips_used: []
+
+players:
+  - {name: "Goalkeeper One", club: "Club A", position: GK, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
+  - {name: "Defender One", club: "Club B", position: DEF, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
+  - {name: "Defender Two", club: "Club C", position: DEF, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
+  - {name: "Defender Three", club: "Club D", position: DEF, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
+  - {name: "Defender Four", club: "Club E", position: DEF, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
+  - {name: "Midfielder One", club: "Club A", position: MID, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
+  - {name: "Midfielder Two", club: "Club B", position: MID, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
+  - {name: "Midfielder Three", club: "Club C", position: MID, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
+  - {name: "Midfielder Four", club: "Club D", position: MID, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
+  - {name: "Forward One", club: "Club E", position: FWD, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter, captain: true}
+  - {name: "Forward Two", club: "Club A", position: FWD, price: 5.0, purchase_price: 5.0, sale_value: null, role: starter}
+  - {name: "Goalkeeper Two", club: "Club B", position: GK, price: 4.0, purchase_price: 4.0, sale_value: null, role: bench, bench_order: 1}
+  - {name: "Defender Five", club: "Club C", position: DEF, price: 4.0, purchase_price: 4.0, sale_value: null, role: bench, bench_order: 2}
+  - {name: "Midfielder Five", club: "Club D", position: MID, price: 4.5, purchase_price: 4.5, sale_value: null, role: bench, bench_order: 3}
+  - {name: "Forward Three", club: "Club E", position: FWD, price: 4.5, purchase_price: 4.5, sale_value: null, role: bench, bench_order: 4}

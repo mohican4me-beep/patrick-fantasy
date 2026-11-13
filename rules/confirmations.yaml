@@ -1,0 +1,12 @@
+# Rule confirmations you have made in the game.
+#
+# Add an entry only after checking the rule yourself. Use the command line:
+#   uclfa rules confirm selling_value --value current_price --note "Checked on transfers screen"
+#
+# Allowed values:
+#   selling_value:                  current_price | purchase_price
+#   goalkeeper_manual_substitution: allowed | not_allowed
+#   captain_on_substituted_in:      allowed | not_allowed
+#   late_changes_after_kickoff:     allowed | not_allowed
+#   two_chips_same_matchday:        allowed | not_allowed
+confirmations: {}

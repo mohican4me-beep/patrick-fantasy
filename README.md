@@ -1,0 +1,62 @@
+# Patrick Fantasy
+
+A personal assistant for UEFA Champions League Fantasy. This is Phase 1 of Release 1a: a
+verified rules engine, a squad record and a command line. There is no prediction model,
+no optimizer and no web app yet.
+
+The app never contacts UEFA and stores no UEFA credentials. Everything it knows about the
+game is entered by you.
+
+## Setup on Windows
+
+Requires Python 3.12 or newer and Git.
+
+```powershell
+git clone <your private repository URL> patrick-fantasy
+cd patrick-fantasy
+py -m venv .venv
+.venv\Scripts\activate
+pip install -e ".[dev]"
+uclfa init-db
+pytest
+```
+
+The database is created at `data\uclfa.db` and is not committed to Git.
+
+## Commands
+
+| Command | What it does |
+|---|---|
+| `uclfa rules status` | Lists every rule and whether it is confirmed, partly confirmed or unverified |
+| `uclfa rules confirm RULE --value VALUE` | Records a rule you checked in the game |
+| `uclfa player add --name ... --club ... --position MID --price 6.5` | Adds a player to the shortlist |
+| `uclfa shortlist` | Shows the shortlist with latest price and ownership |
+| `uclfa squad import docs\squad-template.yaml` | Validates and saves your squad |
+| `uclfa squad show` / `uclfa squad validate` | Shows or re-checks the saved squad |
+| `uclfa transfers check docs\transfers-template.yaml` | Checks transfers: legality, cost, bank, next free transfers |
+| `uclfa score --position DEF --minutes 90 --recoveries 7` | Scores one match with the official table |
+| `uclfa journal add ...` / `uclfa journal list` | Records and lists decisions |
+
+## Entering your squad
+
+Copy `docs/squad-template.yaml`, replace the fifteen players with yours, and run
+`uclfa squad import yourfile.yaml`. Enter `sale_value` for each player from the game's
+transfer screen if you can: until the selling-value rule is confirmed, a transfer out of
+a player with no sale value is blocked, not guessed.
+
+## Results
+
+Every check returns one of three results:
+
+- **VALID**: no rule is broken.
+- **INVALID**: a rule is broken; the rule and the reason are named.
+- **BLOCKED**: the action depends on a rule UEFA's page does not settle. Check it in the
+  game and record it with `uclfa rules confirm`.
+
+## Documents
+
+- `FANTASY_RULES.md`: the rules as implemented, with their verification status.
+- `ARCHITECTURE.md`: how the code is organised.
+- `DECISIONS.md`: decisions taken and why.
+- `PROJECT_STATUS.md`: what is done and what is open.
+- `CLAUDE.md`: working rules for Claude Code in this repository.
