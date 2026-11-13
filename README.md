@@ -12,14 +12,16 @@ game is entered by you.
 Requires Python 3.12 or newer and Git.
 
 ```powershell
-git clone <your private repository URL> patrick-fantasy
+git clone https://github.com/mohican4me-beep/patrick-fantasy.git
 cd patrick-fantasy
 py -m venv .venv
-.venv\Scripts\activate
-pip install -e ".[dev]"
-uclfa init-db
-pytest
+.venv\Scripts\python -m pip install -e ".[dev]"
+.venv\Scripts\python -m pytest
+.venv\Scripts\uclfa init-db
 ```
+
+Run commands from inside the `patrick-fantasy` folder. They are written as `uclfa ...`
+below; without activating the environment, type `.venv\Scripts\uclfa ...`.
 
 The database is created at `data\uclfa.db` and is not committed to Git.
 

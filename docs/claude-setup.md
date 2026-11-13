@@ -9,23 +9,29 @@ These steps were written from the SDK and Claude documentation. They have not be
 
 ## Before you start
 
-In PowerShell, from the repository folder:
+In PowerShell, in the folder where you keep projects. These commands call the programs
+inside `.venv` directly, so no activation step is needed.
 
 ```powershell
-.venv\Scripts\activate
-pip install -e ".[dev]"
-uclfa init-db
-uclfa squad import squads\md5.yaml
-pytest
+git clone https://github.com/mohican4me-beep/patrick-fantasy.git
+cd patrick-fantasy
+py -m venv .venv
+.venv\Scripts\python -m pip install -e ".[dev]"
+.venv\Scripts\python -m pytest
+.venv\Scripts\uclfa init-db
+.venv\Scripts\uclfa squad import squads\md5.yaml
+.venv\Scripts\uclfa squad show
 ```
 
-Note the full path of the program the server runs with:
+Every later command must be run from inside the `patrick-fantasy` folder, the one that
+contains `pyproject.toml`.
+
+The server program Claude will start is `.venv\Scripts\uclfa.exe` inside that folder. Get
+its full path with:
 
 ```powershell
-(Get-Command uclfa).Source
+(Resolve-Path .venv\Scripts\uclfa.exe).Path
 ```
-
-It will look like `C:\Users\<you>\patrick-fantasy\.venv\Scripts\uclfa.exe`.
 
 ## Claude Code
 
