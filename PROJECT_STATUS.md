@@ -7,26 +7,26 @@ Updated 13 November 2026.
 Release 1a is complete (Phase 1 and the calculators and tool server), accepted on
 13 November 2026. Release 1b (web app) is deferred by Patrick's decision.
 
-Release 2 Phase A (data ingestion) ran for real on 13 November (probe, 12:31 UTC). Two of
-three sources work. **ClubElo failed** (HTTP 502), so the phase waits on Patrick's decision.
+Release 2 Phase A (data ingestion) is ready for Patrick's acceptance. Fixtures and odds
+arrive daily from GitHub Actions. ClubElo was dropped on 15 November (Patrick's decision).
 
 ## Release 2 Phase A acceptance criteria
 
 | # | Criterion | Status | Evidence |
 |---|---|---|---|
-| 1 | All tests pass, output shown | Met | 226 passed; `ruff check` clean |
-| 2 | Probe report shows each source working or not, with fields found | Met | `data/probe/report.md`: fixtures ok (144), odds ok (18), ClubElo failed (502) |
+| 1 | All tests pass, output shown | Met | 225 passed; `ruff check` clean |
+| 2 | Probe report shows each source working or not, with fields found | Met | `data/probe/report.md` (13 Nov): fixtures ok (144), odds ok (18), ClubElo failed (502), since dropped |
 | 3 | Matchday 5 fixtures and kick-off times are in the repo and match the game | Met | 18 fixtures; first kick-off 24 Nov 19:45 Athens equals the deadline Patrick read from the game |
-| 4 | A broken response leaves existing data untouched | Met | Tests, and the real ClubElo failure wrote no snapshot |
-| 5 | No key appears in the repository or its history | Met | Checked after the real run: the saved odds URL shows `apiKey=REDACTED`; no token pattern in the tree |
+| 4 | A broken response leaves existing data untouched | Met | Tests, and two real ClubElo failures wrote no snapshot |
+| 5 | No key appears in the repository or its history | Met | Checked after the real runs: saved odds URLs show `apiKey=REDACTED`; no token pattern in the tree |
 
-Found by the real run and fixed: bookmakers quote different goal lines (9 of 19 at 3.5, one
-at 2.5 for Galatasaray v Aston Villa), so odds records now keep every line and name the most
-quoted one. The 13 November odds snapshot was written by the old parser: its over/under
-prices are the 2.5 line from few bookmakers. Six odds club names added to
-`data/club_aliases.yaml`; all 36 clubs now match.
+Found by the real runs and fixed: bookmakers quote different goal lines, so odds records
+keep every line and name the most quoted one (14 Nov: 3.5 goals, 10 of 19 bookmakers, for
+Galatasaray v Aston Villa); six odds club names recorded as aliases, all 36 clubs match; the
+workflow now rebases before pushing. The 13 November odds snapshot predates the line fix.
 
-Still not tested: the ClubElo parser against a real response; the scheduled (non-probe) run.
+Known limit: GitHub started the first scheduled run about seven hours late (12:09 UTC for a
+05:17 slot). Data is daily, not at a fixed hour.
 
 ## Release 1a, step 2 acceptance criteria
 
@@ -86,8 +86,8 @@ Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host con
 
 ## Next, after Phase 1 is accepted
 
-Release 2 Phase B: the match model (team goal expectations from odds and Elo) once real
-fixtures, ratings and odds are flowing. Needs its own approval.
+Release 2 Phase B: the match model (team goal expectations from odds) now that fixtures
+and odds are flowing. Needs its own approval.
 
 ## Known limits of Phase 1
 

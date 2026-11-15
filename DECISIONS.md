@@ -65,3 +65,10 @@ Newest last. Each entry: the decision, who made it, and the reason.
 | Snapshots are JSON files in the repository, one per source per day | Claude | Any Claude session gets them with `git pull`; history is kept by Git |
 | Parsers tested on synthetic samples until the probe supplies real ones | Claude | No real response could be obtained from the build environment; stated in the tests and status |
 | HTTP client refuses any uefa.com host | Claude | Makes decision 1 impossible to break by accident |
+
+## 15 November 2026: ClubElo dropped
+
+| Decision | By | Reason |
+|---|---|---|
+| ClubElo removed from the daily fetch | Patrick | HTTP 502 from GitHub on 13 and 14 November; odds cover the coming matchdays. Code is in Git history (commit 6c6c1ec and earlier) if it is wanted back |
+| Workflow rebases on `main` before pushing snapshots | Claude | A re-run of an older run failed to push on 14 November |

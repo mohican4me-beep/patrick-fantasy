@@ -19,7 +19,6 @@ from uclfa.ingest.clubs import match_report, normalise
 from uclfa.ingest.run import fetch_all, fetch_source, latest_snapshot, write_probe_report
 from uclfa.ingest.sources import (
     SOURCES,
-    parse_clubelo,
     parse_football_data,
     parse_odds_api,
 )
@@ -43,12 +42,6 @@ def fd_match(i: int, *, matchday=5, utc="2026-11-24T17:45:00Z", home=None, away=
 
 def fd_body(n=144, **kwargs) -> str:
     return json.dumps({"matches": [fd_match(i, **kwargs) for i in range(n)]})
-
-
-def elo_body(n=400) -> str:
-    rows = ["Rank,Club,Country,Level,Elo,From,To"]
-    rows += [f"{i},Elo Club {i},ENG,1,{1900 - i}.5,2026-11-10,2026-11-14" for i in range(1, n + 1)]
-    return "\n".join(rows)
 
 
 def odds_body() -> str:
@@ -145,13 +138,6 @@ def test_fixtures_parser_reports_missing_fields_and_garbage():
     assert parse_football_data('{"message": "bad token"}').problems
 
 
-def test_elo_parser():
-    parsed = parse_clubelo(elo_body(3))
-    assert [r["club"] for r in parsed.records] == ["Elo Club 1", "Elo Club 2", "Elo Club 3"]
-    assert parsed.records[0]["elo"] == 1899.5 and not parsed.fields_missing
-    assert parse_clubelo("not,a,ratings,file\n1,2,3,4").problems
-
-
 def test_odds_parser_takes_the_median_across_bookmakers():
     record = parse_odds_api(odds_body()).records[0]
     assert (record["home_price"], record["draw_price"], record["away_price"]) == (2.1, 3.5, 3.6)
@@ -169,15 +155,15 @@ def test_odds_parser_takes_the_median_across_bookmakers():
 
 def test_fetch_writes_dated_snapshots(tmp_path):
     fetcher = responder(
-        {"fixtures": fd_body(), "elo": elo_body(), "odds": odds_body()},
+        {"fixtures": fd_body(), "odds": odds_body()},
         {"x-requests-remaining": "498", "x-requests-used": "2"},
     )
     outcomes = fetch_all(data_dir=tmp_path, fetcher=fetcher, env=KEYS, now=NOW)
-    assert [o.status for o in outcomes] == ["ok", "ok", "ok"]
-    assert outcomes[2].quota == {"x-requests-remaining": "498", "x-requests-used": "2"}
+    assert [o.status for o in outcomes] == ["ok", "ok"]
+    assert outcomes[1].quota == {"x-requests-remaining": "498", "x-requests-used": "2"}
     snapshot = latest_snapshot("fixtures", tmp_path)
     assert snapshot["record_count"] == 144 and snapshot["fetched_at"] == NOW.isoformat()
-    assert (tmp_path / "snapshots" / "elo" / "2026-11-13.json").exists()
+    assert (tmp_path / "snapshots" / "odds" / "2026-11-13.json").exists()
 
 
 def test_bad_response_keeps_the_previous_snapshot(tmp_path):
@@ -201,10 +187,12 @@ def test_bad_response_keeps_the_previous_snapshot(tmp_path):
 
 
 def test_network_failure_is_reported_and_writes_nothing(tmp_path):
-    failing = responder({"elo": http.SourceError("Could not reach api.clubelo.com: timed out")})
-    outcome = fetch_source(SOURCES["elo"], data_dir=tmp_path, fetcher=failing, env={}, now=NOW)
-    assert outcome.status == "failed" and "timed out" in outcome.message
-    assert latest_snapshot("elo", tmp_path) is None
+    failing = responder({"fixtures": http.SourceError("HTTP 502 from api.football-data.org: ")})
+    outcome = fetch_source(
+        SOURCES["fixtures"], data_dir=tmp_path, fetcher=failing, env=KEYS, now=NOW
+    )
+    assert outcome.status == "failed" and "HTTP 502" in outcome.message
+    assert latest_snapshot("fixtures", tmp_path) is None
 
 
 def test_source_without_a_key_is_skipped_not_requested(tmp_path):
@@ -217,7 +205,7 @@ def test_source_without_a_key_is_skipped_not_requested(tmp_path):
 
 def test_keys_never_reach_disk(tmp_path):
     """Acceptance: no key appears in any file the fetch or probe writes."""
-    fetcher = responder({"fixtures": fd_body(), "elo": elo_body(), "odds": odds_body()})
+    fetcher = responder({"fixtures": fd_body(), "odds": odds_body()})
     outcomes = fetch_all(data_dir=tmp_path, fetcher=fetcher, env=KEYS, now=NOW)
     write_probe_report(outcomes, tmp_path)
     written = "".join(p.read_text() for p in tmp_path.rglob("*") if p.is_file())
@@ -231,7 +219,7 @@ def test_redact_and_uefa_hosts_are_refused():
         with pytest.raises(http.SourceError, match="never fetched automatically"):
             http.get(url)
     hosts = [urlsplit(s.build_url(DAY, "k")).hostname for s in SOURCES.values()]
-    assert hosts == ["api.football-data.org", "api.clubelo.com", "api.the-odds-api.com"]
+    assert hosts == ["api.football-data.org", "api.the-odds-api.com"]
 
 
 def test_unknown_source_is_refused(tmp_path):
@@ -242,8 +230,7 @@ def test_unknown_source_is_refused(tmp_path):
 def test_probe_report_lists_fields_and_results(tmp_path):
     fetcher = responder(
         {
-            "fixtures": fd_body(),
-            "elo": http.SourceError("HTTP 503 from api.clubelo.com: down"),
+            "fixtures": http.SourceError("HTTP 503 from api.football-data.org: down"),
             "odds": odds_body(),
         }
     )
@@ -251,13 +238,9 @@ def test_probe_report_lists_fields_and_results(tmp_path):
         data_dir=tmp_path, fetcher=fetcher, env={"FOOTBALL_DATA_TOKEN": "t"}, now=NOW
     )
     report = write_probe_report(outcomes, tmp_path).read_text()
-    assert "| football-data.org" in report and "| ok |" in report
-    assert "failed" in report and "HTTP 503" in report
+    assert "| football-data.org" in report and "failed" in report and "HTTP 503" in report
     assert "skipped" in report and "ODDS_API_KEY" in report
-    assert (
-        "Fields returned: awayTeam, homeTeam, id, matchday, score, stage, status, utcDate" in report
-    )
-    assert (tmp_path / "probe" / "fixtures-sample.json").exists()
+    assert not (tmp_path / "probe" / "fixtures-sample.json").exists()
 
 
 # -- club names ----------------------------------------------------------------------
@@ -269,24 +252,24 @@ def test_normalise():
 
 
 def test_unmatched_club_names_are_reported_not_guessed(tmp_path):
-    fixtures = fd_body(144, home="Home Club 1 FC", away="Away Club 1 FC")
-    elo = "Rank,Club,Country,Level,Elo,From,To\n" + "\n".join(
-        f"{i},{name},ENG,1,1800,2026-11-10,2026-11-14"
-        for i, name in enumerate(["Home Club 1"] + [f"Other {n}" for n in range(320)])
-    )
+    rows = [fd_match(i, home="Real Club FC", away="Other Club FC") for i in range(144)]
+    for row in rows:  # short names that do not happen to match the odds names
+        row["homeTeam"]["shortName"], row["awayTeam"]["shortName"] = "Real", "Other"
+    fixtures = json.dumps({"matches": rows})
     fetch_all(
         data_dir=tmp_path,
         env=KEYS,
         now=NOW,
-        fetcher=responder({"fixtures": fixtures, "elo": elo, "odds": odds_body()}),
+        fetcher=responder({"fixtures": fixtures, "odds": odds_body()}),
     )
     report = match_report(tmp_path)
     assert report["reference_clubs"] == 2
-    assert report["elo"]["fixture_clubs_without_rating"] == ["Away Club 1 FC"]
-    assert report["odds"]["unmatched_names"] == []
+    assert report["odds"]["unmatched_names"] == ["Away Club 1 FC", "Home Club 1 FC"]
 
-    (tmp_path / "club_aliases.yaml").write_text('clubs:\n  "Away Club 1 FC": ["Other 7"]\n')
-    assert match_report(tmp_path)["elo"]["fixture_clubs_without_rating"] == []
+    (tmp_path / "club_aliases.yaml").write_text(
+        'clubs:\n  "Real Club FC": ["Home Club 1 FC"]\n  "Other Club FC": ["Away Club 1 FC"]\n'
+    )
+    assert match_report(tmp_path)["odds"]["unmatched_names"] == []
 
 
 def test_fixtures_command_without_data_says_unavailable(tmp_path, monkeypatch, capsys):

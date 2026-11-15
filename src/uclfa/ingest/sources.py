@@ -7,8 +7,6 @@ was verified against a live response until the probe ran; see data/probe/report.
 
 from __future__ import annotations
 
-import csv
-import io
 import json
 import statistics
 from collections.abc import Callable
@@ -93,37 +91,6 @@ def parse_football_data(text: str) -> Parsed:
             # Knockout ties not yet drawn have no teams; that is expected, not an error.
             continue
         out.records.append(record)
-    return out
-
-
-# -- ClubElo: daily club ratings --------------------------------------------------------
-
-ELO_FIELDS = ("Rank", "Club", "Country", "Level", "Elo", "From", "To")
-
-
-def parse_clubelo(text: str) -> Parsed:
-    reader = csv.DictReader(io.StringIO(text))
-    seen = list(reader.fieldnames or [])
-    out = Parsed([], fields_seen=seen, fields_missing=_missing(ELO_FIELDS, seen))
-    if "Club" not in seen or "Elo" not in seen:
-        out.problems.append("Response is not the expected CSV: no Club or Elo column.")
-        out.raw_sample = text[:300]
-        return out
-    for row in reader:
-        try:
-            out.records.append(
-                {
-                    "club": row["Club"],
-                    "country": row.get("Country"),
-                    "level": int(row["Level"]) if row.get("Level") else None,
-                    "elo": round(float(row["Elo"]), 2),
-                    "valid_from": row.get("From"),
-                    "valid_to": row.get("To"),
-                }
-            )
-        except (KeyError, ValueError) as exc:
-            out.problems.append(f"Row skipped, unreadable ({exc!r}): {row}")
-    out.raw_sample = out.records[:2]
     return out
 
 
@@ -218,15 +185,6 @@ SOURCES: dict[str, Source] = {
         parse=parse_football_data,
         minimum_records=100,  # the league phase alone has 144 matches
         quota_headers=("x-requests-available-minute", "x-requestcounter-reset"),
-    ),
-    "elo": Source(
-        key="elo",
-        title="ClubElo (daily club ratings)",
-        secret_env=None,
-        build_url=lambda day, _key: f"http://api.clubelo.com/{day.isoformat()}",
-        build_headers=lambda _key: {},
-        parse=parse_clubelo,
-        minimum_records=300,
     ),
     "odds": Source(
         key="odds",

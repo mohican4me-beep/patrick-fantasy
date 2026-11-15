@@ -21,7 +21,7 @@ This repository is Patrick's personal UEFA Champions League Fantasy assistant. R
    result. A change that cannot be tested is reported as untested.
 8. **Free and local.** No paid API and no API key committed. One hosted exception,
    approved by Patrick: the GitHub workflow in `.github/workflows/fetch.yml` that fetches
-   fixtures, club ratings and odds. Add no other hosted service without his approval.
+   fixtures and odds. Add no other hosted service without his approval.
 
 ## Commands
 
@@ -41,7 +41,7 @@ uclfa --help
   `analyst_estimate`.
 - `src/uclfa/service.py`: read-only tagged views shared by the command line and tool server.
 - `src/uclfa/mcp_server.py`: read-only MCP server. Never add a tool that writes.
-- `src/uclfa/ingest/`: fetchers for football-data.org, ClubElo and The Odds API. Snapshots
+- `src/uclfa/ingest/`: fetchers for football-data.org and The Odds API. Snapshots
   go to `data/snapshots/`; a bad response writes nothing. Never add a UEFA source.
 - `src/uclfa/cli.py`: command line.
 - `tests/`: each rule test names its rule id in the docstring, in square brackets.

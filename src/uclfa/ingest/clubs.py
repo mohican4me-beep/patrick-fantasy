@@ -39,7 +39,7 @@ def load_aliases(data_dir: Path = DATA_DIR) -> dict[str, str]:
 
 
 def match_report(data_dir: Path = DATA_DIR) -> dict[str, Any]:
-    """Which club names in the Elo and odds snapshots match a club in the fixtures."""
+    """Which club names in the odds snapshot match a club in the fixtures."""
     fixtures = latest_snapshot("fixtures", data_dir)
     if fixtures is None:
         return {"error": "No fixtures snapshot yet; run `uclfa fetch` first."}
@@ -57,13 +57,6 @@ def match_report(data_dir: Path = DATA_DIR) -> dict[str, Any]:
         return reference.get(key) or aliases.get(key)
 
     report: dict[str, Any] = {"reference_clubs": len(clubs)}
-    elo = latest_snapshot("elo", data_dir)
-    if elo is not None:
-        rated = {resolve(r["club"]) for r in elo["records"]} - {None}
-        report["elo"] = {
-            "matched": len(rated),
-            "fixture_clubs_without_rating": [c for c in clubs if c not in rated],
-        }
     odds = latest_snapshot("odds", data_dir)
     if odds is not None:
         names = {n for r in odds["records"] for n in (r["home"], r["away"])}

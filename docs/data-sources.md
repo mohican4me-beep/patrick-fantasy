@@ -1,17 +1,16 @@
 # Data sources and the daily fetch
 
-Three documented sources are fetched once a day by a GitHub workflow and committed to
+Two documented sources are fetched once a day by a GitHub workflow and committed to
 `data/snapshots/`. No UEFA address is ever contacted; the HTTP client refuses UEFA hosts.
 
 | Source | Provides | Key needed | Snapshot folder |
 |---|---|---|---|
 | football-data.org | Champions League fixtures, kick-off times, results | Yes | `data/snapshots/fixtures/` |
-| ClubElo | Daily club strength ratings | No | `data/snapshots/elo/` |
-| The Odds API | Match-result and over/under 2.5 odds, median across bookmakers | Yes | `data/snapshots/odds/` |
+| The Odds API | Match-result and over/under odds, median across bookmakers, every goal line quoted | Yes | `data/snapshots/odds/` |
 
-Status on 13 November 2026: football-data.org and The Odds API returned real data through
-the workflow and their parsers are tested against those responses. ClubElo answered HTTP 502
-and is untested against a real response.
+Status on 15 November 2026: both sources returned real data on 13 and 14 November and their
+parsers are tested against those responses. ClubElo was dropped by Patrick on 15 November
+after two HTTP 502 failures from GitHub's servers.
 
 ## One-time setup (about ten minutes)
 

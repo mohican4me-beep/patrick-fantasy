@@ -1,4 +1,4 @@
-# Fetches fixtures, club ratings and match odds once a day and commits the snapshots.
+# Fetches fixtures and match odds once a day and commits the snapshots.
 # Approved by Patrick on 13 November 2026 as the one hosted exception (see DECISIONS.md).
 # It never contacts UEFA. Keys live in the repository's encrypted secrets:
 #   FOOTBALL_DATA_TOKEN  (football-data.org)

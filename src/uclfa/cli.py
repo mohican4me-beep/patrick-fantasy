@@ -484,11 +484,6 @@ def cmd_clubs(_args: argparse.Namespace) -> int:
         print(report["error"])
         return 1
     print(f"Clubs in the fixtures: {report['reference_clubs']}")
-    if "elo" in report:
-        missing = report["elo"]["fixture_clubs_without_rating"]
-        print(f"Elo ratings matched: {report['elo']['matched']}; without a rating: {len(missing)}")
-        for name in missing:
-            print(f"  no rating matched for: {name}")
     if "odds" in report:
         print(f"Odds names matched: {report['odds']['matched']}")
         for name in report["odds"]["unmatched_names"]:
@@ -748,7 +743,7 @@ def build_parser() -> argparse.ArgumentParser:
     fetch = sub.add_parser(
         "fetch", help="fetch fixtures, club ratings and odds into data/snapshots"
     )
-    fetch.add_argument("--source", action="append", choices=["fixtures", "elo", "odds"])
+    fetch.add_argument("--source", action="append", choices=["fixtures", "odds"])
     fetch.set_defaults(func=cmd_fetch)
     sub.add_parser(
         "probe", help="test each source once and write data/probe/report.md"
