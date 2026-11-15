@@ -10,10 +10,10 @@ Release 1a is complete (Phase 1 and the calculators and tool server), accepted o
 Release 2 Phase A (data ingestion) was **accepted by Patrick on 15 November 2026**. Fixtures and odds
 arrive daily from GitHub Actions. ClubElo was dropped on 15 November (Patrick's decision).
 
-Release 2 Phase B (match model) is built on branch `release-2b-match-model` and awaits
-Patrick's acceptance.
+Release 2 Phase B (match model) was **accepted by Patrick on 15 November 2026** and merged
+into `main`.
 
-## Release 2 Phase B acceptance criteria
+## Release 2 Phase B acceptance criteria (accepted 15 November 2026)
 
 | # | Criterion | Status | Evidence |
 |---|---|---|---|
