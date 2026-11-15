@@ -1,7 +1,7 @@
 {
  "source": "fixtures",
  "title": "football-data.org (Champions League fixtures and results)",
- "fetched_at": "2026-11-15T00:01:12.489741+00:00",
+ "fetched_at": "2026-11-15T12:43:18.115482+00:00",
  "url": "https://api.football-data.org/v4/competitions/CL/matches",
  "record_count": 144,
  "problems": [],
