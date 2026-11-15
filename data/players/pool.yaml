@@ -1,0 +1,21 @@
+# Player pool for the expected-points model (Release 2 Phase C).
+# price_tag: entered = Patrick read it in the game; third_party = a public fantasy site, dated.
+# Model inputs (start_prob, goal_share, ...) are Claude's estimates; each player lists sources.
+# A missing input stays missing: the player then gets no number. Never guess a price.
+as_of: "2026-11-15"
+players:
+  - {name: "Joan Garcia", club: "Barcelona", position: GK, price: 5.0, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "J. Gadou", club: "B. Dortmund", position: DEF, price: 4.0, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "L. Geertruida", club: "PSV", position: DEF, price: 4.5, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "M. Mittelstadt", club: "Stuttgart", position: DEF, price: 4.5, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "Carlos Augusto", club: "Inter", position: DEF, price: 4.2, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "Bruno Fernandes", club: "Man Utd", position: MID, price: 9.0, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "G. Zechiel", club: "Feyenoord", position: MID, price: 4.6, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "Joao Neves", club: "Paris", position: MID, price: 5.9, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "Raphinha", club: "Barcelona", position: MID, price: 9.6, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "H. Kane", club: "Bayern Munchen", position: FWD, price: 11.2, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "B. Mbeumo", club: "Man Utd", position: FWD, price: 7.0, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "G. Kobel", club: "B. Dortmund", position: GK, price: 5.0, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "Vinicius Junior", club: "Real Madrid", position: MID, price: 9.5, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "K. Mbappe", club: "Real Madrid", position: FWD, price: 11.1, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}
+  - {name: "R. Calafiori", club: "Arsenal", position: DEF, price: 4.5, price_tag: entered, price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13"}

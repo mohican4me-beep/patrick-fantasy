@@ -14,3 +14,7 @@ clubs:
   "FC Internazionale Milano": ["Inter Milan"]
   "PSV": ["PSV Eindhoven"]
   "Sporting Clube de Portugal": ["Sporting Lisbon"]
+  # Added 2026-11-15: club names as the UEFA Fantasy game shows them in Patrick's squad.
+  "Borussia Dortmund": ["B. Dortmund"]
+  "Manchester United FC": ["Man Utd"]
+  "Paris Saint-Germain FC": ["Paris"]

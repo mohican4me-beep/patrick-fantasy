@@ -94,6 +94,12 @@ def build_server(
         return service.match_outlook_view(matchday, data_dir=data_dir)
 
     @server.tool()
+    def player_points(matchday: int) -> dict[str, Any]:
+        """Expected points for every player in the pool for a matchday. Every number is an
+        analyst estimate built from Claude's inputs; a player with missing inputs has none."""
+        return service.player_points_view(matchday, current_rules(), data_dir=data_dir)
+
+    @server.tool()
     def get_rules() -> dict[str, Any]:
         """The 2026/27 rules as implemented, with each rule's verification status."""
         return service.rules_view(current_rules())

@@ -612,3 +612,115 @@ def match_outlook_view(
             "opponent scores 0; it does not account for a player's minutes."
         ),
     }
+
+
+# -- player expected points (Release 2 Phase C) ---------------------------------------
+
+
+def load_player_pool(data_dir: Any = None) -> tuple[list[Any], str | None]:
+    import yaml
+
+    from uclfa.ingest.run import DATA_DIR
+    from uclfa.model.player import PlayerInputs
+
+    path = (DATA_DIR if data_dir is None else data_dir) / "players" / "pool.yaml"
+    if not path.exists():
+        return [], None
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return [PlayerInputs.model_validate(p) for p in data.get("players") or []], data.get("as_of")
+
+
+def player_points_view(
+    matchday: int,
+    rules: RuleSet,
+    data_dir: Any = None,
+    now: Any = None,
+    squad_names: set[str] | None = None,
+) -> dict[str, Any]:
+    """Expected points for every pool player in one matchday. All `analyst_estimate`."""
+    from uclfa.ingest.clubs import make_resolver
+    from uclfa.ingest.run import DATA_DIR, latest_snapshot
+    from uclfa.model.player import TeamContext, expected_points, load_player_settings
+
+    data_dir = DATA_DIR if data_dir is None else data_dir
+    outlook = match_outlook_view(matchday, data_dir=data_dir, now=now)
+    pool, as_of = load_player_pool(data_dir)
+    if not pool:
+        return {"matchday": matchday, "tag": "unavailable", "note": "No player pool file."}
+    if not outlook.get("matches"):
+        return {"matchday": matchday, "tag": "unavailable", "note": outlook.get("note")}
+    resolve, _ = make_resolver(latest_snapshot("fixtures", data_dir), data_dir)
+    settings = load_player_settings()
+    side: dict[str, tuple[dict[str, Any], str]] = {}
+    for m in outlook["matches"]:
+        side[m["home"]] = (m, "home")
+        side[m["away"]] = (m, "away")
+
+    players: list[dict[str, Any]] = []
+    for p in pool:
+        row: dict[str, Any] = {
+            "name": p.name,
+            "club": p.club,
+            "position": p.position.value,
+            "price": tagged(p.price, p.price_tag) if p.price is not None else dict(UNAVAILABLE),
+            "price_date": p.price_date,
+            "in_squad": squad_names is not None and p.name in squad_names,
+        }
+
+        def unavailable(reason: str, row: dict[str, Any] = row) -> None:
+            players.append({**row, "tag": "unavailable", "expected_points": None, "reason": reason})
+
+        club = resolve(p.club)
+        if club is None or club not in side:
+            unavailable(
+                f"club '{p.club}' not matched to a fixture"
+                if club is None
+                else "club has no match this matchday"
+            )
+            continue
+        m, where = side[club]
+        other = "away" if where == "home" else "home"
+        row["opponent"] = f"{m[other]} ({'H' if where == 'home' else 'A'})"
+        row["kickoff_athens"] = m["kickoff_athens"]
+        if m["status"] != "fitted":
+            unavailable(f"no match estimate: {m['reason']}")
+            continue
+        team = TeamContext(
+            goals_for=m["expected_goals"][where],
+            goals_against=m["expected_goals"][other],
+            clean_sheet=m["clean_sheet"][where],
+        )
+        try:
+            pts = expected_points(p, team, rules, settings)
+        except ValueError as exc:
+            unavailable(str(exc))
+            continue
+        notes = list(pts.notes)
+        if m["confidence"] == "low":
+            notes.append("match estimate is low confidence")
+        players.append(
+            {
+                **row,
+                "tag": "analyst_estimate",
+                "expected_points": round(pts.expected, 2),
+                "if_starts": round(pts.if_starts, 2),
+                "plays_prob": round(pts.plays_prob, 3),
+                "components": {k: round(v, 2) for k, v in pts.components.items()},
+                "sources": p.sources,
+                "notes": notes,
+            }
+        )
+    players.sort(key=lambda r: -(r["expected_points"] or -1))
+    done = sum(r["expected_points"] is not None for r in players)
+    return {
+        "matchday": matchday,
+        "tag": "analyst_estimate" if done else "unavailable",
+        "author": "Claude's player model (docs/model.md)",
+        "pool_as_of": as_of,
+        "odds_fetched_at": outlook["odds_fetched_at"],
+        "odds_age_hours": outlook["odds_age_hours"],
+        "estimated": done,
+        "unavailable": len(players) - done,
+        "players": players,
+        "note": "Estimates, not official data. Inputs are Claude's, with sources per player.",
+    }

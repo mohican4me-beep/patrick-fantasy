@@ -77,3 +77,52 @@ by guesswork. Club spellings are mapped in `data/club_aliases.yaml`.
   could not be tested on history. From Matchday 5, predictions are compared with
   results and recorded in the journal. 18 matches are too few to prove accuracy; the
   record builds over the season.
+
+# Player expected points (Release 2 Phase C)
+
+`uclfa points --matchday N` estimates each pool player's points for his match. Claude reads
+the same view through the `player_points` tool. Every number is an `analyst_estimate`.
+
+## Inputs
+
+The pool is `data/players/pool.yaml`. For each player:
+
+| Input | Meaning | Who sets it |
+|---|---|---|
+| price, price_tag | `entered` (Patrick read it in the game) or `third_party` (public fantasy site, dated) | Patrick or Claude |
+| start_prob | Chance he starts | Claude, from predicted lineups |
+| p60_if_start, minutes_if_start | Chance a start lasts 60 minutes; average minutes as a starter | Claude, from his recent matches |
+| sub_prob, minutes_if_sub | Chance he comes on when not starting, and for how long | Claude |
+| goal_share | His share of his team's goals over a full match (penalties included) | Claude, from season stats |
+| assist_share | His assists per team goal over a full match | Claude, from season stats |
+| recoveries_p90, saves_p90, cards_p90 | Per 90 minutes | Claude, from season stats |
+
+Each player lists his sources. **A missing required input means no number**: the player is
+shown as unavailable with the missing fields named. Prices are never guessed.
+
+## Calculation
+
+For a start and for a substitute appearance separately, then weighted by their chances:
+
+- appearance point, and the 60-minute point times the chance of reaching 60;
+- goals = team expected goals x goal share x minutes/90 x goal points for his position;
+- assists likewise;
+- clean sheet = points for his position x chance of reaching 60 x the team's 90-minute
+  clean-sheet chance scaled down to the minutes he is on the pitch;
+- goals conceded (goalkeepers and defenders) = -1 per two, from the opponent's expected
+  goals while he is on;
+- ball recoveries and saves = 1 point per three, with the rounding down counted exactly;
+- yellow cards if a card rate is entered.
+
+The point values come from `rules/2026-27.yaml`. A test simulates 40,000 matches per
+position, scores each with the rules engine, and checks the formula gives the same average.
+
+## Limits
+
+- **Not modelled:** player of the match (3 points), goals from outside the box, penalties
+  won, conceded, missed or saved, own goals and red cards. Stars are therefore slightly
+  underestimated, since player of the match goes mostly to them.
+- **Inputs are judgement.** A wrong starting chance moves the number more than anything
+  in the formula. The command shows "points if he starts" beside the expected figure.
+- **Shares are season averages** and do not adapt to the opponent.
+- **No track record yet**, as for the match model.

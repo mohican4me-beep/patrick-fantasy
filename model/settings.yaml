@@ -29,3 +29,12 @@ match_model:
   # Below these bookmaker counts a match is reported as low confidence.
   min_result_bookmakers: 5
   min_goals_bookmakers: 3
+
+# Player expected points (Release 2 Phase C). Analyst assumptions, not game rules.
+player_model:
+  # A starter who does not reach 60 minutes is assumed to play this many.
+  minutes_if_under_sixty: 45
+  # Poisson counts (recoveries, saves, goals conceded) are summed up to this many events.
+  max_events: 40
+  # Not modelled, and listed as such on every output: player of the match, goals from
+  # outside the box, penalties won, conceded, missed or saved, own goals, red cards.

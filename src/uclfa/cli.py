@@ -515,6 +515,55 @@ def cmd_outlook(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_points(args: argparse.Namespace) -> int:
+    rules = load_rules()
+    squad_names: set[str] | None = None
+    if store.db_path().exists():
+        engine = store.make_readonly_engine(store.db_path())
+        with Session(engine) as session:
+            state = store.latest_team_state(session)
+            if state is not None:
+                squad_names = {slot.player.name for slot in state.squad.slots}
+        engine.dispose()
+    view = service.player_points_view(args.matchday, rules, squad_names=squad_names)
+    if args.json:
+        print(json.dumps(view, indent=1, ensure_ascii=False))
+        return 0 if view.get("players") else 1
+    if not view.get("players"):
+        print(view.get("note", "Unavailable."))
+        return 1
+    rows = [
+        r
+        for r in view["players"]
+        if (args.position is None or r["position"] == args.position)
+        and (not args.mine or r["in_squad"])
+    ]
+    print(
+        f"Matchday {view['matchday']} expected points. ANALYST ESTIMATE, not official data. "
+        f"Pool as of {view['pool_as_of']}; odds {view['odds_age_hours']} h old."
+    )
+    print(f"{'':2}{'Player':22} {'Pos':3} {'Price':>6} {'Opponent':30} {'xPts':>5} {'Starts':>6}")
+    for r in rows:
+        price = r["price"]["value"]
+        price_text = (
+            "?" if price is None else f"{price:.1f}{'*' if r['price']['tag'] != 'entered' else ''}"
+        )
+        mark = "> " if r["in_squad"] else "  "
+        if r["expected_points"] is None:
+            print(
+                f"{mark}{r['name'][:22]:22} {r['position']:3} {price_text:>6} "
+                f"unavailable: {r['reason']}"
+            )
+            continue
+        print(
+            f"{mark}{r['name'][:22]:22} {r['position']:3} {price_text:>6} "
+            f"{r.get('opponent', '')[:30]:30} {r['expected_points']:>5.2f} {r['if_starts']:>6.2f}"
+        )
+    print()
+    print("> in your squad. * price from a third-party site. Starts = points if he starts.")
+    return 0
+
+
 def cmd_clubs(_args: argparse.Namespace) -> int:
     from uclfa.ingest.clubs import match_report
 
@@ -792,6 +841,12 @@ def build_parser() -> argparse.ArgumentParser:
     outlook.add_argument("--matchday", type=int, required=True)
     outlook.add_argument("--json", action="store_true", help="print the full view as JSON")
     outlook.set_defaults(func=cmd_outlook)
+    points = sub.add_parser("points", help="player expected points for a matchday (estimate)")
+    points.add_argument("--matchday", type=int, required=True)
+    points.add_argument("--position", choices=["GK", "DEF", "MID", "FWD"])
+    points.add_argument("--mine", action="store_true", help="only players in the saved squad")
+    points.add_argument("--json", action="store_true")
+    points.set_defaults(func=cmd_points)
     sub.add_parser("clubs", help="report club names that do not match across sources").set_defaults(
         func=cmd_clubs
     )
