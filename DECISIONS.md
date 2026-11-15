@@ -84,3 +84,12 @@ Newest last. Each entry: the decision, who made it, and the reason.
 | Scoreline grid capped at 20 goals per team | Claude | At 10 a 4.3-goal favourite lost measurable probability |
 | Modelling choices in `model/settings.yaml`, not code | Claude | Same principle as the rules file |
 | Real-data tests use a pinned copy of the 15 November snapshots | Claude | Daily snapshots change; tests must not |
+
+## 15 November 2026: Release 2 Phases C and D, player data
+
+| Decision | By | Reason |
+|---|---|---|
+| Phases C (player expected points) and D (optimizer: transfers, hits, Wildcard) approved together | Patrick | He wants the app to name the best possible squad before the Matchday 5 deadline |
+| Claude chooses the players and checks prices; Patrick no longer supplies names | Patrick | "The point is that you propose players" |
+| Prices and player stats may come from public third-party sites, read by Claude in chat sessions, tagged `third_party` with source and date | Patrick ("do it as you wish") | UEFA's game has no public price page; scripted requests to it stay ruled out (decision 1). The in-game price at purchase is the truth |
+| Player model is a formula, not a simulation | Claude | Explainable and testable; a simulation test checks it against the scoring engine |
