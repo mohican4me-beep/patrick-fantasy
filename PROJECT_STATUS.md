@@ -7,10 +7,10 @@ Updated 13 November 2026.
 Release 1a is complete (Phase 1 and the calculators and tool server), accepted on
 13 November 2026. Release 1b (web app) is deferred by Patrick's decision.
 
-Release 2 Phase A (data ingestion) is ready for Patrick's acceptance. Fixtures and odds
+Release 2 Phase A (data ingestion) was **accepted by Patrick on 15 November 2026**. Fixtures and odds
 arrive daily from GitHub Actions. ClubElo was dropped on 15 November (Patrick's decision).
 
-## Release 2 Phase A acceptance criteria
+## Release 2 Phase A acceptance criteria (accepted 15 November 2026)
 
 | # | Criterion | Status | Evidence |
 |---|---|---|---|
