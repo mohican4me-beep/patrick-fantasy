@@ -72,3 +72,15 @@ Newest last. Each entry: the decision, who made it, and the reason.
 |---|---|---|
 | ClubElo removed from the daily fetch | Patrick | HTTP 502 from GitHub on 13 and 14 November; odds cover the coming matchdays. Code is in Git history (commit 6c6c1ec and earlier) if it is wanted back |
 | Workflow rebases on `main` before pushing snapshots | Claude | A re-run of an older run failed to push on 14 November |
+
+## 15 November 2026: Release 2 Phase B, match model
+
+| Decision | By | Reason |
+|---|---|---|
+| Phase B approved as planned | Patrick | |
+| Margin removed with the power method | Claude | Standard; corrects the favourite-longshot bias |
+| Only half-goal lines are used; the most quoted one per match | Claude | Quarter and whole lines refund stakes and would need extra assumptions |
+| Poisson goals with a Dixon-Coles correction of -0.05 | Claude | Common, simple, explainable; the value is an assumption to check against results |
+| Scoreline grid capped at 20 goals per team | Claude | At 10 a 4.3-goal favourite lost measurable probability |
+| Modelling choices in `model/settings.yaml`, not code | Claude | Same principle as the rules file |
+| Real-data tests use a pinned copy of the 15 November snapshots | Claude | Daily snapshots change; tests must not |

@@ -1,0 +1,16 @@
+# Club name aliases. The reference name is the one football-data.org uses in the fixtures
+# snapshot; list under it the spellings other sources or the UEFA game use.
+# Add an alias only after seeing it reported as unmatched by `uclfa clubs`. Never guess.
+#
+# clubs:
+#   "Manchester United FC": ["Man Utd", "Man United"]
+
+# Added 2026-11-13 from `uclfa clubs` (names used by The Odds API). Each was checked
+# against the Matchday 5 fixture with the same kick-off and opponent.
+clubs:
+  "PAE AEK": ["AEK Athens"]
+  "FC Bayern München": ["Bayern Munich"]
+  "Como 1907": ["Como"]
+  "FC Internazionale Milano": ["Inter Milan"]
+  "PSV": ["PSV Eindhoven"]
+  "Sporting Clube de Portugal": ["Sporting Lisbon"]

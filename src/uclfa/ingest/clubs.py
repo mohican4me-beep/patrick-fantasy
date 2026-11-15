@@ -38,11 +38,8 @@ def load_aliases(data_dir: Path = DATA_DIR) -> dict[str, str]:
     return out
 
 
-def match_report(data_dir: Path = DATA_DIR) -> dict[str, Any]:
-    """Which club names in the odds snapshot match a club in the fixtures."""
-    fixtures = latest_snapshot("fixtures", data_dir)
-    if fixtures is None:
-        return {"error": "No fixtures snapshot yet; run `uclfa fetch` first."}
+def make_resolver(fixtures: dict[str, Any], data_dir: Path = DATA_DIR):
+    """Return (resolve, clubs): resolve(name) gives the fixtures' club name or None."""
     reference: dict[str, str] = {}
     for r in fixtures["records"]:
         for full, short in ((r["home"], r.get("home_short")), (r["away"], r.get("away_short"))):
@@ -50,12 +47,20 @@ def match_report(data_dir: Path = DATA_DIR) -> dict[str, Any]:
             if short:
                 reference[normalise(short)] = full
     aliases = load_aliases(data_dir)
-    clubs = sorted(set(reference.values()))
 
     def resolve(name: str) -> str | None:
         key = normalise(name)
         return reference.get(key) or aliases.get(key)
 
+    return resolve, sorted(set(reference.values()))
+
+
+def match_report(data_dir: Path = DATA_DIR) -> dict[str, Any]:
+    """Which club names in the odds snapshot match a club in the fixtures."""
+    fixtures = latest_snapshot("fixtures", data_dir)
+    if fixtures is None:
+        return {"error": "No fixtures snapshot yet; run `uclfa fetch` first."}
+    resolve, clubs = make_resolver(fixtures, data_dir)
     report: dict[str, Any] = {"reference_clubs": len(clubs)}
     odds = latest_snapshot("odds", data_dir)
     if odds is not None:

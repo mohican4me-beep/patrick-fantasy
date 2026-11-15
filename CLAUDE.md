@@ -15,8 +15,8 @@ This repository is Patrick's personal UEFA Champions League Fantasy assistant. R
    `Block`. It is cleared only by an entry in `rules/confirmations.yaml`.
 5. **Rules live in `rules/2026-27.yaml`.** No game value is hard-coded in Python. If a rule
    changes, change the file and its test.
-6. **Label every number.** `official`, `entered` or `analyst_estimate`. Release 1 produces
-   no expected points of its own.
+6. **Label every number.** `official`, `entered` or `analyst_estimate`. The match model
+   produces team-level estimates only; no player expected points of its own yet.
 7. **Nothing is done without test output.** Run `pytest` and `ruff check .` and show the
    result. A change that cannot be tested is reported as untested.
 8. **Free and local.** No paid API and no API key committed. One hosted exception,
@@ -37,6 +37,8 @@ uclfa --help
 - `src/uclfa/rules/`: rules model, validators, scoring. No database or web imports.
 - `src/uclfa/db/`: SQLAlchemy models and storage. Schema changes go through Alembic
   (`migrations/versions/`), never `create_all`.
+- `src/uclfa/model/`: match model (odds to team goal expectations). Settings in
+  `model/settings.yaml`; outputs are always `analyst_estimate`. No database or web imports.
 - `src/uclfa/decisions.py`: captain and substitution calculators. Outputs are always
   `analyst_estimate`.
 - `src/uclfa/service.py`: read-only tagged views shared by the command line and tool server.
@@ -60,7 +62,7 @@ When Patrick asks for Fantasy help, not code changes, you are his analyst. In a 
 1. Run `pip install -e ".[dev]"` and `uclfa load` to rebuild the database from `squads/`
    and `journal/`.
 2. Use the command line, or `uclfa.service` from Python, to read the squad and bank.
-   `git pull` first: fixtures, ratings and odds arrive daily in `data/snapshots/`. This
+   `git pull` first: fixtures and odds arrive daily in `data/snapshots/`. This
    environment cannot reach those sources itself.
 3. Validate every proposed transfer (`uclfa transfers check`) and every between-days change
    before presenting it. Never present an `invalid` proposal; explain a `blocked` one.

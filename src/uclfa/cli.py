@@ -6,6 +6,7 @@ Run `uclfa --help` for the list of commands.
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 from collections.abc import Sequence
 from pathlib import Path
@@ -13,7 +14,7 @@ from pathlib import Path
 import yaml
 from sqlalchemy.orm import Session
 
-from uclfa import decisions
+from uclfa import decisions, service
 from uclfa.db import store
 from uclfa.rules import (
     Chip,
@@ -476,6 +477,44 @@ def cmd_fixtures(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_outlook(args: argparse.Namespace) -> int:
+    view = service.match_outlook_view(args.matchday)
+    if args.json:
+        print(json.dumps(view, indent=1, ensure_ascii=False))
+        return 0 if view.get("matches") else 1
+    if not view.get("matches"):
+        print(view.get("note", "Unavailable."))
+        return 1
+    print(
+        f"Matchday {view['matchday']} outlook. ANALYST ESTIMATE from bookmaker odds, "
+        "not official data."
+    )
+    print(
+        f"Odds fetched {view['odds_fetched_at'][:16]} UTC ({view['odds_age_hours']} h ago); "
+        f"{view['fitted']} fitted, {view['unavailable']} unavailable."
+    )
+    print()
+    print(f"{'Kick-off (Athens)':17} {'Match':44} {'xG':>9} {'CS %':>9} {'Max err':>7}  Conf")
+    for m in view["matches"]:
+        name = f"{m['home']} v {m['away']}"[:44]
+        if m["status"] != "fitted":
+            print(f"{m['kickoff_athens']:17} {name:44} unavailable: {m['reason']}")
+            continue
+        xg = f"{m['expected_goals']['home']:.2f}-{m['expected_goals']['away']:.2f}"
+        cs = f"{m['clean_sheet']['home'] * 100:.0f}/{m['clean_sheet']['away'] * 100:.0f}"
+        print(
+            f"{m['kickoff_athens']:17} {name:44} {xg:>9} {cs:>9} "
+            f"{m['max_error_points']:>6.1f}p  {m['confidence']}"
+        )
+        for reason in m["reasons"]:
+            print(f"{'':19}- {reason}")
+    for stray in view["odds_not_matched_to_a_fixture"]:
+        print(f"Odds not matched to a fixture: {stray}")
+    print()
+    print("xG = expected goals home-away. CS = clean-sheet chance home/away, team level only.")
+    return 0
+
+
 def cmd_clubs(_args: argparse.Namespace) -> int:
     from uclfa.ingest.clubs import match_report
 
@@ -740,9 +779,7 @@ def build_parser() -> argparse.ArgumentParser:
         func=cmd_mcp
     )
 
-    fetch = sub.add_parser(
-        "fetch", help="fetch fixtures, club ratings and odds into data/snapshots"
-    )
+    fetch = sub.add_parser("fetch", help="fetch fixtures and odds into data/snapshots")
     fetch.add_argument("--source", action="append", choices=["fixtures", "odds"])
     fetch.set_defaults(func=cmd_fetch)
     sub.add_parser(
@@ -751,6 +788,10 @@ def build_parser() -> argparse.ArgumentParser:
     fx = sub.add_parser("fixtures", help="list fetched fixtures in Athens time")
     fx.add_argument("--matchday", type=int)
     fx.set_defaults(func=cmd_fixtures)
+    outlook = sub.add_parser("outlook", help="team goal expectations for a matchday (estimate)")
+    outlook.add_argument("--matchday", type=int, required=True)
+    outlook.add_argument("--json", action="store_true", help="print the full view as JSON")
+    outlook.set_defaults(func=cmd_outlook)
     sub.add_parser("clubs", help="report club names that do not match across sources").set_defaults(
         func=cmd_clubs
     )

@@ -1,6 +1,6 @@
 # Project status
 
-Updated 13 November 2026.
+Updated 15 November 2026.
 
 ## Where things stand
 
@@ -9,6 +9,23 @@ Release 1a is complete (Phase 1 and the calculators and tool server), accepted o
 
 Release 2 Phase A (data ingestion) was **accepted by Patrick on 15 November 2026**. Fixtures and odds
 arrive daily from GitHub Actions. ClubElo was dropped on 15 November (Patrick's decision).
+
+Release 2 Phase B (match model) is built on branch `release-2b-match-model` and awaits
+Patrick's acceptance.
+
+## Release 2 Phase B acceptance criteria
+
+| # | Criterion | Status | Evidence |
+|---|---|---|---|
+| 1 | All tests pass, lint clean, output shown | Met | 245 passed; `ruff check` clean |
+| 2 | `uclfa outlook --matchday 5` lists all 18 matches with expected goals, clean-sheet and scoring chances, odds age and bookmaker count, or a reason | Met | 18 fitted, 0 unavailable on the 15 November odds; `test_every_matchday_5_match_is_fitted_from_real_odds` |
+| 3 | Each fitted match reproduces the market within 1 point, or is flagged | Met | 15 within 1 point; 3 even games (Galatasaray v Aston Villa, Shakhtar v Fenerbahçe, Sporting v Man Utd) miss the draw by 1.0 to 1.1 points and are marked low confidence |
+| 4 | `docs/model.md` states method, assumptions and limits | Met | Written |
+| 5 | Every number labelled as Claude's estimate | Met | `analyst_estimate` on the view, each match and the tool output; command prints ANALYST ESTIMATE |
+
+Found while building: the scoreline cap was raised from 10 to 20 goals because a team
+expected to score 4.3 (Barcelona at Sabah) lost a measurable share of probability at 10.
+The Dixon-Coles value -0.05 is an assumption, to be checked against results.
 
 ## Release 2 Phase A acceptance criteria (accepted 15 November 2026)
 
@@ -84,10 +101,10 @@ Done on 13 November: six in-game checks answered; matchday 5 deadline time recor
 Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host confirmed as
 "beast" (AMD Ryzen 5 5600X, 32 GB RAM).
 
-## Next, after Phase 1 is accepted
+## Next, after Phase B is accepted
 
-Release 2 Phase B: the match model (team goal expectations from odds) now that fixtures
-and odds are flowing. Needs its own approval.
+Release 2 Phase C: player-level expected points (minutes, goal and assist shares, defensive
+actions) from hand-entered data and the match model. Needs its own plan and approval.
 
 ## Known limits of Phase 1
 

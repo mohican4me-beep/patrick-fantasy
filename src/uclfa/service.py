@@ -459,3 +459,156 @@ def substitution_view(
     except (KeyError, TypeError, ValueError) as exc:
         return {"error": f"Could not read the request: {exc}"}
     return {**asdict(decision), "summary": decision.summary()}
+
+
+# -- match outlook (Release 2 Phase B) ------------------------------------------------
+
+
+def match_outlook_view(
+    matchday: int,
+    data_dir: Any = None,
+    settings: Any = None,
+    now: Any = None,
+) -> dict[str, Any]:
+    """Team goal expectations for one matchday, from the latest fixtures and odds snapshots.
+
+    Every number is an `analyst_estimate`. A match without usable odds is listed as
+    `unavailable` with the reason; nothing is filled in.
+    """
+    from datetime import UTC, datetime
+    from zoneinfo import ZoneInfo
+
+    from uclfa.ingest.clubs import make_resolver
+    from uclfa.ingest.run import DATA_DIR, latest_snapshot
+    from uclfa.model.match import MarketInput, fit_match, load_settings, main_half_line
+
+    data_dir = DATA_DIR if data_dir is None else data_dir
+    settings = load_settings() if settings is None else settings
+    now = datetime.now(UTC) if now is None else now
+    athens = ZoneInfo("Europe/Athens")
+
+    fixtures = latest_snapshot("fixtures", data_dir)
+    if fixtures is None:
+        return {"matchday": matchday, "tag": "unavailable", "note": "No fixtures snapshot."}
+    rows = sorted(
+        (r for r in fixtures["records"] if r["matchday"] == matchday),
+        key=lambda r: (r["kickoff_utc"], r["home"]),
+    )
+    if not rows:
+        return {
+            "matchday": matchday,
+            "tag": "unavailable",
+            "note": f"No fixtures for matchday {matchday} in the latest snapshot.",
+        }
+    odds = latest_snapshot("odds", data_dir)
+    resolve, _ = make_resolver(fixtures, data_dir)
+    odds_records = odds["records"] if odds else []
+    by_pair: dict[tuple[str | None, str | None], dict[str, Any]] = {
+        (resolve(o["home"]), resolve(o["away"])): o for o in odds_records
+    }
+    used: set[str] = set()
+
+    def r3(x: float) -> float:
+        return round(x, 3)
+
+    matches: list[dict[str, Any]] = []
+    for f in rows:
+        kickoff = datetime.fromisoformat(f["kickoff_utc"])
+        entry: dict[str, Any] = {
+            "kickoff_utc": f["kickoff_utc"],
+            "kickoff_athens": kickoff.astimezone(athens).strftime("%a %d %b %H:%M"),
+            "home": f["home"],
+            "away": f["away"],
+        }
+        o = by_pair.get((f["home"], f["away"]))
+        if o is None:
+            reason = "no odds listed for this match"
+            if (f["away"], f["home"]) in by_pair:
+                reason = "odds list the teams the other way round; not used"
+            elif f.get("status") == "FINISHED":
+                reason = "match already played"
+            matches.append(
+                {**entry, "status": "unavailable", "tag": "unavailable", "reason": reason}
+            )
+            continue
+        used.add(o["source_id"])
+        line, over, under, goals_books, note = main_half_line(o)
+        try:
+            fit = fit_match(
+                MarketInput(
+                    home_price=o["home_price"],
+                    draw_price=o["draw_price"],
+                    away_price=o["away_price"],
+                    result_bookmakers=o["bookmakers"],
+                    total_line=line,
+                    over_price=over,
+                    under_price=under,
+                    goals_bookmakers=goals_books,
+                ),
+                settings,
+            )
+        except (TypeError, ValueError) as exc:
+            matches.append(
+                {
+                    **entry,
+                    "status": "unavailable",
+                    "tag": "unavailable",
+                    "reason": f"odds unusable: {exc}",
+                }
+            )
+            continue
+        reasons = list(fit.reasons)
+        if note:
+            reasons.append(note)
+        if o["kickoff_utc"] != f["kickoff_utc"]:
+            reasons.append(f"odds kick-off {o['kickoff_utc']} differs from the fixture's")
+        g = fit.grid
+        matches.append(
+            {
+                **entry,
+                "status": "fitted",
+                "tag": "analyst_estimate",
+                "expected_goals": {
+                    "home": round(fit.home_rate, 2),
+                    "away": round(fit.away_rate, 2),
+                },
+                "clean_sheet": {"home": r3(g.home_clean_sheet), "away": r3(g.away_clean_sheet)},
+                "scores": {"home": r3(1 - g.away_clean_sheet), "away": r3(1 - g.home_clean_sheet)},
+                "result": {k: r3(fit.model[k]) for k in ("home_win", "draw", "away_win")},
+                "market": {k: r3(v) for k, v in fit.market.items()},
+                "model": {k: r3(v) for k, v in fit.model.items()},
+                "max_error_points": round(fit.max_error * 100, 2),
+                "goals_line": fit.goals_line,
+                "bookmakers": {"result": o["bookmakers"], "goals": goals_books},
+                "margins": {k: round(v, 4) for k, v in fit.margins.items()},
+                "top_scorelines": [(s, r3(p)) for s, p in g.top_scorelines(3)],
+                "confidence": "low" if reasons else "normal",
+                "reasons": reasons,
+            }
+        )
+
+    kickoffs = {f["kickoff_utc"][:10] for f in rows}
+    stray = [
+        f"{o['home']} v {o['away']}"
+        for o in odds_records
+        if o["source_id"] not in used and o["kickoff_utc"][:10] in kickoffs
+    ]
+    fetched = datetime.fromisoformat(odds["fetched_at"]) if odds else None
+    fitted = sum(m["status"] == "fitted" for m in matches)
+    return {
+        "matchday": matchday,
+        "tag": "analyst_estimate" if fitted else "unavailable",
+        "author": "Claude's match model (docs/model.md)",
+        "odds_fetched_at": odds["fetched_at"] if odds else None,
+        "odds_age_hours": round((now - fetched).total_seconds() / 3600, 1) if fetched else None,
+        "fixtures_fetched_at": fixtures["fetched_at"],
+        "fitted": fitted,
+        "unavailable": len(matches) - fitted,
+        "odds_not_matched_to_a_fixture": stray,
+        "settings": settings.model_dump(),
+        "matches": matches,
+        "note": (
+            "Estimates from bookmaker odds, not official data. Clean sheet = chance the "
+            "opponent scores 0; it does not account for a player's minutes."
+        ),
+    }

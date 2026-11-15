@@ -1,0 +1,31 @@
+# Modelling choices for the match model (Release 2 Phase B). These are analyst
+# assumptions, not game rules and not data. Change them here, never in Python.
+# Approved by Patrick with Phase B on 15 November 2026.
+
+match_model:
+  # How the bookmaker margin is removed. "power" corrects the favourite-longshot bias:
+  # each implied probability 1/odds is raised to the power k that makes them sum to 1.
+  margin_method: power
+
+  # Dixon-Coles correction for low scores (0-0, 1-0, 0-1, 1-1). Negative values make
+  # 0-0 and 1-1 slightly more likely than independent Poisson goals. -0.05 is Claude's
+  # assumption, kept small on purpose, not a value fitted to data. To be checked against
+  # results from Matchday 5 onwards; 0 switches the correction off.
+  low_score_correction: -0.05
+
+  # Scoreline grid runs from 0 to this many goals per team. The mass beyond it is
+  # reported and renormalised. At 20 it is under one in a hundred million even for a
+  # team expected to score 4.3 goals (tested in tests/test_match_model.py).
+  max_goals: 20
+
+  # Bounds on a team's expected goals during fitting.
+  min_rate: 0.05
+  max_rate: 6.0
+
+  # The fit must reproduce each market probability within this distance, or the match
+  # is flagged. 0.01 is one percentage point (acceptance criterion 3).
+  fit_tolerance: 0.01
+
+  # Below these bookmaker counts a match is reported as low confidence.
+  min_result_bookmakers: 5
+  min_goals_bookmakers: 3

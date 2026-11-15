@@ -26,6 +26,7 @@ EXPECTED_TOOLS = {
     "list_shortlist",
     "compare_players",
     "list_fixtures",
+    "match_outlook",
     "get_rules",
     "get_journal",
     "validate_squad",

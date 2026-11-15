@@ -11,12 +11,15 @@ need, for example "check this transfer" or "day one is finished, here are my poi
 Claude's first step in a new session is:
 
 ```
+git pull
 pip install -e ".[dev]"
 uclfa load
+uclfa outlook --matchday N
 ```
 
 `uclfa load` rebuilds the database from `squads/` and `journal/`, because a session's
-database does not persist.
+database does not persist. `uclfa outlook` gives team goal expectations and clean-sheet
+chances from the latest odds (see `docs/model.md`); Claude checks the age of the odds first.
 
 ## Where your data lives
 
@@ -46,8 +49,8 @@ part of that conversation.
 
 - It validates every proposed transfer, substitution and captain change with the rules
   engine before presenting it.
-- It labels every expected-points figure as its own estimate. There is no prediction
-  model in this release.
+- It labels every expected-points figure as its own estimate. The match model gives
+  team-level estimates only; player points are Claude's judgement until Phase C.
 - It records each decision, the estimate behind it and later the outcome.
 - It never changes your UEFA team. You make every change in the UEFA app.
 - It does not fetch anything from UEFA.

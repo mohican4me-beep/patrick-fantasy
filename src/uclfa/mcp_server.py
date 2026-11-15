@@ -26,8 +26,9 @@ How to use them honestly:
 1. Quote only values the tools return, with their tag. `entered` means Patrick typed it
    from the game; `official` means UEFA's published rules; `unavailable` means there is no
    data. Never fill an `unavailable` value from memory and present it as fact.
-2. This release has no prediction model. Any expected-points number is your estimate or
-   Patrick's. Say so every time, and pass your name as `estimate_author`.
+2. `match_outlook` gives team-level estimates from bookmaker odds (tag `analyst_estimate`).
+   There is no player-level model yet: any expected-points number for a player is your
+   estimate or Patrick's. Say so every time, and pass your name as `estimate_author`.
 3. Before proposing a transfer, call `validate_transfers`. Before proposing a substitution
    or captain change between playing days, call `validate_between_days`. Do not present a
    proposal whose status is `invalid`; explain a `blocked` one and which rule is unverified.
@@ -39,7 +40,11 @@ How to use them honestly:
 DB_MISSING = {"error": "No database found. Run `uclfa init-db` and import a squad first."}
 
 
-def build_server(db_path: Path | str | None = None, rules: RuleSet | None = None) -> MCPServer:
+def build_server(
+    db_path: Path | str | None = None,
+    rules: RuleSet | None = None,
+    data_dir: Path | None = None,
+) -> MCPServer:
     """Create the server. Paths and rules can be injected for tests."""
     server = MCPServer(name="patrick-fantasy", instructions=INSTRUCTIONS, version="0.2.0")
 
@@ -81,6 +86,12 @@ def build_server(db_path: Path | str | None = None, rules: RuleSet | None = None
     def list_fixtures(matchday: int | None = None) -> dict[str, Any]:
         """Fixtures entered so far. Returns `unavailable` when none have been entered."""
         return with_session(lambda s: service.fixtures_view(s, matchday))
+
+    @server.tool()
+    def match_outlook(matchday: int) -> dict[str, Any]:
+        """Team expected goals, clean-sheet and scoring chances for a matchday, from the
+        latest bookmaker odds. Every number is an analyst estimate; check odds_age_hours."""
+        return service.match_outlook_view(matchday, data_dir=data_dir)
 
     @server.tool()
     def get_rules() -> dict[str, Any]:
