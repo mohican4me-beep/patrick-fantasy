@@ -64,3 +64,10 @@ optimizer:
   # The Wildcard is judged on this matchday only, which flatters it. It is recommended only
   # when it beats the best normal plan by at least this many expected points.
   wildcard_margin: 8.0
+
+# Team news on top of the baseline (data/players/news-*.yaml). Claude's assumptions.
+news:
+  predicted_start_prob: 0.92     # named in a predicted XI
+  doubtful_start_prob: 0.5
+  not_in_xi_start_prob: 0.25     # regular starter left out of the predicted XI
+  not_in_xi_sub_prob: 0.6

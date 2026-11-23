@@ -1,0 +1,230 @@
+# Team news for Matchday 5, applied by `uclfa pool build` after the baseline and before
+# overrides.yaml. Names are as in the stats file. Probabilities come from model/settings.yaml.
+matchday: 5
+read_on: "2026-11-23"
+source: "UEFA.com, 'Champions League predicted line-ups: Matchday 5 team news' (23 Nov 2026); Kane surgery: Bayern reports via LiveScore and Bavarian Football Works; Yamal: Barcelona squad list"
+out:
+  - H. Kane
+  - L. Yamal Nasraoui Ebana
+  - D. Raya Martin
+  - B. Saka
+  - C. Romero
+  - M. Pubill Pagès
+  - A. Lookman
+  - V. Osimhen
+  - R. Sallai
+  - C. Gakpo
+  - D. Doue
+  - S. Lobotka
+  - G. Di Lorenzo
+  - A. Meret
+  - R. Marín Zamora
+  - H. Evjen
+  - M. Cash
+  - N. Aké
+  - Rodri
+  - X. Espart Font
+  - A. Andrade Cedeño
+  - G. Bello
+doubtful:
+  - S. Guirassy
+  - A. Hadj
+  - I. Jakobs
+  - P. Cubarsí Paredes
+not_in_xi:
+  - J. Gonçalves Neves
+  - E. García
+  - Y. Diomande
+  - K. Lee
+  - A. Bastoni
+  - M. Thuram
+  - M. Bartra Aregall
+  - H. Bellerín Moruno
+  - F. García Torres
+  - M. Nunes
+  - Milos Kerkez
+  - M. Olise          # doubtful (foot), reported unlikely to be ready
+predicted_xi:
+  - J. Pons
+  - Raphinha
+  - F. López Marín
+  - P. López
+  - A. Gordon
+  - G. Martín Langreo
+  - A. Grimaldo García
+  - D. Hancko
+  - A. Rodríguez
+  - G. Simeone
+  - Pablo Barrios Rivas
+  - M. Llorente Moreno
+  - E. Haaland
+  - M. Cherki
+  - J. Gvardiol
+  - M. Guehi
+  - R. Santos Gato Alves Dias
+  - A. Khusanov
+  - G. Donnarumma
+  - E. Anderson
+  - E. Fernández
+  - I. Ndiaye
+  - A. Isak
+  - F. Wirtz
+  - A. Mac Allister
+  - V. van Dijk
+  - J. Jacquet
+  - R. Araújo da Silva
+  - A. Becker
+  - J. Naveros
+  - Y. Couto
+  - N. Paz Martínez
+  - A. Douvikas
+  - J. Butez
+  - L. Da Cunha
+  - L. Milla Manzanares
+  - J. Bellingham
+  - A. Guler
+  - F. Valverde Dipetta
+  - T. Courtois
+  - I. Konaté
+  - D. Huijsen
+  - M. Cucurella
+  - A. Tchouaméni
+  - K. Mbappé
+  - V. Júnior
+  - A. Hakimi Mouh
+  - W. Pacho Tenorio
+  - M. Safonov
+  - F. Ruiz Peña
+  - V. Machado Ferreira
+  - W. Zaire Emery
+  - J. Kimmich
+  - D. Upamecano
+  - A. Pavlović
+  - C. Zopalato Neves
+  - Y. Bisseck
+  - M. Akanji
+  - F. Dimarco
+  - N. Barella
+  - P. Zieliński
+  - J. Martínez Riera
+  - R. Calafiori
+  - E. Konsa Ngoyo
+  - G. dos Santos Magalhães
+  - D. Rice
+  - M. Ødegaard
+  - K. Havertz
+  - G. Kobel
+  - K. Gadou
+  - W. Anton
+  - N. Schlotterbeck
+  - D. Svensson
+  - F. Nmecha
+  - J. S. P. Bellingham
+  - B. Fernandes
+  - B. Mbeumo
+  - H. Maguire
+  - J. Dalot Teixeira
+  - S. Lammens
+  - Y. Tielemans
+  - M. Mittelstädt
+  - J. Chabot
+  - R. Hendriks
+  - D. Undav
+  - E. Demirović
+  - L. Geertruida
+  - S. Dest
+  - G. Til
+  - K. Sano
+  - I. Perišić
+  - R. van Bommel
+  - Natan
+  - A. Ezzalzouli
+  - D. Sánchez Mina
+  - A. Bardakcı
+  - L. Torreira Di Pascua
+  - G. Gomes Sara
+  - Y. Akgün
+  - B. Yılmaz
+  - U. Çakır
+  - N. Jackson
+  - Z. Suzuki
+  - V. Nilsson Lindelöf
+  - B. Kamara
+  - J. McGinn
+  - M. Vandevoordt
+  - A. Nordby Nusa
+  - N. El Aynaoui
+  - W. Orban
+  - D. Raum
+  - E. Banzuzi
+  - F. Thauvin
+  - M. Udol
+  - R. Aguilar
+  - R. Risser
+  - M. Škriniar
+  - N. Cabral Semedo
+  - A. Brown
+  - E. Santana de Moraes
+  - M. Greenwood
+  - İ. Kahveci
+  - M. Guendouzi Olié
+  - N. Kanté
+  - D. Malen
+  - M. Svilar
+  - B. Cristante
+  - G. Mancini
+  - O. N'Dicka
+  - M. Hermoso Canseco
+  - L. Suárez Charris
+  - G. Inácio
+  - S. Altimira Clavell
+  - G. Cipriano Catamo
+  - R. Dantas da Silva
+  - D. Meireles Costa
+  - A. Costa
+  - J. Bednarek
+  - J. Kiwior
+  - V. Froholdt
+  - P. Rosario
+  - G. Veiga Novas
+  - T. Watanabe
+  - C. Vanhoutte
+  - O. Targhalline
+  - I. Ferri
+  - L. Valente
+  - P. Gulácsi
+  - P. Gueye
+  - A. Moleiro González
+  - G. Mikautadze
+  - D. Takáč
+  - K. Bajrič
+  - T. Barseghyan
+  - D. Zima
+  - T. Holeš
+  - W. Nowak
+  - E. Ayaosi
+  - M. Chytil
+  - J. Seys
+  - B. Mechele
+  - K. Sabbe
+  - Y. Sommer
+  - H. Vanaken
+  - H. Vetlesen
+  - F. Potts
+  - N. Tresoldi
+  - S. Pilios
+  - H. Moukoudi
+  - F. Bem Relvas Vito Oliveira
+  - R. Marin
+  - L. Jović
+  - M. Matviyenko
+  - V. Bondar
+  - V. Tobias da Silva
+  - O. Ocheretko
+  - T. Puchacz
+  - S. Pokatilov
+  - J. Maurstad Gundersen
+  - R. Ljubicic
+  - M. Bogarde
+  - S. Horvath
+  - K. Mølgaard Jørgensen

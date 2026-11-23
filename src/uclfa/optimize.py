@@ -74,6 +74,7 @@ def _solve(
     budget: float,
     s: OptimizerSettings,
     exact_transfers: int | None,
+    force_out: frozenset[str] = frozenset(),
 ) -> tuple[list[int], list[int], int] | None:
     """Return (squad indices, starter indices, captain index), or None if infeasible."""
     n = len(cands)
@@ -112,7 +113,7 @@ def _solve(
     # Never buy a player the model cannot value.
     upper = np.ones(3 * n)
     for i, c in enumerate(cands):
-        if not c.known and not c.owned:
+        if (not c.known and not c.owned) or c.name in force_out:
             upper[i] = upper[n + i] = upper[2 * n + i] = 0
     res = milp(
         obj,
@@ -256,20 +257,30 @@ def candidates_from_view(view: dict[str, Any], state: Any, resolve: Any) -> list
 
 
 def optimise(
-    cands: list[Candidate], state: Any, matchday: int, rules: RuleSet, s: OptimizerSettings
+    cands: list[Candidate],
+    state: Any,
+    matchday: int,
+    rules: RuleSet,
+    s: OptimizerSettings,
+    force_out: frozenset[str] = frozenset(),
 ) -> dict[str, Any]:
+    """`force_out` names owned players every plan must sell, such as a long-term injury
+    the one-matchday view cannot see."""
     owned = [c for c in cands if c.owned]
+    unknown = force_out - {c.name for c in owned}
+    if unknown:
+        raise ValueError(f"Cannot force out players not in the squad: {sorted(unknown)}")
     budget = state.bank + sum(c.price for c in owned)
     plans: list[Plan] = []
     for k in range(0, s.max_transfers + 1):
-        sol = _solve(cands, rules, matchday, budget, s, exact_transfers=k)
+        sol = _solve(cands, rules, matchday, budget, s, k, force_out)
         if sol is not None:
             plans.append(_to_plan(f"{k} transfer(s)", None, sol, cands, state, matchday, rules))
     wildcard_ok = v.validate_chip(
         Chip.WILDCARD, matchday, rules, chips_used=state.chips_used
     ).status
     if str(wildcard_ok) == "valid":
-        sol = _solve(cands, rules, matchday, budget, s, exact_transfers=None)
+        sol = _solve(cands, rules, matchday, budget, s, None, force_out)
         if sol is not None:
             plans.append(_to_plan("Wildcard", Chip.WILDCARD, sol, cands, state, matchday, rules))
     valid = [p for p in plans if p.status == "valid"]
@@ -290,4 +301,5 @@ def optimise(
         "plans": plans,
         "recommended": pick.label if pick else None,
         "wildcard_status": str(wildcard_ok),
+        "force_out": sorted(force_out),
     }

@@ -153,3 +153,15 @@ def test_sales_block_without_the_selling_value_rule():
     result = optimise(cands, state_for(cands), 5, unconfirmed, S)
     one = next(p for p in result["plans"] if p.label == "1 transfer(s)")
     assert one.status == "blocked" and result["recommended"] == "0 transfer(s)"
+
+
+def test_forced_sale_is_in_every_plan(rules):
+    owned = owned_candidates()
+    market = [Candidate("Sub", "ClubQ", Position.FWD, 4.0, 1.0, False, True, "third_party")]
+    cands = owned + market
+    result = optimise(cands, state_for(cands), 5, rules, S, frozenset({"FWD0"}))
+    assert result["plans"][0].label == "1 transfer(s)"  # no 0-transfer plan is possible
+    for plan in result["plans"]:
+        assert "FWD0" in plan.transfers_out and plan.status == "valid"
+    with pytest.raises(ValueError, match="Nobody"):
+        optimise(cands, state_for(cands), 5, rules, S, frozenset({"Nobody"}))

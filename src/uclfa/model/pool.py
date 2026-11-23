@@ -17,6 +17,48 @@ from pydantic import BaseModel, ConfigDict
 from uclfa.model.match import DEFAULT_SETTINGS_PATH
 
 
+class NewsSettings(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    predicted_start_prob: float
+    doubtful_start_prob: float
+    not_in_xi_start_prob: float
+    not_in_xi_sub_prob: float
+
+
+def load_news_settings(path: Path = DEFAULT_SETTINGS_PATH) -> NewsSettings:
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return NewsSettings.model_validate(data["news"])
+
+
+def apply_news(players: list[dict[str, Any]], news: dict[str, Any], s: NewsSettings) -> None:
+    """Set starting chances from team news. Raises on a name not in the pool."""
+    by_name = {p["name"]: p for p in players}
+    lists = {k: news.get(k) or [] for k in ("out", "doubtful", "not_in_xi", "predicted_xi")}
+    unknown = sorted({n for names in lists.values() for n in names} - set(by_name))
+    if unknown:
+        raise ValueError(f"News names players not in the stats file: {unknown}")
+    seen: dict[str, str] = {}
+    for kind, names in lists.items():
+        for name in names:
+            if name in seen:
+                raise ValueError(f"{name} is in both {seen[name]} and {kind}")
+            seen[name] = kind
+            p = by_name[name]
+            if "start_prob" not in p:
+                continue  # no baseline: news alone gives no number
+            if kind == "out":
+                p["start_prob"], p["sub_prob"] = 0.0, 0.0
+            elif kind == "doubtful":
+                p["start_prob"] = min(p["start_prob"], s.doubtful_start_prob)
+            elif kind == "not_in_xi":
+                p["start_prob"] = min(p["start_prob"], s.not_in_xi_start_prob)
+                p["sub_prob"] = s.not_in_xi_sub_prob
+            else:
+                p["start_prob"] = max(p["start_prob"], s.predicted_start_prob)
+            p["sources"].append(f"news MD{news['matchday']} ({news['read_on']}): {kind}")
+
+
 class PoolBaseline(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -101,7 +143,13 @@ def baseline_inputs(row: dict[str, Any], b: PoolBaseline) -> dict[str, Any]:
     return out
 
 
-def build_pool(stats_path: Path, overrides_path: Path | None, b: PoolBaseline) -> dict[str, Any]:
+def build_pool(
+    stats_path: Path,
+    overrides_path: Path | None,
+    b: PoolBaseline,
+    news: dict[str, Any] | None = None,
+    news_settings: NewsSettings | None = None,
+) -> dict[str, Any]:
     date = stats_path.stem.split("-", 1)[1]
     source = f"data/players/{stats_path.name}"
     data = {}
@@ -109,8 +157,9 @@ def build_pool(stats_path: Path, overrides_path: Path | None, b: PoolBaseline) -
         data = yaml.safe_load(overrides_path.read_text(encoding="utf-8")) or {}
     overrides: dict[str, dict[str, Any]] = dict(data.get("overrides") or {})
     players: list[dict[str, Any]] = []
-    for row in parse_stats_file(stats_path):
-        player: dict[str, Any] = {
+    rows = parse_stats_file(stats_path)
+    base = [
+        {
             "name": row["name"],
             "club": row["club"],
             "position": row["position"],
@@ -124,7 +173,12 @@ def build_pool(stats_path: Path, overrides_path: Path | None, b: PoolBaseline) -
                 f"{row['a90']} assists/90; baseline rules in model/settings.yaml"
             ],
         }
-        change = dict(overrides.pop(row["name"], {}))
+        for row in rows
+    ]
+    if news is not None:
+        apply_news(base, news, news_settings or load_news_settings())
+    for player in base:
+        change = dict(overrides.pop(player["name"], {}))
         why = change.pop("why", None)
         if change.get("price_tag") == "entered":
             change.setdefault("price_source", "Patrick, from the game")

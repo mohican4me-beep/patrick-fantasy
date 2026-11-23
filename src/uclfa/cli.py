@@ -574,7 +574,9 @@ def cmd_pool_build(args: argparse.Namespace) -> int:
     if stats is None or not stats.exists():
         print("No stats file found in data/players.")
         return 1
-    pool = build_pool(stats, folder / "overrides.yaml", load_baseline())
+    news_files = sorted(folder.glob("news-*.yaml"))
+    news = yaml.safe_load(news_files[-1].read_text(encoding="utf-8")) if news_files else None
+    pool = build_pool(stats, folder / "overrides.yaml", load_baseline(), news)
     for player in pool["players"]:
         PlayerInputs.model_validate(player)  # refuse to write a pool the model cannot read
     header = (
@@ -586,6 +588,8 @@ def cmd_pool_build(args: argparse.Namespace) -> int:
     (folder / "pool.yaml").write_text(header + text, encoding="utf-8")
     entered = sum(p.get("price_tag") == "entered" for p in pool["players"])
     print(f"Wrote {len(pool['players'])} players from {stats.name}; {entered} with entered prices.")
+    if news_files:
+        print(f"Team news applied from {news_files[-1].name}.")
     return 0
 
 
@@ -625,6 +629,7 @@ def cmd_optimize(args: argparse.Namespace) -> int:
         args.matchday,
         rules,
         load_optimizer_settings(),
+        frozenset(args.sell or []),
     )
     if args.json:
         print(json.dumps(result, indent=1, ensure_ascii=False, default=lambda o: o.__dict__))
@@ -634,6 +639,8 @@ def cmd_optimize(args: argparse.Namespace) -> int:
         f"Budget {result['budget']:.1f}m (bank {state.bank:.1f}m + squad sale value); "
         f"free transfers {state.free_transfers}; Wildcard {result['wildcard_status']}."
     )
+    if result["force_out"]:
+        print(f"Every plan sells: {', '.join(result['force_out'])}.")
     print()
     print(f"{'Plan':16} {'Rules':8} {'xPts':>6} {'Hit':>4} {'Net':>6}  Changes")
     for plan in result["plans"]:
@@ -949,6 +956,9 @@ def build_parser() -> argparse.ArgumentParser:
     optimize = sub.add_parser("optimize", help="best squad, transfers and captain (estimate)")
     optimize.add_argument("--matchday", type=int, required=True)
     optimize.add_argument("--json", action="store_true")
+    optimize.add_argument(
+        "--sell", action="append", help="player every plan must sell (repeatable)"
+    )
     optimize.set_defaults(func=cmd_optimize)
     sub.add_parser("clubs", help="report club names that do not match across sources").set_defaults(
         func=cmd_clubs
