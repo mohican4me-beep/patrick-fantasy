@@ -8,16 +8,16 @@ entries:
   - kind: decision
     matchday: 5
     date: "2026-11-23"
-    summary: "Wildcard played for Matchday 5 (Patrick confirmed he used it with the team Claude proposed)."
+    summary: "Wildcard played for Matchday 5, mostly Claude's proposal with three changes by Patrick."
     decision: >-
-      Sold Kane, Mbeumo, Bruno Fernandes, Vinicius Junior, Joao Neves, Zechiel, Carlos Augusto,
-      Gadou, Geertruida, Mittelstadt, Kobel. Bought Nicolas Jackson, Isak, Alex Baena, Giuliano
-      Simeone, Fermin Lopez, Cherki, Grimaldo, Hakimi, Gvardiol, Jacobo Ramon, Donnarumma. Kept
-      Raphinha, Mbappe, Joan Garcia, Calafiori. Lineup 3-5-2; bench Joan Garcia, then Jacobo
-      Ramon, Calafiori, Jackson. Captain plan: Mbappe on Tuesday, switch to Raphinha on
-      Wednesday if Mbappe scores under about 10.
-    estimate: 98.8
+      Squad from Patrick's screenshot of 23 Nov (prices as shown): GK Donnarumma 6.0, Joan
+      Garcia 5.0; DEF Calafiori 4.5, Gvardiol 5.5, Grimaldo 5.5, Hakimi 6.0, Carlos Augusto 4.2;
+      MID Fabian Ruiz 6.8, Fermin Lopez 7.0, N. Paz 7.1, Raphinha 9.6, Alex Baena 5.6;
+      FWD Mbappe 11.1 (captain), N. Jackson 7.3, Isak 7.4. Squad value 98.6. Patrick's own
+      changes to the proposal: N. Paz instead of Cherki, Fabian Ruiz instead of Simeone, kept
+      Carlos Augusto instead of Jacobo Ramon. Bank not yet known.
+    estimate: 98.8  # Claude's proposed team before Patrick's three changes
     estimate_author: Claude
     estimate_tag: analyst_estimate
     outcome: null
-    note: "Prices paid and bank after the Wildcard not yet entered; squad file md05-2 waits for Patrick's screenshot."
+    note: "Bank after the Wildcard not yet known, so squad file md05-2 waits for it."
