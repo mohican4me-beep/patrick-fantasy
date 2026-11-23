@@ -4,4 +4,20 @@
 # estimate_tag (official | entered | analyst_estimate), decision, outcome.
 # Entries are added in a Claude session or by hand, then committed. `uclfa load` reads them.
 
-entries: []
+entries:
+  - kind: decision
+    matchday: 5
+    date: "2026-11-23"
+    summary: "Wildcard played for Matchday 5 (Patrick confirmed he used it with the team Claude proposed)."
+    decision: >-
+      Sold Kane, Mbeumo, Bruno Fernandes, Vinicius Junior, Joao Neves, Zechiel, Carlos Augusto,
+      Gadou, Geertruida, Mittelstadt, Kobel. Bought Nicolas Jackson, Isak, Alex Baena, Giuliano
+      Simeone, Fermin Lopez, Cherki, Grimaldo, Hakimi, Gvardiol, Jacobo Ramon, Donnarumma. Kept
+      Raphinha, Mbappe, Joan Garcia, Calafiori. Lineup 3-5-2; bench Joan Garcia, then Jacobo
+      Ramon, Calafiori, Jackson. Captain plan: Mbappe on Tuesday, switch to Raphinha on
+      Wednesday if Mbappe scores under about 10.
+    estimate: 98.8
+    estimate_author: Claude
+    estimate_tag: analyst_estimate
+    outcome: null
+    note: "Prices paid and bank after the Wildcard not yet entered; squad file md05-2 waits for Patrick's screenshot."
