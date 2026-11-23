@@ -234,7 +234,7 @@ def test_pool_builder_parses_the_saved_source_and_derives_baselines(tmp_path):
     pool = build_pool(src, tmp_path / "o.yaml", load_baseline())
     raph, unused = pool["players"]
     assert raph["price_tag"] == "entered" and raph["goal_share"] == pytest.approx(0.415)
-    assert raph["minutes_if_start"] == pytest.approx(73.9, abs=0.1)
+    assert raph["minutes_if_start"] == pytest.approx(75.0)  # 813 min / 75 per start
     assert "start_prob" not in unused and unused["price_tag"] == "third_party"
     (tmp_path / "bad.yaml").write_text('overrides:\n  "Nobody": {price: 5.0}\n', "utf-8")
     with pytest.raises(ValueError, match="Nobody"):
