@@ -18,3 +18,6 @@ clubs:
   "Borussia Dortmund": ["B. Dortmund"]
   "Manchester United FC": ["Man Utd"]
   "Paris Saint-Germain FC": ["Paris"]
+  # Added 2026-11-15: names used by the public stats source (data/players/ffscout-*.txt).
+  "Lille OSC": ["LOSC Lille"]
+  "Racing Club de Lens": ["Lens"]

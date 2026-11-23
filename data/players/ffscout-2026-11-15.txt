@@ -1,0 +1,307 @@
+# Source: fantasyfootballscout.co.uk/ucl/stats (public columns only), read 2026-11-15 via Patrick's browser.
+# Scope: domestic-league stats 2026/27. Rows: players with 600+ league minutes, all listed goalkeepers,
+# Patrick's players and named transfer targets. Locked (members-only) columns were not taken.
+# @club;league matches played;goals for (count then per-match, as shown)
+# name;position;price;UCL fantasy points;league apps;league minutes;goals (count then per-90, as shown);assists per 90
+@AEK Athens;9;232.56
+F. Bem Relvas Vito Oliveira;DEF;4.5;12;9;810;10.11;0.00
+H. Moukoudi;DEF;4.5;11;9;810;20.22;0.11
+S. Pilios;DEF;4.7;27;9;800;00.00;0.11
+L. Jović;FWD;6.5;10;9;688;50.65;0.00
+A. Brignoli;GK;4.0;10;6;540;00.00;0.00
+R. Marin;MID;5.6;17;9;694;10.13;0.52
+@Arsenal;10;151.50
+E. Konsa Ngoyo;DEF;4.7;22;9;731;10.12;0.00
+G. dos Santos Magalhães;DEF;6.0;19;10;900;10.10;0.00
+R. Calafiori;DEF;4.5;3;10;771;10.12;0.23
+K. Havertz;FWD;8.0;6;10;736;30.37;0.00
+D. Raya Martin;GK;6.0;19;10;900;00.00;0.00
+B. Saka;MID;8.5;13;7;599;30.45;0.00
+D. Rice;MID;7.5;19;10;827;00.00;0.54
+M. Ødegaard;MID;7.1;18;10;830;30.33;0.00
+@Aston Villa;10;141.40
+I. Maatsen;DEF;4.4;2;7;600;00.00;0.00
+M. Cash;DEF;4.5;9;9;657;00.00;0.00
+V. Nilsson Lindelöf;DEF;4.5;16;10;900;00.00;0.00
+N. Jackson;FWD;7.3;21;9;728;60.74;0.12
+Z. Suzuki;GK;4.0;15;9;810;00.00;0.00
+B. Kamara;MID;5.0;13;10;883;00.00;0.10
+J. McGinn;MID;6.7;22;10;794;20.23;0.45
+@Atlético de Madrid;12;231.92
+A. Grimaldo García;DEF;5.5;14;11;939;40.38;0.19
+C. Romero;DEF;5.0;12;6;435;10.21;0.00
+D. Hancko;DEF;4.5;16;12;933;00.00;0.19
+M. Pubill Pagès;DEF;3.9;8;10;764;10.12;0.00
+A. Lookman;MID;7.0;12;11;612;10.15;0.00
+A. Rodríguez;MID;5.6;15;12;764;50.59;0.35
+G. Simeone;MID;6.5;10;12;861;40.42;0.21
+K. Lee;MID;5.5;5;12;758;20.24;0.12
+M. Llorente Moreno;MID;6.7;20;12;859;00.00;0.10
+Pablo Barrios Rivas;MID;5.1;17;10;606;00.00;0.15
+@Bodø / Glimt;26;632.42
+J. Maurstad Gundersen;DEF;4.0;12;11;751;00.00;0.00
+O. Brynhildsen;FWD;4.8;4;20;958;40.38;0.19
+H. Evjen;MID;4.5;0;13;753;50.60;0.24
+@Borussia Dortmund;9;161.78
+D. Svensson;DEF;4.5;8;9;788;10.11;0.00
+K. Gadou;DEF;4.0;8;9;668;00.00;0.00
+N. Schlotterbeck;DEF;5.0;8;7;617;10.15;0.00
+W. Anton;DEF;4.5;17;9;810;00.00;0.11
+S. Guirassy;FWD;8.6;28;8;701;30.39;0.26
+G. Kobel;GK;5.0;10;9;810;00.00;0.00
+F. Nmecha;MID;6.5;12;9;660;40.55;0.00
+J. S. P. Bellingham;MID;6.0;11;9;644;00.00;0.28
+@Club Brugge;11;272.45
+B. Mechele;DEF;4.5;17;11;990;20.18;0.00
+H. Lee;DEF;3.9;3;8;637;10.14;0.00
+J. Seys;DEF;4.6;28;11;979;00.00;0.37
+K. Sabbe;DEF;3.9;11;10;794;00.00;0.11
+N. Tresoldi;FWD;7.3;34;11;865;80.83;0.10
+Y. Sommer;GK;4.5;18;11;990;00.00;0.00
+C. Borges;MID;6.3;31;10;836;30.32;0.54
+F. Potts;MID;5.5;16;10;888;00.00;0.00
+H. Vanaken;MID;6.6;24;10;893;30.30;0.20
+H. Vetlesen;MID;5.1;14;11;798;50.56;0.11
+@Como;11;181.64
+J. Naveros;DEF;4.1;28;11;930;20.19;0.00
+Y. Couto;DEF;4.0;12;10;818;00.00;0.22
+A. Douvikas;FWD;6.6;37;11;858;50.52;0.00
+J. Butez;GK;4.5;8;8;720;00.00;0.00
+L. Da Cunha;MID;5.0;16;11;803;10.11;0.00
+L. Milla Manzanares;MID;4.5;13;11;668;00.00;0.00
+N. Paz Martínez;MID;7.1;43;10;823;30.33;0.33
+@FC Barcelona;12;484.00
+E. García;DEF;4.5;3;9;619;10.15;0.00
+G. Martín Langreo;DEF;4.0;13;11;761;00.00;0.00
+P. Cubarsí Paredes;DEF;5.5;16;9;782;00.00;0.23
+X. Espart Font;DEF;4.5;8;8;650;10.14;0.28
+J. Pons;GK;5.0;13;11;946;00.00;0.00
+L. Yamal Nasraoui Ebana;MID;10.2;41;12;995;100.90;0.72
+Raphinha;MID;9.6;33;11;813;151.66;0.33
+A. Gordon;MID;8.0;13;11;683;20.26;0.53
+F. López Marín;MID;7.0;20;11;776;70.81;0.58
+P. López;MID;7.5;16;12;846;10.11;0.21
+Rodri;MID;7.0;7;10;697;10.13;0.13
+@FC Bayern München;9;293.22
+D. Upamecano;DEF;5.6;22;9;766;30.35;0.00
+H. Kane;FWD;11.2;39;9;714;40.50;1.01
+M. Olise;MID;9.1;23;9;747;60.72;0.48
+J. Kimmich;MID;6.5;13;8;651;10.14;0.41
+A. Pavlović;MID;5.0;7;8;637;20.28;0.14
+@Fenerbahçe;11;292.64
+A. Brown;DEF;4.6;23;8;611;00.00;0.15
+M. Škriniar;DEF;5.0;10;11;970;10.09;0.00
+N. Aké;DEF;4.9;5;8;720;00.00;0.00
+N. Cabral Semedo;DEF;4.9;6;11;782;00.00;0.00
+E. Santana de Moraes;GK;4.9;6;10;900;00.00;0.00
+İ. Kahveci;MID;5.5;7;10;632;50.71;0.43
+M. Greenwood;MID;7.5;23;11;716;60.75;0.38
+M. Guendouzi Olié;MID;5.9;13;11;939;20.19;0.10
+N. Kanté;MID;5.4;9;11;796;00.00;0.00
+O. Aydın;MID;5.0;12;11;630;30.43;0.71
+@Feyenoord;12;363.00
+J. St. Juste;DEF;4.5;8;8;664;00.00;0.00
+T. Watanabe;DEF;4.3;4;10;825;00.00;0.00
+I. Ferri;FWD;5.5;9;11;659;60.82;0.41
+A. Hadj;MID;6.7;19;12;976;70.65;0.18
+C. Vanhoutte;MID;4.5;7;12;893;00.00;0.10
+L. Valente;MID;5.0;12;12;949;50.47;0.19
+O. Targhalline;MID;5.0;12;11;706;00.00;0.13
+@Galatasaray;11;272.45
+A. Bardakcı;DEF;4.4;9;9;701;20.26;0.00
+D. Sánchez Mina;DEF;4.5;19;11;950;10.09;0.09
+I. Jakobs;DEF;4.3;10;10;662;00.00;0.27
+R. Sallai;DEF;5.0;14;10;859;10.10;0.10
+V. Osimhen;FWD;7.9;13;8;555;91.46;0.49
+U. Çakır;GK;5.0;12;10;900;00.00;0.00
+B. Yılmaz;MID;5.5;12;10;749;20.24;0.12
+G. Gomes Sara;MID;5.0;6;11;711;20.25;0.63
+L. Torreira Di Pascua;MID;6.1;17;10;788;10.11;0.34
+Y. Akgün;MID;5.0;14;11;823;20.22;0.00
+@Inter;11;282.55
+A. Bastoni;DEF;4.9;7;10;820;10.11;0.00
+C. Zopalato Neves;DEF;4.2;34;9;625;20.29;0.29
+F. Dimarco;DEF;5.0;13;11;657;00.00;0.14
+M. Akanji;DEF;4.9;14;10;817;00.00;0.22
+Y. Bisseck;DEF;4.4;17;9;677;10.13;0.13
+M. Thuram;FWD;7.5;6;10;723;60.75;0.25
+J. Martínez Riera;GK;4.5;18;9;810;00.00;0.00
+A. Diouf;MID;5.0;6;10;694;00.00;0.52
+N. Barella;MID;6.5;15;10;841;10.11;0.21
+P. Zieliński;MID;5.0;14;10;623;20.29;0.29
+@LASK;12;302.50
+A. Andrade Cedeño;DEF;4.5;14;11;924;20.19;0.10
+G. Bello;DEF;4.5;3;8;624;00.00;0.14
+J. Tornich;DEF;3.9;18;12;989;10.09;0.18
+K. Mølgaard Jørgensen;DEF;4.5;30;10;624;00.00;0.29
+C. Lang;MID;4.5;12;12;726;80.99;0.00
+M. Bogarde;MID;4.4;12;12;790;10.11;0.34
+R. Ljubicic;MID;5.6;25;10;720;10.13;0.25
+S. Horvath;MID;4.8;10;12;904;10.10;0.30
+@Lens;10;171.70
+M. Udol;DEF;4.5;5;9;738;20.24;0.00
+R. Aguilar;DEF;4.6;17;9;625;10.14;0.14
+R. Risser;GK;4.5;2;10;900;00.00;0.00
+F. Thauvin;MID;6.7;19;10;877;50.51;0.82
+@Liverpool;10;141.40
+J. Jacquet;DEF;5.0;15;10;865;00.00;0.00
+Milos Kerkez;DEF;5.0;4;10;824;00.00;0.00
+R. Araújo da Silva;DEF;4.8;25;10;667;00.00;0.00
+V. van Dijk;DEF;6.0;9;10;900;00.00;0.00
+A. Isak;FWD;7.4;11;9;751;70.84;0.00
+C. Gakpo;FWD;7.5;9;8;604;10.15;0.45
+A. Becker;GK;5.9;7;10;900;00.00;0.00
+A. Mac Allister;MID;6.7;25;10;758;10.12;0.00
+F. Wirtz;MID;8.5;18;10;796;10.11;0.34
+@LOSC Lille;10;141.40
+A. Souza Ribeiro;DEF;4.7;21;10;810;00.00;0.00
+N. Ngoy;DEF;4.5;13;10;810;10.11;0.00
+R. Perraud;DEF;4.4;3;10;713;00.00;0.00
+B. Özer;GK;4.4;10;10;810;00.00;0.00
+H. Haraldsson;MID;5.5;12;10;747;10.12;0.00
+N. Bentaleb;MID;4.5;6;10;765;00.00;0.12
+N. Mukau;MID;4.5;10;10;647;00.00;0.00
+@Manchester City;10;212.10
+J. Gvardiol;DEF;5.5;6;10;702;10.13;0.51
+M. Guehi;DEF;5.0;13;9;721;10.12;0.12
+M. Nunes;DEF;4.9;9;8;514;00.00;0.00
+R. Santos Gato Alves Dias;DEF;5.5;14;10;900;00.00;0.00
+A. Khusanov;DEF;4.5;9;7;553;00.00;0.00
+E. Haaland;FWD;11.2;28;10;890;90.91;0.00
+G. Donnarumma;GK;6.0;15;10;900;00.00;0.00
+E. Anderson;MID;7.0;23;10;788;00.00;0.11
+E. Fernández;MID;7.5;25;9;625;10.14;0.00
+I. Ndiaye;MID;6.5;11;10;770;00.00;0.35
+M. Cherki;MID;7.0;14;9;567;50.79;0.32
+@Manchester United;10;141.40
+H. Maguire;DEF;4.9;6;10;855;00.00;0.00
+J. Dalot Teixeira;DEF;4.5;7;10;715;00.00;0.00
+B. Mbeumo;FWD;7.0;14;10;893;40.40;0.00
+S. Lammens;GK;4.5;10;10;900;00.00;0.00
+B. Fernandes;MID;9.0;25;9;810;40.44;0.22
+M. Carneiro Da Cunha;MID;6.9;22;10;707;10.13;0.25
+Y. Tielemans;MID;6.5;9;9;658;10.14;0.14
+@Napoli;11;181.64
+A. Rrahmani;DEF;4.6;14;10;811;00.00;0.11
+G. Di Lorenzo;DEF;4.9;4;10;845;00.00;0.21
+R. Marín Zamora;DEF;4.5;3;10;891;10.10;0.00
+R. Højlund;FWD;8.0;11;11;705;30.38;0.00
+A. Meret;GK;4.3;5;8;630;00.00;0.00
+K. De Bruyne;MID;7.0;11;11;623;40.58;0.14
+S. Lobotka;MID;5.4;5;9;628;10.14;0.00
+S. McTominay;MID;7.4;25;8;625;20.29;0.00
+@Paris Saint Germain;10;222.20
+A. Hakimi Mouh;DEF;6.0;17;8;569;30.47;0.32
+W. Pacho Tenorio;DEF;6.0;20;7;630;00.00;0.00
+L. Hernández Pi;DEF;4.4;18;7;501;00.00;0.00
+F. Torres García;FWD;7.2;20;10;656;40.55;0.14
+M. Safonov;GK;5.5;14;10;900;00.00;0.00
+D. Doue;MID;8.6;35;9;527;10.17;0.17
+F. Ruiz Peña;MID;6.8;37;8;502;00.00;0.36
+J. Gonçalves Neves;MID;5.9;24;8;528;00.00;0.00
+V. Machado Ferreira;MID;7.7;32;9;676;10.13;0.13
+W. Zaire Emery;MID;5.0;6;10;748;00.00;0.12
+@Porto;11;272.45
+A. Costa;DEF;4.4;8;10;800;00.00;0.11
+J. Bednarek;DEF;4.5;15;11;904;10.10;0.00
+J. Kiwior;DEF;4.5;21;11;990;10.09;0.09
+A. Valente Silva;FWD;5.9;5;11;667;40.54;0.27
+D. Meireles Costa;GK;5.0;10;11;990;00.00;0.00
+E. Aquino Cossa;MID;6.0;12;11;931;00.00;0.58
+G. Veiga Novas;MID;5.1;27;11;715;50.63;0.50
+P. Rosario;MID;4.5;11;11;836;00.00;0.22
+V. Froholdt;MID;4.4;9;10;900;30.30;0.00
+@PSV;12;403.33
+L. Geertruida;DEF;4.5;18;8;614;10.15;0.29
+M. Ferreira dos Santos;DEF;4.0;12;12;990;20.18;0.18
+S. Dest;DEF;5.1;23;11;955;20.19;0.28
+G. Til;MID;5.5;16;12;940;70.67;0.10
+I. Perišić;MID;6.5;11;11;661;20.27;0.27
+K. Sano;MID;4.5;22;11;913;20.20;0.10
+R. van Bommel;MID;5.4;6;11;745;40.48;0.36
+@RB Leipzig;9;273.00
+D. Raum;DEF;4.5;10;8;720;10.13;0.00
+W. Orban;DEF;4.5;10;9;793;10.11;0.00
+E. Banzuzi;FWD;5.0;7;9;696;20.26;0.26
+M. Vandevoordt;GK;4.7;16;8;720;00.00;0.00
+A. Nordby Nusa;MID;6.0;15;9;653;40.55;0.96
+N. El Aynaoui;MID;5.0;12;8;673;00.00;0.13
+@Real Betis;12;201.67
+F. García Torres;DEF;4.6;16;10;841;00.00;0.11
+H. Bellerín Moruno;DEF;4.4;9;11;846;00.00;0.11
+M. Bartra Aregall;DEF;4.8;27;8;535;30.50;0.00
+Natan;DEF;4.0;13;10;900;10.10;0.00
+A. dos Santos;MID;7.0;14;11;699;00.00;0.00
+A. Ezzalzouli;MID;6.5;16;9;682;30.40;0.00
+F. Alarcón Suárez;MID;6.8;26;11;614;20.29;0.15
+M. Roca Junqué;MID;4.4;7;9;776;00.00;0.12
+P. Fornals Malla;MID;5.0;10;11;788;10.11;0.11
+@Real Madrid;12;312.58
+D. Huijsen;DEF;4.4;4;10;862;00.00;0.00
+I. Konaté;DEF;5.0;6;11;990;00.00;0.00
+M. Cucurella;DEF;6.0;11;12;833;00.00;0.00
+K. Mbappé;FWD;11.1;32;12;1075;131.09;0.17
+T. Courtois;GK;6.0;11;12;990;00.00;0.00
+A. Guler;MID;6.6;18;12;744;30.36;0.48
+A. Tchouaméni;MID;6.0;4;8;628;00.00;0.14
+F. Valverde Dipetta;MID;7.1;24;11;892;10.10;0.20
+J. Bellingham;MID;8.5;18;12;959;40.38;0.38
+V. Júnior;MID;9.5;9;8;585;10.15;0.46
+Y. Diomande;MID;7.5;19;12;715;30.38;0.25
+@Roma;11;312.82
+G. Mancini;DEF;4.4;7;10;659;00.00;0.27
+M. Hermoso Canseco;DEF;4.6;23;10;725;20.25;0.00
+O. N'Dicka;DEF;4.5;7;10;727;10.12;0.00
+D. Malen;FWD;6.8;31;10;652;81.10;0.28
+M. Malvano;FWD;6.0;16;11;762;30.35;0.35
+M. Svilar;GK;4.5;3;6;450;00.00;0.00
+B. Cristante;MID;4.6;11;9;784;10.11;0.11
+@Sabah;10;222.20
+T. Puchacz;DEF;4.5;14;9;764;00.00;0.12
+S. Pokatilov;GK;4.5;18;7;630;00.00;0.00
+@Shakhtar Donetsk;12;221.83
+M. Matviyenko;DEF;4.5;11;11;852;10.11;0.00
+P. Azevedo Pereira;DEF;4.0;13;10;829;10.11;0.11
+V. Bondar;DEF;4.5;14;10;892;10.10;0.20
+V. Tobias da Silva;DEF;4.0;16;9;634;10.14;0.14
+N. Martins da Silva;MID;5.5;5;11;668;20.27;0.27
+O. Ocheretko;MID;4.5;12;10;654;20.28;0.14
+@Slavia Praha;14;362.57
+D. Zima;DEF;4.5;9;10;811;10.11;0.00
+T. Holeš;DEF;4.3;7;11;876;10.10;0.00
+D. Šturm;FWD;5.7;17;14;748;20.24;0.48
+M. Chytil;FWD;4.9;5;13;702;60.77;0.13
+E. Ayaosi;MID;4.5;11;13;836;50.54;0.32
+W. Nowak;MID;4.5;14;13;978;50.46;0.09
+@Slovan Bratislava;14;322.29
+K. Bajrič;DEF;4.5;4;10;815;20.22;0.00
+K. Wimmer;DEF;3.8;3;10;778;00.00;0.00
+D. Takáč;GK;4.5;6;8;720;00.00;0.00
+T. Barseghyan;MID;4.9;5;12;734;40.49;0.25
+@Sporting CP;11;242.18
+G. Inácio;DEF;4.5;17;10;900;10.10;0.10
+S. Altimira Clavell;DEF;4.0;21;11;982;10.09;0.00
+L. Suárez Charris;FWD;7.4;29;11;739;91.10;0.12
+R. Dantas da Silva;GK;5.0;10;8;720;00.00;0.00
+G. Cipriano Catamo;MID;6.7;17;11;687;20.26;0.52
+I. Doumbia;MID;4.6;21;11;848;00.00;0.21
+M. Araújo Vilches;MID;5.5;16;10;830;10.11;0.22
+@VfB Stuttgart;9;151.67
+J. Chabot;DEF;4.6;17;9;687;10.13;0.00
+J. Karaboue Vagnomann;DEF;4.2;16;6;531;20.34;0.17
+M. Mittelstädt;DEF;4.5;10;8;643;20.28;0.14
+R. Hendriks;DEF;4.0;13;8;632;10.14;0.00
+D. Undav;FWD;7.2;17;9;605;00.00;0.15
+E. Demirović;FWD;6.3;25;9;543;50.83;0.00
+D. Seimen;GK;4.4;2;5;450;00.00;0.00
+F. Jeltsch;MID;4.5;7;9;618;00.00;0.15
+@Viking;26;692.65
+Ľ. Belko;GK;4.0;0;11;990;00.00;0.00
+@Villarreal;12;171.42
+A. Freeman;DEF;3.8;2;11;620;10.15;0.00
+R. Palma Veiga;DEF;4.4;3;11;990;00.00;0.09
+A. Pérez Gutiérrez;FWD;6.0;10;12;648;10.14;0.42
+G. Mikautadze;FWD;6.0;17;12;665;30.41;0.14
+P. Gulácsi;GK;3.8;4;8;720;00.00;0.00
+A. Moleiro González;MID;5.0;4;12;733;20.25;0.49
+P. Gueye;MID;5.0;13;11;809;30.33;0.00

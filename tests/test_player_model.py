@@ -212,3 +212,30 @@ def test_points_command_labels_its_output(tmp_path, monkeypatch, capsys):
     out = capsys.readouterr().out
     assert "ANALYST ESTIMATE" in out and "Complete Defender" in out and "5.0*" in out
     assert "unavailable: missing inputs" in out
+
+
+# -- pool builder ---------------------------------------------------------------------
+
+
+def test_pool_builder_parses_the_saved_source_and_derives_baselines(tmp_path):
+    from uclfa.model.pool import build_pool, load_baseline, parse_stats_file
+
+    src = tmp_path / "ffscout-2026-11-15.txt"
+    src.write_text(
+        "# test\n@FC Barcelona;12;484.00\nRaphinha;MID;9.6;33;11;813;151.66;0.33\n"
+        "A. Garcia;DEF;4.0;0;0;0;0—;0—\n".replace("0—;0—", "00.00;0.00"),
+        encoding="utf-8",
+    )
+    rows = parse_stats_file(src)
+    assert rows[0]["goals"] == 15 and rows[0]["g90"] == 1.66 and rows[0]["goals_pm"] == 4.0
+    (tmp_path / "o.yaml").write_text(
+        'overrides:\n  "Raphinha": {price: 9.6, price_tag: entered, why: "test"}\n', "utf-8"
+    )
+    pool = build_pool(src, tmp_path / "o.yaml", load_baseline())
+    raph, unused = pool["players"]
+    assert raph["price_tag"] == "entered" and raph["goal_share"] == pytest.approx(0.415)
+    assert raph["minutes_if_start"] == pytest.approx(73.9, abs=0.1)
+    assert "start_prob" not in unused and unused["price_tag"] == "third_party"
+    (tmp_path / "bad.yaml").write_text('overrides:\n  "Nobody": {price: 5.0}\n', "utf-8")
+    with pytest.raises(ValueError, match="Nobody"):
+        build_pool(src, tmp_path / "bad.yaml", load_baseline())

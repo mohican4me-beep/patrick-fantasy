@@ -38,3 +38,18 @@ player_model:
   max_events: 40
   # Not modelled, and listed as such on every output: player of the match, goals from
   # outside the box, penalties won, conceded, missed or saved, own goals, red cards.
+
+# Baseline player inputs built from public league stats (uclfa pool build). Every value
+# here is Claude's assumption, used until predicted lineups and news override a player.
+pool_baseline:
+  minutes_per_start: 75          # league minutes / this = estimated starts (capped at apps)
+  max_start_prob: 0.95
+  p60_by_minutes: {80: 0.95, 70: 0.85, 0: 0.70}   # average minutes as a starter -> chance of 60
+  sub_prob: 0.5
+  minutes_if_sub: 20
+  max_goal_share: 0.60
+  max_assist_share: 0.50
+  # Per 90 minutes. The source's recovery and save columns are members-only and were not
+  # taken, so these are position-wide guesses and the weakest inputs in the model.
+  recoveries_p90: {GK: 7.0, DEF: 6.0, MID: 5.0, FWD: 2.0}
+  saves_p90: 3.0
