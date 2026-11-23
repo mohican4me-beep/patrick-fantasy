@@ -589,6 +589,75 @@ def cmd_pool_build(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_optimize(args: argparse.Namespace) -> int:
+    import dataclasses
+
+    from uclfa.ingest.clubs import make_resolver
+    from uclfa.ingest.run import DATA_DIR, latest_snapshot
+    from uclfa.optimize import candidates_from_view, load_optimizer_settings, optimise
+
+    rules = load_rules()
+    engine = store.make_readonly_engine(store.db_path())
+    with Session(engine) as session:
+        state = store.latest_team_state(session)
+    engine.dispose()
+    if state is None:
+        print("No saved squad. Run `uclfa load` first.")
+        return 1
+    resolve, _ = make_resolver(latest_snapshot("fixtures", DATA_DIR), DATA_DIR)
+    # One spelling per club, so the club limit compares like with like.
+    slots = tuple(
+        dataclasses.replace(
+            sl,
+            player=dataclasses.replace(sl.player, club=resolve(sl.player.club) or sl.player.club),
+        )
+        for sl in state.squad.slots
+    )
+    state = dataclasses.replace(state, squad=Squad(slots))
+    names = {sl.player.name for sl in slots}
+    view = service.player_points_view(args.matchday, rules, squad_names=names)
+    if not view.get("players"):
+        print(view.get("note", "Unavailable."))
+        return 1
+    result = optimise(
+        candidates_from_view(view, state, resolve),
+        state,
+        args.matchday,
+        rules,
+        load_optimizer_settings(),
+    )
+    if args.json:
+        print(json.dumps(result, indent=1, ensure_ascii=False, default=lambda o: o.__dict__))
+        return 0
+    print(
+        f"Matchday {args.matchday} plans. ANALYST ESTIMATE, not official data. "
+        f"Budget {result['budget']:.1f}m (bank {state.bank:.1f}m + squad sale value); "
+        f"free transfers {state.free_transfers}; Wildcard {result['wildcard_status']}."
+    )
+    print()
+    print(f"{'Plan':16} {'Rules':8} {'xPts':>6} {'Hit':>4} {'Net':>6}  Changes")
+    for plan in result["plans"]:
+        moves = ", ".join(
+            f"{o} -> {i}" for o, i in zip(plan.transfers_out, plan.transfers_in, strict=True)
+        )
+        mark = "*" if plan.label == result["recommended"] else " "
+        print(
+            f"{mark}{plan.label:15} {plan.status:8} {plan.expected_points:>6.1f} "
+            f"{-plan.hit_points:>4} {plan.net_points:>6.1f}  {moves or 'none'}"
+        )
+        for message in plan.messages:
+            print(f"{'':18}! {message}")
+    best = next(p for p in result["plans"] if p.label == result["recommended"])
+    print()
+    print(f"Recommended: {best.label}. Captain {best.captain}. Bank after {best.bank_after:.1f}m.")
+    print(f"  Starting XI: {', '.join(best.starters)}")
+    print(f"  Bench (GK, then 1-2-3): {', '.join(best.bench)}")
+    if best.unknown_starters:
+        print(f"  ! No estimate for: {', '.join(best.unknown_starters)}")
+    print("* recommended. Net = expected points minus transfer hits. One matchday only.")
+    return 0
+
+
 def cmd_clubs(_args: argparse.Namespace) -> int:
     from uclfa.ingest.clubs import match_report
 
@@ -877,6 +946,10 @@ def build_parser() -> argparse.ArgumentParser:
     pool_build = pool_sub.add_parser("build", help="rebuild pool.yaml from the saved stats file")
     pool_build.add_argument("--stats", help="stats file; default is the newest in data/players")
     pool_build.set_defaults(func=cmd_pool_build)
+    optimize = sub.add_parser("optimize", help="best squad, transfers and captain (estimate)")
+    optimize.add_argument("--matchday", type=int, required=True)
+    optimize.add_argument("--json", action="store_true")
+    optimize.set_defaults(func=cmd_optimize)
     sub.add_parser("clubs", help="report club names that do not match across sources").set_defaults(
         func=cmd_clubs
     )

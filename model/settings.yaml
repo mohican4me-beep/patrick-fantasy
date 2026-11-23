@@ -53,3 +53,14 @@ pool_baseline:
   # taken, so these are position-wide guesses and the weakest inputs in the model.
   recoveries_p90: {GK: 7.0, DEF: 6.0, MID: 5.0, FWD: 2.0}
   saves_p90: 3.0
+
+# Optimizer (Release 2 Phase D). Analyst assumptions, not game rules.
+optimizer:
+  # Bench players score only through automatic substitutions; this weight stands in for
+  # the chance a starter does not play. Claude's assumption.
+  bench_weight: 0.1
+  # Most transfers searched for a normal (non-chip) matchday.
+  max_transfers: 5
+  # The Wildcard is judged on this matchday only, which flatters it. It is recommended only
+  # when it beats the best normal plan by at least this many expected points.
+  wildcard_margin: 8.0
