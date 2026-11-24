@@ -1,0 +1,29 @@
+# Pistolia Fc, Matchday 5 after the Wildcard, from Patrick's screenshots of 23-24 November 2026.
+# Bank 2.3 and "unlimited free transfers, Wildcard active" were shown in the game (24 Nov 16:54 CET).
+# Prices: shown in the game on 23 Nov, except Cherki, Simeone and J. Ramon, whose prices are
+# the third-party figures (data/players/ffscout-2026-11-15.txt); together they reproduce the
+# game's bank of 2.3 exactly. Lineup and bench order as saved in the game on 24 Nov 17:00 CET.
+
+matchday: 5
+label: wildcard
+bank: 2.3
+free_transfers: unlimited
+chips_used: [limitless, wildcard]
+note: "Wildcard played for Matchday 5. Overall 300 points after MD4 (MD4: 89), as shown in the game."
+
+players:
+  - {name: "G. Donnarumma", club: "Man City", position: GK, price: 6.0, role: starter}
+  - {name: "R. Calafiori", club: "Arsenal", position: DEF, price: 4.5, role: starter}
+  - {name: "J. Gvardiol", club: "Man City", position: DEF, price: 5.5, role: starter}
+  - {name: "J. Ramon", club: "Como", position: DEF, price: 4.1, role: starter}
+  - {name: "A. Grimaldo", club: "Atletico Madrid", position: DEF, price: 5.5, role: starter}
+  - {name: "Fermin Lopez", club: "Barcelona", position: MID, price: 7.0, role: starter}
+  - {name: "Raphinha", club: "Barcelona", position: MID, price: 9.6, role: starter}
+  - {name: "Alex Baena", club: "Atletico Madrid", position: MID, price: 5.6, role: starter}
+  - {name: "R. Cherki", club: "Man City", position: MID, price: 7.0, role: starter}
+  - {name: "K. Mbappe", club: "Real Madrid", position: FWD, price: 11.1, role: starter, captain: true}
+  - {name: "N. Jackson", club: "Aston Villa", position: FWD, price: 7.3, role: starter}
+  - {name: "Joan Garcia", club: "Barcelona", position: GK, price: 5.0, role: bench}
+  - {name: "A. Isak", club: "Liverpool", position: FWD, price: 7.4, role: bench, bench_order: 1}
+  - {name: "G. Simeone", club: "Atletico Madrid", position: MID, price: 6.5, role: bench, bench_order: 2}
+  - {name: "A. Hakimi", club: "Paris", position: DEF, price: 6.0, role: bench, bench_order: 3}
