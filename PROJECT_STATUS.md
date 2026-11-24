@@ -122,7 +122,7 @@ Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host con
 
 | # | Criterion | Status | Evidence |
 |---|---|---|---|
-| 1 | All tests pass, lint clean | Met | 280 passed; `ruff check` clean |
+| 1 | All tests pass, lint clean | Met | 277 passed; `ruff check` clean |
 | 2 | `uclfa outlook --from 6 --to 8` covers every club, odds-based and projected marked | Met | 36 clubs; `~` marks projections; `test_matches_without_odds_are_projected_and_marked` |
 | 3 | `uclfa evaluate` answers the goalkeeper example per matchday and in total | Met | Donnarumma -> Becker over MD6-8: +0.0, too close to call, because Joan García covers MD6 |
 | 4 | The Matchday 6 decision is made with it | Pending | Odds for MD6 expected about 1 December |
