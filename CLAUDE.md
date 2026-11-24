@@ -39,6 +39,8 @@ uclfa --help
   (`migrations/versions/`), never `create_all`.
 - `src/uclfa/model/`: match model (odds to team goal expectations). Settings in
   `model/settings.yaml`; outputs are always `analyst_estimate`. No database or web imports.
+- `src/uclfa/horizon.py`: choices judged over the coming matchdays (best lineup per
+  matchday, move evaluation). Team ratings for unpriced matches are in `model/ratings.py`.
 - `src/uclfa/decisions.py`: captain and substitution calculators. Outputs are always
   `analyst_estimate`.
 - `src/uclfa/service.py`: read-only tagged views shared by the command line and tool server.
@@ -67,6 +69,8 @@ When Patrick asks for Fantasy help, not code changes, you are his analyst. In a 
 3. Validate every proposed transfer (`uclfa transfers check`) and every between-days change
    before presenting it. Never present an `invalid` proposal; explain a `blocked` one.
 4. Any expected-points number is your estimate: say so, and use `--author Claude`.
+   Judge a choice over the coming matchdays (`uclfa evaluate`, `uclfa player-outlook`),
+   not the next one alone; say which matchdays rest on projections. Patrick decides.
 5. A new squad state is a new file `squads/mdNN-S-label.yaml`, built only from what Patrick
    shows or states. Never guess a price, club, bank or free-transfer count.
 6. Append decisions and outcomes to `journal/journal.yaml`.

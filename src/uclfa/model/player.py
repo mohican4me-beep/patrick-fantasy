@@ -65,9 +65,21 @@ class PlayerInputs(BaseModel):
     # Optional; left out of the total, and said so, when missing:
     cards_p90: float | None = Field(default=None, ge=0)
     sub_prob: float = Field(default=0.0, ge=0, le=1)  # chance of coming on if not starting
+    # Team news for particular matchdays, overriding start_prob / sub_prob there.
+    start_prob_by_matchday: dict[int, float] = Field(default_factory=dict)
+    sub_prob_by_matchday: dict[int, float] = Field(default_factory=dict)
     minutes_if_sub: float = Field(default=20.0, ge=1, le=59)
     sources: list[str] = Field(default_factory=list)
     note: str = ""
+
+    def for_matchday(self, matchday: int) -> PlayerInputs:
+        """This player's inputs with that matchday's team news applied."""
+        change: dict[str, float] = {}
+        if matchday in self.start_prob_by_matchday:
+            change["start_prob"] = self.start_prob_by_matchday[matchday]
+        if matchday in self.sub_prob_by_matchday:
+            change["sub_prob"] = self.sub_prob_by_matchday[matchday]
+        return self.model_copy(update=change) if change else self
 
     def missing(self) -> list[str]:
         required = [

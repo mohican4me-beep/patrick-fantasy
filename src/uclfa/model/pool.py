@@ -31,32 +31,54 @@ def load_news_settings(path: Path = DEFAULT_SETTINGS_PATH) -> NewsSettings:
     return NewsSettings.model_validate(data["news"])
 
 
+def _entries(items: list[Any], first: int) -> list[tuple[str, range]]:
+    """News entries are a name (this matchday only) or {name, until_matchday}."""
+    out = []
+    for item in items:
+        if isinstance(item, str):
+            out.append((item, range(first, first + 1)))
+        else:
+            out.append((item["name"], range(first, int(item["until_matchday"]) + 1)))
+    return out
+
+
 def apply_news(players: list[dict[str, Any]], news: dict[str, Any], s: NewsSettings) -> None:
-    """Set starting chances from team news. Raises on a name not in the pool."""
+    """Record starting chances from team news, per matchday. Raises on an unknown name or a
+    player listed twice. Baseline start_prob is left as it is for other matchdays."""
     by_name = {p["name"]: p for p in players}
-    lists = {k: news.get(k) or [] for k in ("out", "doubtful", "not_in_xi", "predicted_xi")}
-    unknown = sorted({n for names in lists.values() for n in names} - set(by_name))
+    first = int(news["matchday"])
+    lists = {
+        k: _entries(news.get(k) or [], first)
+        for k in ("out", "doubtful", "not_in_xi", "predicted_xi")
+    }
+    unknown = sorted({n for items in lists.values() for n, _ in items} - set(by_name))
     if unknown:
         raise ValueError(f"News names players not in the stats file: {unknown}")
     seen: dict[str, str] = {}
-    for kind, names in lists.items():
-        for name in names:
+    for kind, items in lists.items():
+        for name, matchdays in items:
             if name in seen:
                 raise ValueError(f"{name} is in both {seen[name]} and {kind}")
             seen[name] = kind
             p = by_name[name]
             if "start_prob" not in p:
                 continue  # no baseline: news alone gives no number
-            if kind == "out":
-                p["start_prob"], p["sub_prob"] = 0.0, 0.0
-            elif kind == "doubtful":
-                p["start_prob"] = min(p["start_prob"], s.doubtful_start_prob)
-            elif kind == "not_in_xi":
-                p["start_prob"] = min(p["start_prob"], s.not_in_xi_start_prob)
-                p["sub_prob"] = s.not_in_xi_sub_prob
-            else:
-                p["start_prob"] = max(p["start_prob"], s.predicted_start_prob)
-            p["sources"].append(f"news MD{news['matchday']} ({news['read_on']}): {kind}")
+            starts = p.setdefault("start_prob_by_matchday", {})
+            subs = p.setdefault("sub_prob_by_matchday", {})
+            for md in matchdays:
+                if kind == "out":
+                    starts[md], subs[md] = 0.0, 0.0
+                elif kind == "doubtful":
+                    starts[md] = min(p["start_prob"], s.doubtful_start_prob)
+                elif kind == "not_in_xi":
+                    starts[md] = min(p["start_prob"], s.not_in_xi_start_prob)
+                    subs[md] = s.not_in_xi_sub_prob
+                else:
+                    starts[md] = max(p["start_prob"], s.predicted_start_prob)
+            span = f"MD{matchdays.start}" + (f"-{matchdays.stop - 1}" if len(matchdays) > 1 else "")
+            p["sources"].append(f"news {span} ({news['read_on']}): {kind}")
+            if not subs:
+                del p["sub_prob_by_matchday"]
 
 
 class PoolBaseline(BaseModel):

@@ -23,6 +23,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 810 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: H. Moukoudi
   club: AEK Athens
   position: DEF
@@ -42,6 +44,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 810 min, 2 goals, 0.11 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: S. Pilios
   club: AEK Athens
   position: DEF
@@ -61,6 +65,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 800 min, 0 goals, 0.11 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: L. Jović
   club: AEK Athens
   position: FWD
@@ -80,6 +86,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 688 min, 5 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: A. Brignoli
   club: AEK Athens
   position: GK
@@ -118,6 +126,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 694 min, 1 goals, 0.52 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: E. Konsa Ngoyo
   club: Arsenal
   position: DEF
@@ -125,7 +135,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.9
   p60_if_start: 0.95
   minutes_if_start: 81.2
   sub_prob: 0.5
@@ -137,6 +147,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 731 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: G. dos Santos Magalhães
   club: Arsenal
   position: DEF
@@ -156,13 +168,15 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: R. Calafiori
   club: Arsenal
   position: DEF
   price: 4.5
   price_tag: entered
   price_source: Patrick, from the game
-  price_date: '2026-11-13'
+  price_date: '2026-11-23'
   start_prob: 0.95
   p60_if_start: 0.85
   minutes_if_start: 77.1
@@ -175,6 +189,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 771 min, 1 goals, 0.23 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: K. Havertz
   club: Arsenal
   position: FWD
@@ -194,6 +210,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 736 min, 3 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: D. Raya Martin
   club: Arsenal
   position: GK
@@ -201,10 +219,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.95
   p60_if_start: 0.95
   minutes_if_start: 90.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.0
@@ -214,6 +232,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: B. Saka
   club: Arsenal
   position: MID
@@ -221,10 +243,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.7
   p60_if_start: 0.95
   minutes_if_start: 85.6
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.3
   assist_share: 0.0
@@ -233,6 +255,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 7 league apps, 599 min, 3 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: D. Rice
   club: Arsenal
   position: MID
@@ -252,6 +278,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 827 min, 0 goals, 0.54 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: M. Ødegaard
   club: Arsenal
   position: MID
@@ -271,6 +299,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 830 min, 3 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: I. Maatsen
   club: Aston Villa
   position: DEF
@@ -296,10 +326,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.88
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.0
@@ -308,6 +338,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 657 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: V. Nilsson Lindelöf
   club: Aston Villa
   position: DEF
@@ -327,14 +361,16 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: N. Jackson
   club: Aston Villa
   position: FWD
   price: 7.3
-  price_tag: third_party
-  price_source: data/players/ffscout-2026-11-15.txt
-  price_date: '2026-11-15'
-  start_prob: 0.92
+  price_tag: entered
+  price_source: Patrick, from the game
+  price_date: '2026-11-23'
+  start_prob: 0.9
   p60_if_start: 0.95
   minutes_if_start: 80.9
   sub_prob: 0.5
@@ -346,6 +382,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 728 min, 6 goals, 0.12 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: Z. Suzuki
   club: Aston Villa
   position: GK
@@ -353,7 +391,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.9
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -366,6 +404,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 810 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: B. Kamara
   club: Aston Villa
   position: MID
@@ -385,6 +425,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 883 min, 0 goals, 0.1 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: J. McGinn
   club: Aston Villa
   position: MID
@@ -404,13 +446,15 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 794 min, 2 goals, 0.45 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
-- name: A. Grimaldo García
+  start_prob_by_matchday:
+    5: 0.95
+- name: A. Grimaldo
   club: Atlético de Madrid
   position: DEF
   price: 5.5
-  price_tag: third_party
-  price_source: data/players/ffscout-2026-11-15.txt
-  price_date: '2026-11-15'
+  price_tag: entered
+  price_source: Patrick, from the game
+  price_date: '2026-11-23'
   start_prob: 0.92
   p60_if_start: 0.95
   minutes_if_start: 85.4
@@ -423,6 +467,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 939 min, 4 goals, 0.19 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: C. Romero
   club: Atlético de Madrid
   position: DEF
@@ -430,10 +476,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.48
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.109
   assist_share: 0.0
@@ -442,6 +488,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 6 league apps, 435 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: D. Hancko
   club: Atlético de Madrid
   position: DEF
@@ -461,6 +511,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 933 min, 0 goals, 0.19 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: M. Pubill Pagès
   club: Atlético de Madrid
   position: DEF
@@ -468,10 +520,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.83
   p60_if_start: 0.85
   minutes_if_start: 76.4
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.062
   assist_share: 0.0
@@ -480,6 +532,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 764 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: A. Lookman
   club: Atlético de Madrid
   position: MID
@@ -487,10 +543,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.68
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.078
   assist_share: 0.0
@@ -499,14 +555,18 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 612 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
-- name: A. Rodríguez
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
+- name: Alex Baena
   club: Atlético de Madrid
   position: MID
   price: 5.6
-  price_tag: third_party
-  price_source: data/players/ffscout-2026-11-15.txt
-  price_date: '2026-11-15'
-  start_prob: 0.92
+  price_tag: entered
+  price_source: Patrick, from the game
+  price_date: '2026-11-23'
+  start_prob: 0.85
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -518,6 +578,9 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 764 min, 5 goals, 0.35 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  - 'override: Álex Baena; the game shows Álex Baena (Atlético MID) at 5.6'
+  start_prob_by_matchday:
+    5: 0.92
 - name: G. Simeone
   club: Atlético de Madrid
   position: MID
@@ -537,6 +600,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 861 min, 4 goals, 0.21 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: K. Lee
   club: Atlético de Madrid
   position: MID
@@ -544,10 +609,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.84
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.125
   assist_share: 0.062
@@ -556,6 +621,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 758 min, 2 goals, 0.12 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: M. Llorente Moreno
   club: Atlético de Madrid
   position: MID
@@ -575,6 +644,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 859 min, 0 goals, 0.1 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: Pablo Barrios Rivas
   club: Atlético de Madrid
   position: MID
@@ -582,7 +653,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.67
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -594,6 +665,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 606 min, 0 goals, 0.15 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: J. Maurstad Gundersen
   club: Bodø / Glimt
   position: DEF
@@ -601,7 +674,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.39
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -613,6 +686,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 751 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: O. Brynhildsen
   club: Bodø / Glimt
   position: FWD
@@ -638,10 +713,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.39
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.248
   assist_share: 0.099
@@ -650,6 +725,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 13 league apps, 753 min, 5 goals, 0.24 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: D. Svensson
   club: Borussia Dortmund
   position: DEF
@@ -669,13 +748,15 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 788 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
-- name: J. Gadou
+  start_prob_by_matchday:
+    5: 0.95
+- name: K. Gadou
   club: Borussia Dortmund
   position: DEF
   price: 4.0
-  price_tag: entered
-  price_source: Patrick, from the game
-  price_date: '2026-11-13'
+  price_tag: third_party
+  price_source: data/players/ffscout-2026-11-15.txt
+  price_date: '2026-11-15'
   start_prob: 0.95
   p60_if_start: 0.85
   minutes_if_start: 75.0
@@ -688,6 +769,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 668 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: N. Schlotterbeck
   club: Borussia Dortmund
   position: DEF
@@ -695,7 +778,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.78
   p60_if_start: 0.95
   minutes_if_start: 88.1
   sub_prob: 0.5
@@ -707,6 +790,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 7 league apps, 617 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: W. Anton
   club: Borussia Dortmund
   position: DEF
@@ -726,6 +811,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 810 min, 0 goals, 0.11 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: S. Guirassy
   club: Borussia Dortmund
   position: FWD
@@ -733,7 +820,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.5
+  start_prob: 0.89
   p60_if_start: 0.95
   minutes_if_start: 87.6
   sub_prob: 0.5
@@ -745,13 +832,15 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 701 min, 3 goals, 0.26 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): doubtful'
+  start_prob_by_matchday:
+    5: 0.5
 - name: G. Kobel
   club: Borussia Dortmund
   position: GK
   price: 5.0
-  price_tag: entered
-  price_source: Patrick, from the game
-  price_date: '2026-11-13'
+  price_tag: third_party
+  price_source: data/players/ffscout-2026-11-15.txt
+  price_date: '2026-11-15'
   start_prob: 0.95
   p60_if_start: 0.95
   minutes_if_start: 90.0
@@ -765,6 +854,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 810 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: F. Nmecha
   club: Borussia Dortmund
   position: MID
@@ -784,6 +875,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 660 min, 4 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: J. S. P. Bellingham
   club: Borussia Dortmund
   position: MID
@@ -803,6 +896,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 644 min, 0 goals, 0.28 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: B. Mechele
   club: Club Brugge
   position: DEF
@@ -822,6 +917,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 990 min, 2 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: H. Lee
   club: Club Brugge
   position: DEF
@@ -859,6 +956,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 979 min, 0 goals, 0.37 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: K. Sabbe
   club: Club Brugge
   position: DEF
@@ -866,7 +965,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.85
   minutes_if_start: 79.4
   sub_prob: 0.5
@@ -878,6 +977,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 794 min, 0 goals, 0.11 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: N. Tresoldi
   club: Club Brugge
   position: FWD
@@ -897,6 +998,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 865 min, 8 goals, 0.1 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: Y. Sommer
   club: Club Brugge
   position: GK
@@ -917,6 +1020,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 990 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: C. Borges
   club: Club Brugge
   position: MID
@@ -942,7 +1047,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 88.8
   sub_prob: 0.5
@@ -954,6 +1059,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 888 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: H. Vanaken
   club: Club Brugge
   position: MID
@@ -961,7 +1068,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 89.3
   sub_prob: 0.5
@@ -973,6 +1080,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 893 min, 3 goals, 0.2 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: H. Vetlesen
   club: Club Brugge
   position: MID
@@ -992,7 +1101,9 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 798 min, 5 goals, 0.11 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
-- name: J. Naveros
+  start_prob_by_matchday:
+    5: 0.95
+- name: J. Ramon
   club: Como
   position: DEF
   price: 4.1
@@ -1011,6 +1122,9 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 930 min, 2 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  - 'override: Jacobo Ramón; the game shows J. Ramón (Como DEF)'
+  start_prob_by_matchday:
+    5: 0.95
 - name: Y. Couto
   club: Como
   position: DEF
@@ -1018,7 +1132,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 81.8
   sub_prob: 0.5
@@ -1030,6 +1144,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 818 min, 0 goals, 0.22 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Douvikas
   club: Como
   position: FWD
@@ -1049,6 +1165,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 858 min, 5 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: J. Butez
   club: Como
   position: GK
@@ -1056,7 +1174,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.73
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -1069,6 +1187,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 720 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: L. Da Cunha
   club: Como
   position: MID
@@ -1088,6 +1208,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 803 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: L. Milla Manzanares
   club: Como
   position: MID
@@ -1095,7 +1217,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.81
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1107,14 +1229,16 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 668 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: N. Paz Martínez
   club: Como
   position: MID
   price: 7.1
-  price_tag: third_party
-  price_source: data/players/ffscout-2026-11-15.txt
-  price_date: '2026-11-15'
-  start_prob: 0.92
+  price_tag: entered
+  price_source: Patrick, from the game
+  price_date: '2026-11-23'
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 82.3
   sub_prob: 0.5
@@ -1126,6 +1250,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 823 min, 3 goals, 0.33 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: E. García
   club: FC Barcelona
   position: DEF
@@ -1133,10 +1259,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.69
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.037
   assist_share: 0.0
@@ -1145,6 +1271,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 619 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: G. Martín Langreo
   club: FC Barcelona
   position: DEF
@@ -1152,7 +1282,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.85
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1164,6 +1294,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 761 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: P. Cubarsí Paredes
   club: FC Barcelona
   position: DEF
@@ -1171,7 +1303,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.5
+  start_prob: 0.75
   p60_if_start: 0.95
   minutes_if_start: 86.9
   sub_prob: 0.5
@@ -1183,6 +1315,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 782 min, 0 goals, 0.23 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): doubtful'
+  start_prob_by_matchday:
+    5: 0.5
 - name: X. Espart Font
   club: FC Barcelona
   position: DEF
@@ -1190,10 +1324,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.67
   p60_if_start: 0.95
   minutes_if_start: 81.2
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.035
   assist_share: 0.07
@@ -1202,13 +1336,17 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 650 min, 1 goals, 0.28 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: Joan Garcia
   club: FC Barcelona
   position: GK
   price: 5.0
   price_tag: entered
   price_source: Patrick, from the game
-  price_date: '2026-11-13'
+  price_date: '2026-11-23'
   start_prob: 0.92
   p60_if_start: 0.95
   minutes_if_start: 86.0
@@ -1222,6 +1360,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 946 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: L. Yamal Nasraoui Ebana
   club: FC Barcelona
   position: MID
@@ -1229,10 +1369,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.95
   p60_if_start: 0.95
   minutes_if_start: 82.9
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.225
   assist_share: 0.18
@@ -1241,14 +1381,18 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 995 min, 10 goals, 0.72 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: Raphinha
   club: FC Barcelona
   position: MID
   price: 9.6
   price_tag: entered
   price_source: Patrick, from the game
-  price_date: '2026-11-13'
-  start_prob: 0.92
+  price_date: '2026-11-23'
+  start_prob: 0.9
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1260,6 +1404,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 813 min, 15 goals, 0.33 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Gordon
   club: FC Barcelona
   position: MID
@@ -1267,7 +1413,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.76
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1279,14 +1425,16 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 683 min, 2 goals, 0.53 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
-- name: F. López Marín
+  start_prob_by_matchday:
+    5: 0.92
+- name: Fermin Lopez
   club: FC Barcelona
   position: MID
   price: 7.0
-  price_tag: third_party
-  price_source: data/players/ffscout-2026-11-15.txt
-  price_date: '2026-11-15'
-  start_prob: 0.92
+  price_tag: entered
+  price_source: Patrick, from the game
+  price_date: '2026-11-23'
+  start_prob: 0.86
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1298,6 +1446,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 776 min, 7 goals, 0.58 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: P. López
   club: FC Barcelona
   position: MID
@@ -1317,6 +1467,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 846 min, 1 goals, 0.21 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.94
 - name: Rodri
   club: FC Barcelona
   position: MID
@@ -1324,10 +1476,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.77
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.033
   assist_share: 0.033
@@ -1336,6 +1488,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 697 min, 1 goals, 0.13 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: D. Upamecano
   club: FC Bayern München
   position: DEF
@@ -1355,17 +1511,19 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 766 min, 3 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: H. Kane
   club: FC Bayern München
   position: FWD
   price: 11.2
-  price_tag: entered
-  price_source: Patrick, from the game
-  price_date: '2026-11-13'
-  start_prob: 0.0
+  price_tag: third_party
+  price_source: data/players/ffscout-2026-11-15.txt
+  price_date: '2026-11-15'
+  start_prob: 0.95
   p60_if_start: 0.85
   minutes_if_start: 79.3
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.155
   assist_share: 0.314
@@ -1373,7 +1531,21 @@ players:
   sources:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 714 min, 4 goals, 1.01 assists/90; baseline rules
     in model/settings.yaml'
-  - 'news MD5 (2026-11-23): out'
+  - 'news MD5-10 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
+    6: 0.0
+    7: 0.0
+    8: 0.0
+    9: 0.0
+    10: 0.0
 - name: M. Olise
   club: FC Bayern München
   position: MID
@@ -1381,10 +1553,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.95
   p60_if_start: 0.95
   minutes_if_start: 83.0
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.224
   assist_share: 0.149
@@ -1393,6 +1565,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 747 min, 6 goals, 0.48 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: J. Kimmich
   club: FC Bayern München
   position: MID
@@ -1400,7 +1576,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.89
   p60_if_start: 0.95
   minutes_if_start: 81.4
   sub_prob: 0.5
@@ -1412,6 +1588,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 651 min, 1 goals, 0.41 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Pavlović
   club: FC Bayern München
   position: MID
@@ -1419,7 +1597,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.89
   p60_if_start: 0.85
   minutes_if_start: 79.6
   sub_prob: 0.5
@@ -1431,6 +1609,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 637 min, 2 goals, 0.14 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Brown
   club: Fenerbahçe
   position: DEF
@@ -1438,7 +1618,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.73
   p60_if_start: 0.85
   minutes_if_start: 76.4
   sub_prob: 0.5
@@ -1450,6 +1630,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 611 min, 0 goals, 0.15 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Škriniar
   club: Fenerbahçe
   position: DEF
@@ -1469,6 +1651,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 970 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: N. Aké
   club: Fenerbahçe
   position: DEF
@@ -1476,10 +1660,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.73
   p60_if_start: 0.95
   minutes_if_start: 90.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.0
@@ -1488,6 +1672,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 720 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: N. Cabral Semedo
   club: Fenerbahçe
   position: DEF
@@ -1507,6 +1695,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 782 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: E. Santana de Moraes
   club: Fenerbahçe
   position: GK
@@ -1514,7 +1704,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -1527,6 +1717,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: İ. Kahveci
   club: Fenerbahçe
   position: MID
@@ -1534,7 +1726,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.77
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1546,6 +1738,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 632 min, 5 goals, 0.43 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Greenwood
   club: Fenerbahçe
   position: MID
@@ -1553,7 +1747,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.87
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1565,6 +1759,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 716 min, 6 goals, 0.38 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Guendouzi Olié
   club: Fenerbahçe
   position: MID
@@ -1584,6 +1780,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 939 min, 2 goals, 0.1 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: N. Kanté
   club: Fenerbahçe
   position: MID
@@ -1603,6 +1801,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 796 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: O. Aydın
   club: Fenerbahçe
   position: MID
@@ -1646,7 +1846,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.83
   p60_if_start: 0.95
   minutes_if_start: 82.5
   sub_prob: 0.5
@@ -1658,6 +1858,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 825 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: I. Ferri
   club: Feyenoord
   position: FWD
@@ -1665,7 +1867,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.73
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1677,6 +1879,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 659 min, 6 goals, 0.41 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Hadj
   club: Feyenoord
   position: MID
@@ -1684,7 +1888,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.5
+  start_prob: 0.95
   p60_if_start: 0.95
   minutes_if_start: 81.3
   sub_prob: 0.5
@@ -1696,6 +1900,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 976 min, 7 goals, 0.18 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): doubtful'
+  start_prob_by_matchday:
+    5: 0.5
 - name: C. Vanhoutte
   club: Feyenoord
   position: MID
@@ -1715,6 +1921,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 893 min, 0 goals, 0.1 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: L. Valente
   club: Feyenoord
   position: MID
@@ -1734,6 +1942,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 949 min, 5 goals, 0.19 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: O. Targhalline
   club: Feyenoord
   position: MID
@@ -1741,7 +1951,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.78
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1753,6 +1963,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 706 min, 0 goals, 0.13 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Bardakcı
   club: Galatasaray
   position: DEF
@@ -1760,7 +1972,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.82
   p60_if_start: 0.85
   minutes_if_start: 77.9
   sub_prob: 0.5
@@ -1772,6 +1984,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 701 min, 2 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: D. Sánchez Mina
   club: Galatasaray
   position: DEF
@@ -1791,6 +2005,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 950 min, 1 goals, 0.09 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: I. Jakobs
   club: Galatasaray
   position: DEF
@@ -1798,7 +2014,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.5
+  start_prob: 0.8
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1810,6 +2026,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 662 min, 0 goals, 0.27 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): doubtful'
+  start_prob_by_matchday:
+    5: 0.5
 - name: R. Sallai
   club: Galatasaray
   position: DEF
@@ -1817,10 +2035,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 85.9
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.041
   assist_share: 0.041
@@ -1829,6 +2047,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 859 min, 1 goals, 0.1 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: V. Osimhen
   club: Galatasaray
   position: FWD
@@ -1836,10 +2058,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.67
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.596
   assist_share: 0.2
@@ -1848,6 +2070,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 555 min, 9 goals, 0.49 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: U. Çakır
   club: Galatasaray
   position: GK
@@ -1855,7 +2081,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -1868,6 +2094,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: B. Yılmaz
   club: Galatasaray
   position: MID
@@ -1875,7 +2103,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1887,6 +2115,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 749 min, 2 goals, 0.12 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: G. Gomes Sara
   club: Galatasaray
   position: MID
@@ -1894,7 +2124,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.86
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1906,6 +2136,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 711 min, 2 goals, 0.63 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: L. Torreira Di Pascua
   club: Galatasaray
   position: MID
@@ -1913,7 +2145,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.85
   minutes_if_start: 78.8
   sub_prob: 0.5
@@ -1925,6 +2157,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 788 min, 1 goals, 0.34 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: Y. Akgün
   club: Galatasaray
   position: MID
@@ -1944,6 +2178,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 823 min, 2 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: A. Bastoni
   club: Inter
   position: DEF
@@ -1951,10 +2187,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 82.0
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.043
   assist_share: 0.0
@@ -1963,14 +2199,18 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 820 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: Carlos Augusto
   club: Inter
   position: DEF
   price: 4.2
   price_tag: entered
   price_source: Patrick, from the game
-  price_date: '2026-11-13'
-  start_prob: 0.92
+  price_date: '2026-11-23'
+  start_prob: 0.76
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -1982,6 +2222,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 625 min, 2 goals, 0.29 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: F. Dimarco
   club: Inter
   position: DEF
@@ -1989,7 +2231,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.8
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -2001,6 +2243,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 657 min, 0 goals, 0.14 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Akanji
   club: Inter
   position: DEF
@@ -2008,7 +2252,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 81.7
   sub_prob: 0.5
@@ -2020,6 +2264,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 817 min, 0 goals, 0.22 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: Y. Bisseck
   club: Inter
   position: DEF
@@ -2027,7 +2273,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.82
   p60_if_start: 0.85
   minutes_if_start: 75.2
   sub_prob: 0.5
@@ -2039,6 +2285,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 677 min, 1 goals, 0.13 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Thuram
   club: Inter
   position: FWD
@@ -2046,10 +2294,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.88
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.294
   assist_share: 0.098
@@ -2058,6 +2306,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 723 min, 6 goals, 0.25 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: J. Martínez Riera
   club: Inter
   position: GK
@@ -2065,7 +2317,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.82
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -2078,6 +2330,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 810 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Diouf
   club: Inter
   position: MID
@@ -2103,7 +2357,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 84.1
   sub_prob: 0.5
@@ -2115,6 +2369,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 841 min, 1 goals, 0.21 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: P. Zieliński
   club: Inter
   position: MID
@@ -2122,7 +2378,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.76
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -2134,6 +2390,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 623 min, 2 goals, 0.29 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Andrade Cedeño
   club: LASK
   position: DEF
@@ -2141,10 +2399,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.92
   p60_if_start: 0.95
   minutes_if_start: 84.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.076
   assist_share: 0.04
@@ -2153,6 +2411,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 924 min, 2 goals, 0.1 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: G. Bello
   club: LASK
   position: DEF
@@ -2160,10 +2422,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.67
   p60_if_start: 0.85
   minutes_if_start: 78.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.056
@@ -2172,6 +2434,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 624 min, 0 goals, 0.14 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: J. Tornich
   club: LASK
   position: DEF
@@ -2197,7 +2463,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.69
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -2209,6 +2475,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 624 min, 0 goals, 0.29 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: C. Lang
   club: LASK
   position: MID
@@ -2234,7 +2502,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.88
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -2246,6 +2514,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 790 min, 1 goals, 0.34 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: R. Ljubicic
   club: LASK
   position: MID
@@ -2253,7 +2523,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.8
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -2265,6 +2535,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 720 min, 1 goals, 0.25 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: S. Horvath
   club: LASK
   position: MID
@@ -2284,6 +2556,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 904 min, 1 goals, 0.3 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: M. Udol
   club: Lens
   position: DEF
@@ -2291,7 +2565,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.9
   p60_if_start: 0.95
   minutes_if_start: 82.0
   sub_prob: 0.5
@@ -2303,6 +2577,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 738 min, 2 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: R. Aguilar
   club: Lens
   position: DEF
@@ -2310,7 +2586,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.83
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -2322,6 +2598,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 625 min, 1 goals, 0.14 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: R. Risser
   club: Lens
   position: GK
@@ -2342,6 +2620,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: F. Thauvin
   club: Lens
   position: MID
@@ -2361,6 +2641,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 877 min, 5 goals, 0.82 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: J. Jacquet
   club: Liverpool
   position: DEF
@@ -2380,6 +2662,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 865 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: Milos Kerkez
   club: Liverpool
   position: DEF
@@ -2387,10 +2671,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.95
   p60_if_start: 0.95
   minutes_if_start: 82.4
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.0
@@ -2399,6 +2683,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 824 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: R. Araújo da Silva
   club: Liverpool
   position: DEF
@@ -2406,7 +2694,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.89
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -2418,6 +2706,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 667 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: V. van Dijk
   club: Liverpool
   position: DEF
@@ -2437,14 +2727,16 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: A. Isak
   club: Liverpool
   position: FWD
   price: 7.4
-  price_tag: third_party
-  price_source: data/players/ffscout-2026-11-15.txt
-  price_date: '2026-11-15'
-  start_prob: 0.92
+  price_tag: entered
+  price_source: Patrick, from the game
+  price_date: '2026-11-23'
+  start_prob: 0.9
   p60_if_start: 0.95
   minutes_if_start: 83.4
   sub_prob: 0.5
@@ -2456,6 +2748,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 751 min, 7 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: C. Gakpo
   club: Liverpool
   position: FWD
@@ -2463,10 +2757,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.8
   p60_if_start: 0.85
   minutes_if_start: 75.5
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.107
   assist_share: 0.321
@@ -2475,6 +2769,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 604 min, 1 goals, 0.45 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: A. Becker
   club: Liverpool
   position: GK
@@ -2495,6 +2793,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: A. Mac Allister
   club: Liverpool
   position: MID
@@ -2514,6 +2814,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 758 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: F. Wirtz
   club: Liverpool
   position: MID
@@ -2533,6 +2835,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 796 min, 1 goals, 0.34 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: A. Souza Ribeiro
   club: LOSC Lille
   position: DEF
@@ -2664,9 +2968,9 @@ players:
   club: Manchester City
   position: DEF
   price: 5.5
-  price_tag: third_party
-  price_source: data/players/ffscout-2026-11-15.txt
-  price_date: '2026-11-15'
+  price_tag: entered
+  price_source: Patrick, from the game
+  price_date: '2026-11-23'
   start_prob: 0.94
   p60_if_start: 0.85
   minutes_if_start: 75.0
@@ -2679,6 +2983,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 702 min, 1 goals, 0.51 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.94
 - name: M. Guehi
   club: Manchester City
   position: DEF
@@ -2686,7 +2992,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.9
   p60_if_start: 0.95
   minutes_if_start: 80.1
   sub_prob: 0.5
@@ -2698,6 +3004,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 721 min, 1 goals, 0.12 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Nunes
   club: Manchester City
   position: DEF
@@ -2705,10 +3013,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.69
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.0
@@ -2717,6 +3025,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 514 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: R. Santos Gato Alves Dias
   club: Manchester City
   position: DEF
@@ -2736,6 +3048,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: A. Khusanov
   club: Manchester City
   position: DEF
@@ -2743,7 +3057,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.7
   p60_if_start: 0.85
   minutes_if_start: 79.0
   sub_prob: 0.5
@@ -2755,6 +3069,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 7 league apps, 553 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: E. Haaland
   club: Manchester City
   position: FWD
@@ -2774,13 +3090,15 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 890 min, 9 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: G. Donnarumma
   club: Manchester City
   position: GK
   price: 6.0
-  price_tag: third_party
-  price_source: data/players/ffscout-2026-11-15.txt
-  price_date: '2026-11-15'
+  price_tag: entered
+  price_source: Patrick, from the game
+  price_date: '2026-11-23'
   start_prob: 0.95
   p60_if_start: 0.95
   minutes_if_start: 90.0
@@ -2794,6 +3112,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: E. Anderson
   club: Manchester City
   position: MID
@@ -2813,6 +3133,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 788 min, 0 goals, 0.11 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: E. Fernández
   club: Manchester City
   position: MID
@@ -2820,7 +3142,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.83
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -2832,6 +3154,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 625 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: I. Ndiaye
   club: Manchester City
   position: MID
@@ -2851,14 +3175,16 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 770 min, 0 goals, 0.35 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
-- name: M. Cherki
+  start_prob_by_matchday:
+    5: 0.95
+- name: R. Cherki
   club: Manchester City
   position: MID
   price: 7.0
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.76
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -2870,6 +3196,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 567 min, 5 goals, 0.32 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: H. Maguire
   club: Manchester United
   position: DEF
@@ -2889,6 +3217,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 855 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: J. Dalot Teixeira
   club: Manchester United
   position: DEF
@@ -2908,13 +3238,15 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 715 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: B. Mbeumo
   club: Manchester United
   position: FWD
   price: 7.0
-  price_tag: entered
-  price_source: Patrick, from the game
-  price_date: '2026-11-13'
+  price_tag: third_party
+  price_source: data/players/ffscout-2026-11-15.txt
+  price_date: '2026-11-15'
   start_prob: 0.95
   p60_if_start: 0.95
   minutes_if_start: 89.3
@@ -2927,6 +3259,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 893 min, 4 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: S. Lammens
   club: Manchester United
   position: GK
@@ -2947,14 +3281,16 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
-- name: Bruno Fernandes
+  start_prob_by_matchday:
+    5: 0.95
+- name: B. Fernandes
   club: Manchester United
   position: MID
   price: 9.0
-  price_tag: entered
-  price_source: Patrick, from the game
-  price_date: '2026-11-13'
-  start_prob: 0.92
+  price_tag: third_party
+  price_source: data/players/ffscout-2026-11-15.txt
+  price_date: '2026-11-15'
+  start_prob: 0.9
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -2966,6 +3302,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 810 min, 4 goals, 0.22 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Carneiro Da Cunha
   club: Manchester United
   position: MID
@@ -2991,7 +3329,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.88
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -3003,6 +3341,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 658 min, 1 goals, 0.14 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Rrahmani
   club: Napoli
   position: DEF
@@ -3028,10 +3368,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 84.5
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.128
@@ -3040,6 +3380,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 845 min, 0 goals, 0.21 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: R. Marín Zamora
   club: Napoli
   position: DEF
@@ -3047,10 +3391,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 89.1
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.061
   assist_share: 0.0
@@ -3059,6 +3403,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 891 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: R. Højlund
   club: Napoli
   position: FWD
@@ -3084,10 +3432,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.73
   p60_if_start: 0.85
   minutes_if_start: 78.8
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.0
@@ -3097,6 +3445,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 630 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: K. De Bruyne
   club: Napoli
   position: MID
@@ -3122,10 +3474,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.76
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.085
   assist_share: 0.0
@@ -3134,6 +3486,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 628 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: S. McTominay
   club: Napoli
   position: MID
@@ -3152,14 +3508,14 @@ players:
   sources:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 625 min, 2 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
-- name: A. Hakimi Mouh
+- name: A. Hakimi
   club: Paris Saint Germain
   position: DEF
   price: 6.0
-  price_tag: third_party
-  price_source: data/players/ffscout-2026-11-15.txt
-  price_date: '2026-11-15'
-  start_prob: 0.92
+  price_tag: entered
+  price_source: Patrick, from the game
+  price_date: '2026-11-23'
+  start_prob: 0.76
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -3171,6 +3527,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 569 min, 3 goals, 0.32 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: W. Pacho Tenorio
   club: Paris Saint Germain
   position: DEF
@@ -3178,7 +3536,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.7
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -3190,6 +3548,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 7 league apps, 630 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: L. Hernández Pi
   club: Paris Saint Germain
   position: DEF
@@ -3246,6 +3606,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: D. Doue
   club: Paris Saint Germain
   position: MID
@@ -3253,10 +3615,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.0
+  start_prob: 0.7
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.0
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.077
   assist_share: 0.077
@@ -3265,14 +3627,18 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 527 min, 1 goals, 0.17 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): out'
+  start_prob_by_matchday:
+    5: 0.0
+  sub_prob_by_matchday:
+    5: 0.0
 - name: F. Ruiz Peña
   club: Paris Saint Germain
   position: MID
   price: 6.8
-  price_tag: third_party
-  price_source: data/players/ffscout-2026-11-15.txt
-  price_date: '2026-11-15'
-  start_prob: 0.92
+  price_tag: entered
+  price_source: Patrick, from the game
+  price_date: '2026-11-23'
+  start_prob: 0.67
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -3284,17 +3650,19 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 502 min, 0 goals, 0.36 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
-- name: Joao Neves
+  start_prob_by_matchday:
+    5: 0.92
+- name: J. Gonçalves Neves
   club: Paris Saint Germain
   position: MID
   price: 5.9
-  price_tag: entered
-  price_source: Patrick, from the game
-  price_date: '2026-11-13'
-  start_prob: 0.25
+  price_tag: third_party
+  price_source: data/players/ffscout-2026-11-15.txt
+  price_date: '2026-11-15'
+  start_prob: 0.7
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.0
@@ -3303,6 +3671,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 528 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: V. Machado Ferreira
   club: Paris Saint Germain
   position: MID
@@ -3310,7 +3682,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.9
   p60_if_start: 0.85
   minutes_if_start: 75.1
   sub_prob: 0.5
@@ -3322,6 +3694,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 676 min, 1 goals, 0.13 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: W. Zaire Emery
   club: Paris Saint Germain
   position: MID
@@ -3341,6 +3715,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 748 min, 0 goals, 0.12 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: A. Costa
   club: Porto
   position: DEF
@@ -3348,7 +3724,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 80.0
   sub_prob: 0.5
@@ -3360,6 +3736,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 800 min, 0 goals, 0.11 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: J. Bednarek
   club: Porto
   position: DEF
@@ -3379,6 +3757,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 904 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: J. Kiwior
   club: Porto
   position: DEF
@@ -3398,6 +3778,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 990 min, 1 goals, 0.09 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: A. Valente Silva
   club: Porto
   position: FWD
@@ -3436,6 +3818,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 990 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: E. Aquino Cossa
   club: Porto
   position: MID
@@ -3461,7 +3845,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.87
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -3473,6 +3857,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 715 min, 5 goals, 0.5 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: P. Rosario
   club: Porto
   position: MID
@@ -3492,6 +3878,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 836 min, 0 goals, 0.22 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: V. Froholdt
   club: Porto
   position: MID
@@ -3499,7 +3887,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -3511,14 +3899,16 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 3 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: L. Geertruida
   club: PSV
   position: DEF
   price: 4.5
-  price_tag: entered
-  price_source: Patrick, from the game
-  price_date: '2026-11-13'
-  start_prob: 0.92
+  price_tag: third_party
+  price_source: data/players/ffscout-2026-11-15.txt
+  price_date: '2026-11-15'
+  start_prob: 0.67
   p60_if_start: 0.85
   minutes_if_start: 76.8
   sub_prob: 0.5
@@ -3530,6 +3920,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 614 min, 1 goals, 0.29 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Ferreira dos Santos
   club: PSV
   position: DEF
@@ -3567,6 +3959,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 955 min, 2 goals, 0.28 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: G. Til
   club: PSV
   position: MID
@@ -3586,6 +3980,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 940 min, 7 goals, 0.1 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: I. Perišić
   club: PSV
   position: MID
@@ -3593,7 +3989,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.73
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -3605,6 +4001,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 661 min, 2 goals, 0.27 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: K. Sano
   club: PSV
   position: MID
@@ -3624,6 +4022,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 913 min, 2 goals, 0.1 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: R. van Bommel
   club: PSV
   position: MID
@@ -3631,7 +4031,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.83
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -3643,6 +4043,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 745 min, 4 goals, 0.36 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: D. Raum
   club: RB Leipzig
   position: DEF
@@ -3650,7 +4052,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.89
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -3662,6 +4064,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 720 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: W. Orban
   club: RB Leipzig
   position: DEF
@@ -3681,6 +4085,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 793 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: E. Banzuzi
   club: RB Leipzig
   position: FWD
@@ -3700,6 +4106,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 696 min, 2 goals, 0.26 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: M. Vandevoordt
   club: RB Leipzig
   position: GK
@@ -3707,7 +4115,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.89
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -3720,6 +4128,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 720 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Nordby Nusa
   club: RB Leipzig
   position: MID
@@ -3739,6 +4149,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 653 min, 4 goals, 0.96 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: N. El Aynaoui
   club: RB Leipzig
   position: MID
@@ -3746,7 +4158,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.89
   p60_if_start: 0.95
   minutes_if_start: 84.1
   sub_prob: 0.5
@@ -3758,6 +4170,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 673 min, 0 goals, 0.13 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: F. García Torres
   club: Real Betis
   position: DEF
@@ -3765,10 +4179,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.83
   p60_if_start: 0.95
   minutes_if_start: 84.1
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.066
@@ -3777,6 +4191,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 841 min, 0 goals, 0.11 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: H. Bellerín Moruno
   club: Real Betis
   position: DEF
@@ -3784,10 +4202,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.92
   p60_if_start: 0.85
   minutes_if_start: 76.9
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.0
   assist_share: 0.066
@@ -3796,6 +4214,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 846 min, 0 goals, 0.11 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: M. Bartra Aregall
   club: Real Betis
   position: DEF
@@ -3803,10 +4225,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.59
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.299
   assist_share: 0.0
@@ -3815,6 +4237,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 535 min, 3 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: Natan
   club: Real Betis
   position: DEF
@@ -3822,7 +4248,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.83
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -3834,6 +4260,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. dos Santos
   club: Real Betis
   position: MID
@@ -3859,7 +4287,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.75
   p60_if_start: 0.85
   minutes_if_start: 75.8
   sub_prob: 0.5
@@ -3871,6 +4299,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 682 min, 3 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: F. Alarcón Suárez
   club: Real Betis
   position: MID
@@ -3932,7 +4362,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.83
   p60_if_start: 0.95
   minutes_if_start: 86.2
   sub_prob: 0.5
@@ -3944,6 +4374,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 862 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: I. Konaté
   club: Real Madrid
   position: DEF
@@ -3963,6 +4395,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 990 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Cucurella
   club: Real Madrid
   position: DEF
@@ -3982,13 +4416,15 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 833 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.93
 - name: K. Mbappe
   club: Real Madrid
   position: FWD
   price: 11.1
   price_tag: entered
   price_source: Patrick, from the game
-  price_date: '2026-11-13'
+  price_date: '2026-11-23'
   start_prob: 0.95
   p60_if_start: 0.95
   minutes_if_start: 89.6
@@ -4001,6 +4437,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 1075 min, 13 goals, 0.17 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: T. Courtois
   club: Real Madrid
   position: GK
@@ -4021,6 +4459,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 990 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: A. Guler
   club: Real Madrid
   position: MID
@@ -4028,7 +4468,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.83
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4040,6 +4480,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 744 min, 3 goals, 0.48 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Tchouaméni
   club: Real Madrid
   position: MID
@@ -4047,7 +4489,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.67
   p60_if_start: 0.85
   minutes_if_start: 78.5
   sub_prob: 0.5
@@ -4059,6 +4501,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 628 min, 0 goals, 0.14 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: F. Valverde Dipetta
   club: Real Madrid
   position: MID
@@ -4078,6 +4522,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 892 min, 1 goals, 0.2 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: J. Bellingham
   club: Real Madrid
   position: MID
@@ -4097,14 +4543,16 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 959 min, 4 goals, 0.38 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
-- name: Vinicius Junior
+  start_prob_by_matchday:
+    5: 0.95
+- name: V. Júnior
   club: Real Madrid
   position: MID
   price: 9.5
-  price_tag: entered
-  price_source: Patrick, from the game
-  price_date: '2026-11-13'
-  start_prob: 0.92
+  price_tag: third_party
+  price_source: data/players/ffscout-2026-11-15.txt
+  price_date: '2026-11-15'
+  start_prob: 0.65
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4116,6 +4564,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 585 min, 1 goals, 0.46 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: Y. Diomande
   club: Real Madrid
   position: MID
@@ -4123,10 +4573,10 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.25
+  start_prob: 0.79
   p60_if_start: 0.85
   minutes_if_start: 75.0
-  sub_prob: 0.6
+  sub_prob: 0.5
   minutes_if_sub: 20.0
   goal_share: 0.147
   assist_share: 0.097
@@ -4135,6 +4585,10 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 715 min, 3 goals, 0.25 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): not_in_xi'
+  start_prob_by_matchday:
+    5: 0.25
+  sub_prob_by_matchday:
+    5: 0.6
 - name: G. Mancini
   club: Roma
   position: DEF
@@ -4142,7 +4596,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.8
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4154,6 +4608,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 659 min, 0 goals, 0.27 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Hermoso Canseco
   club: Roma
   position: DEF
@@ -4161,7 +4617,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.88
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4173,6 +4629,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 725 min, 2 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: O. N'Dicka
   club: Roma
   position: DEF
@@ -4180,7 +4638,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.88
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4192,6 +4650,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 727 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: D. Malen
   club: Roma
   position: FWD
@@ -4199,7 +4659,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.79
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4211,6 +4671,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 652 min, 8 goals, 0.28 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Malvano
   club: Roma
   position: FWD
@@ -4236,7 +4698,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.55
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4249,6 +4711,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 6 league apps, 450 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: B. Cristante
   club: Roma
   position: MID
@@ -4256,7 +4720,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.82
   p60_if_start: 0.95
   minutes_if_start: 87.1
   sub_prob: 0.5
@@ -4268,6 +4732,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 784 min, 1 goals, 0.11 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: T. Puchacz
   club: Sabah
   position: DEF
@@ -4275,7 +4741,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.9
   p60_if_start: 0.95
   minutes_if_start: 84.9
   sub_prob: 0.5
@@ -4287,6 +4753,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 764 min, 0 goals, 0.12 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: S. Pokatilov
   club: Sabah
   position: GK
@@ -4294,7 +4762,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.7
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -4307,6 +4775,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 7 league apps, 630 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: M. Matviyenko
   club: Shakhtar Donetsk
   position: DEF
@@ -4326,6 +4796,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 852 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: P. Azevedo Pereira
   club: Shakhtar Donetsk
   position: DEF
@@ -4351,7 +4823,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.83
   p60_if_start: 0.95
   minutes_if_start: 89.2
   sub_prob: 0.5
@@ -4363,6 +4835,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 892 min, 1 goals, 0.2 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: V. Tobias da Silva
   club: Shakhtar Donetsk
   position: DEF
@@ -4370,7 +4844,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.7
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4382,6 +4856,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 634 min, 1 goals, 0.14 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: N. Martins da Silva
   club: Shakhtar Donetsk
   position: MID
@@ -4407,7 +4883,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.73
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4419,6 +4895,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 654 min, 2 goals, 0.14 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: D. Zima
   club: Slavia Praha
   position: DEF
@@ -4426,7 +4904,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.71
   p60_if_start: 0.95
   minutes_if_start: 81.1
   sub_prob: 0.5
@@ -4438,6 +4916,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 811 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: T. Holeš
   club: Slavia Praha
   position: DEF
@@ -4445,7 +4925,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.79
   p60_if_start: 0.85
   minutes_if_start: 79.6
   sub_prob: 0.5
@@ -4457,6 +4937,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 876 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: D. Šturm
   club: Slavia Praha
   position: FWD
@@ -4482,7 +4964,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.67
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4494,6 +4976,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 13 league apps, 702 min, 6 goals, 0.13 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: E. Ayaosi
   club: Slavia Praha
   position: MID
@@ -4501,7 +4985,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.8
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4513,6 +4997,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 13 league apps, 836 min, 5 goals, 0.32 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: W. Nowak
   club: Slavia Praha
   position: MID
@@ -4532,6 +5018,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 13 league apps, 978 min, 5 goals, 0.09 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.93
 - name: K. Bajrič
   club: Slovan Bratislava
   position: DEF
@@ -4539,7 +5027,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.71
   p60_if_start: 0.95
   minutes_if_start: 81.5
   sub_prob: 0.5
@@ -4551,6 +5039,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 815 min, 2 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: K. Wimmer
   club: Slovan Bratislava
   position: DEF
@@ -4576,7 +5066,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.57
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -4589,6 +5079,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 720 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: T. Barseghyan
   club: Slovan Bratislava
   position: MID
@@ -4596,7 +5088,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.7
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4608,6 +5100,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 734 min, 4 goals, 0.25 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: G. Inácio
   club: Sporting CP
   position: DEF
@@ -4615,7 +5109,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.91
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -4627,6 +5121,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 900 min, 1 goals, 0.1 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: S. Altimira Clavell
   club: Sporting CP
   position: DEF
@@ -4646,6 +5142,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 982 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: L. Suárez Charris
   club: Sporting CP
   position: FWD
@@ -4653,7 +5151,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.9
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4665,6 +5163,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 739 min, 9 goals, 0.12 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: R. Dantas da Silva
   club: Sporting CP
   position: GK
@@ -4672,7 +5172,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.73
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -4685,6 +5185,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 720 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: G. Cipriano Catamo
   club: Sporting CP
   position: MID
@@ -4692,7 +5194,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.83
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4704,6 +5206,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 687 min, 2 goals, 0.52 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: I. Doumbia
   club: Sporting CP
   position: MID
@@ -4759,6 +5263,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 687 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.95
 - name: J. Karaboue Vagnomann
   club: VfB Stuttgart
   position: DEF
@@ -4777,14 +5283,14 @@ players:
   sources:
   - 'data/players/ffscout-2026-11-15.txt: 6 league apps, 531 min, 2 goals, 0.17 assists/90; baseline rules
     in model/settings.yaml'
-- name: M. Mittelstadt
+- name: M. Mittelstädt
   club: VfB Stuttgart
   position: DEF
   price: 4.5
-  price_tag: entered
-  price_source: Patrick, from the game
-  price_date: '2026-11-13'
-  start_prob: 0.92
+  price_tag: third_party
+  price_source: data/players/ffscout-2026-11-15.txt
+  price_date: '2026-11-15'
+  start_prob: 0.89
   p60_if_start: 0.95
   minutes_if_start: 80.4
   sub_prob: 0.5
@@ -4796,6 +5302,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 643 min, 2 goals, 0.14 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: R. Hendriks
   club: VfB Stuttgart
   position: DEF
@@ -4803,7 +5311,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.89
   p60_if_start: 0.85
   minutes_if_start: 79.0
   sub_prob: 0.5
@@ -4815,6 +5323,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 632 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: D. Undav
   club: VfB Stuttgart
   position: FWD
@@ -4822,7 +5332,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.9
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4834,6 +5344,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 605 min, 0 goals, 0.15 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: E. Demirović
   club: VfB Stuttgart
   position: FWD
@@ -4841,7 +5353,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.8
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4853,6 +5365,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 543 min, 5 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: D. Seimen
   club: VfB Stuttgart
   position: GK
@@ -4970,7 +5484,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.74
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -4982,6 +5496,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 665 min, 3 goals, 0.14 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: P. Gulácsi
   club: Villarreal
   position: GK
@@ -4989,7 +5505,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.67
   p60_if_start: 0.95
   minutes_if_start: 90.0
   sub_prob: 0.5
@@ -5002,6 +5518,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 720 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: A. Moleiro González
   club: Villarreal
   position: MID
@@ -5009,7 +5527,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.81
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -5021,6 +5539,8 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 733 min, 2 goals, 0.49 assists/90; baseline
     rules in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
+  start_prob_by_matchday:
+    5: 0.92
 - name: P. Gueye
   club: Villarreal
   position: MID
@@ -5028,7 +5548,7 @@ players:
   price_tag: third_party
   price_source: data/players/ffscout-2026-11-15.txt
   price_date: '2026-11-15'
-  start_prob: 0.92
+  start_prob: 0.9
   p60_if_start: 0.85
   minutes_if_start: 75.0
   sub_prob: 0.5
@@ -5040,11 +5560,5 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 809 min, 3 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
   - 'news MD5 (2026-11-23): predicted_xi'
-- name: G. Zechiel
-  club: Feyenoord
-  position: MID
-  price: 4.6
-  price_tag: entered
-  price_source: squads/md05-1-pre-deadline.yaml
-  price_date: '2026-11-13'
-  note: Not found in the source table on 15 Nov 2026.
+  start_prob_by_matchday:
+    5: 0.92

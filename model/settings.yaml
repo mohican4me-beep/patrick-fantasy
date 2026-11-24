@@ -64,6 +64,9 @@ optimizer:
   # The Wildcard is judged on this matchday only, which flatters it. It is recommended only
   # when it beats the best normal plan by at least this many expected points.
   wildcard_margin: 8.0
+  # `uclfa evaluate`: a move within this many expected points of keeping the squad, over
+  # the stretch, is called too close to call.
+  verdict_margin: 2.0
 
 # Team news on top of the baseline (data/players/news-*.yaml). Claude's assumptions.
 news:
@@ -71,3 +74,20 @@ news:
   doubtful_start_prob: 0.5
   not_in_xi_start_prob: 0.25     # regular starter left out of the predicted XI
   not_in_xi_sub_prob: 0.6
+
+# Team ratings for matches without odds (Release 2 Phase E). Claude's assumptions.
+ratings:
+  # Weight of one match's market-implied goal rates, relative to one played result.
+  # Odds already average many opinions, so they count for more than a single score.
+  odds_weight: 3.0
+  result_weight: 1.0
+  # Pulls every team's attack and defence towards average; stops a team with two lucky
+  # results looking like a giant. Larger means more pull.
+  shrinkage: 2.0
+  # Matches further back count less: weight halves every this many matchdays.
+  half_life_matchdays: 4
+  # A played result counts at most this many goals per team, so one 9-1 does not make a
+  # side look like a giant or a minnow. Chosen by predicting the Matchday 5 odds from
+  # Matchday 1-4 results: cap 3 missed the market by 30.8% on average, no cap by 32.4%,
+  # treating every team as equal by 43.6% (24 November 2026).
+  max_goals_counted: 3

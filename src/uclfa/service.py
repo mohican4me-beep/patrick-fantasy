@@ -464,23 +464,100 @@ def substitution_view(
 # -- match outlook (Release 2 Phase B) ------------------------------------------------
 
 
+def rating_evidence(data_dir: Any = None, settings: Any = None) -> tuple[list[Any], int]:
+    """Played results and market-implied goal rates, for fitting team ratings.
+
+    Returns (evidence, latest matchday with evidence). For each match the most recent odds
+    snapshot that priced it is used.
+    """
+    import json
+
+    from uclfa.ingest.clubs import make_resolver
+    from uclfa.ingest.run import DATA_DIR, latest_snapshot
+    from uclfa.model.match import MarketInput, fit_match, load_settings, main_half_line
+    from uclfa.model.ratings import Evidence
+
+    data_dir = DATA_DIR if data_dir is None else data_dir
+    settings = load_settings() if settings is None else settings
+    fixtures = latest_snapshot("fixtures", data_dir)
+    if fixtures is None:
+        return [], 0
+    resolve, _ = make_resolver(fixtures, data_dir)
+    md_of = {(f["home"], f["away"]): f["matchday"] for f in fixtures["records"]}
+    evidence: list[Any] = []
+    for f in fixtures["records"]:
+        if f.get("status") == "FINISHED" and f.get("home_goals") is not None:
+            evidence.append(
+                Evidence(
+                    f["home"], f["away"], f["home_goals"], f["away_goals"], "result", f["matchday"]
+                )
+            )
+    seen: set[tuple[str, str]] = set()
+    for path in sorted((data_dir / "snapshots" / "odds").glob("*.json"), reverse=True):
+        for o in json.loads(path.read_text(encoding="utf-8"))["records"]:
+            pair = (resolve(o["home"]), resolve(o["away"]))
+            if pair in seen or pair not in md_of:
+                continue
+            seen.add(pair)  # newest snapshot first, so this is the latest price
+            line, over, under, books, _note = main_half_line(o)
+            try:
+                fit = fit_match(
+                    MarketInput(
+                        o["home_price"],
+                        o["draw_price"],
+                        o["away_price"],
+                        o["bookmakers"],
+                        line,
+                        over,
+                        under,
+                        books,
+                    ),
+                    settings,
+                )
+            except (TypeError, ValueError):
+                continue
+            evidence.append(
+                Evidence(pair[0], pair[1], fit.home_rate, fit.away_rate, "odds", md_of[pair])
+            )
+    latest = max((e.matchday for e in evidence), default=0)
+    return evidence, latest
+
+
+def team_ratings(data_dir: Any = None) -> Any:
+    """Fitted team ratings, or None when there is no evidence."""
+    from uclfa.model.ratings import fit_ratings, load_rating_settings
+
+    evidence, latest = rating_evidence(data_dir)
+    if not evidence:
+        return None
+    return fit_ratings(evidence, load_rating_settings(), latest)
+
+
 def match_outlook_view(
     matchday: int,
     data_dir: Any = None,
     settings: Any = None,
     now: Any = None,
+    ratings: Any = None,
 ) -> dict[str, Any]:
     """Team goal expectations for one matchday, from the latest fixtures and odds snapshots.
 
-    Every number is an `analyst_estimate`. A match without usable odds is listed as
-    `unavailable` with the reason; nothing is filled in.
+    Every number is an `analyst_estimate`. A match with odds is fitted to them (`source`
+    odds). Without odds, and if `ratings` are given, it is projected from team ratings
+    (`source` projection, lower confidence); otherwise it is `unavailable` with the reason.
     """
     from datetime import UTC, datetime
     from zoneinfo import ZoneInfo
 
     from uclfa.ingest.clubs import make_resolver
     from uclfa.ingest.run import DATA_DIR, latest_snapshot
-    from uclfa.model.match import MarketInput, fit_match, load_settings, main_half_line
+    from uclfa.model.match import (
+        MarketInput,
+        fit_match,
+        load_settings,
+        main_half_line,
+        scoreline_grid,
+    )
 
     data_dir = DATA_DIR if data_dir is None else data_dir
     settings = load_settings() if settings is None else settings
@@ -527,6 +604,38 @@ def match_outlook_view(
                 reason = "odds list the teams the other way round; not used"
             elif f.get("status") == "FINISHED":
                 reason = "match already played"
+            elif ratings is not None:
+                try:
+                    lh, la = ratings.rates(f["home"], f["away"])
+                except KeyError:
+                    reason = "no odds, and a club has no rating evidence"
+                else:
+                    g = scoreline_grid(lh, la, settings.low_score_correction, settings.max_goals)
+                    matches.append(
+                        {
+                            **entry,
+                            "status": "projected",
+                            "source": "projection",
+                            "tag": "analyst_estimate",
+                            "expected_goals": {"home": round(lh, 2), "away": round(la, 2)},
+                            "clean_sheet": {
+                                "home": r3(g.home_clean_sheet),
+                                "away": r3(g.away_clean_sheet),
+                            },
+                            "scores": {
+                                "home": r3(1 - g.away_clean_sheet),
+                                "away": r3(1 - g.home_clean_sheet),
+                            },
+                            "result": {
+                                "home_win": r3(g.home_win),
+                                "draw": r3(g.draw),
+                                "away_win": r3(g.away_win),
+                            },
+                            "confidence": "projection",
+                            "reasons": ["no odds yet: projected from team ratings"],
+                        }
+                    )
+                    continue
             matches.append(
                 {**entry, "status": "unavailable", "tag": "unavailable", "reason": reason}
             )
@@ -567,6 +676,7 @@ def match_outlook_view(
             {
                 **entry,
                 "status": "fitted",
+                "source": "odds",
                 "tag": "analyst_estimate",
                 "expected_goals": {
                     "home": round(fit.home_rate, 2),
@@ -595,15 +705,17 @@ def match_outlook_view(
     ]
     fetched = datetime.fromisoformat(odds["fetched_at"]) if odds else None
     fitted = sum(m["status"] == "fitted" for m in matches)
+    projected = sum(m["status"] == "projected" for m in matches)
     return {
         "matchday": matchday,
-        "tag": "analyst_estimate" if fitted else "unavailable",
+        "tag": "analyst_estimate" if fitted or projected else "unavailable",
+        "projected": projected,
         "author": "Claude's match model (docs/model.md)",
         "odds_fetched_at": odds["fetched_at"] if odds else None,
         "odds_age_hours": round((now - fetched).total_seconds() / 3600, 1) if fetched else None,
         "fixtures_fetched_at": fixtures["fetched_at"],
         "fitted": fitted,
-        "unavailable": len(matches) - fitted,
+        "unavailable": len(matches) - fitted - projected,
         "odds_not_matched_to_a_fixture": stray,
         "settings": settings.model_dump(),
         "matches": matches,
@@ -636,14 +748,18 @@ def player_points_view(
     data_dir: Any = None,
     now: Any = None,
     squad_names: set[str] | None = None,
+    ratings: Any = None,
 ) -> dict[str, Any]:
-    """Expected points for every pool player in one matchday. All `analyst_estimate`."""
+    """Expected points for every pool player in one matchday. All `analyst_estimate`.
+
+    With `ratings`, matches without odds are projected from team ratings; each player row
+    says which (`match_source`)."""
     from uclfa.ingest.clubs import make_resolver
     from uclfa.ingest.run import DATA_DIR, latest_snapshot
     from uclfa.model.player import TeamContext, expected_points, load_player_settings
 
     data_dir = DATA_DIR if data_dir is None else data_dir
-    outlook = match_outlook_view(matchday, data_dir=data_dir, now=now)
+    outlook = match_outlook_view(matchday, data_dir=data_dir, now=now, ratings=ratings)
     pool, as_of = load_player_pool(data_dir)
     if not pool:
         return {"matchday": matchday, "tag": "unavailable", "note": "No player pool file."}
@@ -682,7 +798,7 @@ def player_points_view(
         other = "away" if where == "home" else "home"
         row["opponent"] = f"{m[other]} ({'H' if where == 'home' else 'A'})"
         row["kickoff_athens"] = m["kickoff_athens"]
-        if m["status"] != "fitted":
+        if m["status"] not in ("fitted", "projected"):
             unavailable(f"no match estimate: {m['reason']}")
             continue
         team = TeamContext(
@@ -691,11 +807,14 @@ def player_points_view(
             clean_sheet=m["clean_sheet"][where],
         )
         try:
-            pts = expected_points(p, team, rules, settings)
+            pts = expected_points(p.for_matchday(matchday), team, rules, settings)
         except ValueError as exc:
             unavailable(str(exc))
             continue
         notes = list(pts.notes)
+        row["match_source"] = m["source"]
+        if m["status"] == "projected":
+            notes.append("match projected from team ratings (no odds yet)")
         if m["confidence"] == "low":
             notes.append("match estimate is low confidence")
         players.append(
@@ -723,4 +842,215 @@ def player_points_view(
         "unavailable": len(players) - done,
         "players": players,
         "note": "Estimates, not official data. Inputs are Claude's, with sources per player.",
+    }
+
+
+# -- choices over the coming matchdays (Release 2 Phase E) ----------------------------
+
+
+def horizon_end(start: int, rules: RuleSet) -> int:
+    """Last matchday before the next one with unlimited transfers (a free rebuild)."""
+    md = start
+    while md + 1 in rules.matchdays and not rules.matchdays[md + 1].unlimited:
+        md += 1
+    return md
+
+
+def horizon_views(
+    first: int, last: int, rules: RuleSet, data_dir: Any = None, squad_names: Any = None
+) -> dict[int, dict[str, Any]]:
+    """Player points views for each matchday, odds where priced, projections otherwise."""
+    ratings = team_ratings(data_dir)
+    return {
+        md: player_points_view(
+            md, rules, data_dir=data_dir, squad_names=squad_names, ratings=ratings
+        )
+        for md in range(first, last + 1)
+    }
+
+
+def horizon_table(views: dict[int, dict[str, Any]]) -> dict[str, dict[int, dict[str, Any]]]:
+    """name -> matchday -> player row."""
+    out: dict[str, dict[int, dict[str, Any]]] = {}
+    for md, view in views.items():
+        for row in view.get("players") or []:
+            out.setdefault(row["name"], {})[md] = row
+    return out
+
+
+def team_outlook_view(first: int, last: int, data_dir: Any = None) -> dict[str, Any]:
+    """Every club's matches from `first` to `last`: opponent, expected goals, clean-sheet
+    chance and whether the numbers come from odds or a projection."""
+    ratings = team_ratings(data_dir)
+    clubs: dict[str, dict[int, dict[str, Any]]] = {}
+    for md in range(first, last + 1):
+        view = match_outlook_view(md, data_dir=data_dir, ratings=ratings)
+        for m in view.get("matches") or []:
+            for side, other, venue in (("home", "away", "H"), ("away", "home", "A")):
+                entry: dict[str, Any] = {
+                    "opponent": m[other],
+                    "venue": venue,
+                    "kickoff_athens": m["kickoff_athens"],
+                }
+                if m["status"] in ("fitted", "projected"):
+                    entry.update(
+                        tag="analyst_estimate",
+                        source=m["source"],
+                        goals_for=m["expected_goals"][side],
+                        goals_against=m["expected_goals"][other],
+                        clean_sheet=m["clean_sheet"][side],
+                    )
+                else:
+                    entry.update(tag="unavailable", reason=m["reason"])
+                clubs.setdefault(m[side], {})[md] = entry
+    return {
+        "first": first,
+        "last": last,
+        "tag": "analyst_estimate",
+        "ratings_from_matches": ratings.matches_used if ratings else 0,
+        "clubs": clubs,
+        "note": (
+            "Matches with odds use them; others are projected from team ratings fitted to "
+            "results and past odds, which are rougher (docs/model.md)."
+        ),
+    }
+
+
+def player_outlook_view(
+    first: int,
+    last: int,
+    rules: RuleSet,
+    names: list[str],
+    data_dir: Any = None,
+    squad_names: Any = None,
+) -> dict[str, Any]:
+    """Named players' expected points per matchday and in total. Analyst estimates."""
+    table = horizon_table(horizon_views(first, last, rules, data_dir, squad_names))
+    players = []
+    for name in names:
+        rows = table.get(name)
+        if not rows:
+            players.append({"name": name, "tag": "unavailable", "reason": "not in the pool"})
+            continue
+        per_md = []
+        for md in range(first, last + 1):
+            r = rows.get(md)
+            per_md.append(
+                {
+                    "matchday": md,
+                    "opponent": (r or {}).get("opponent"),
+                    "expected_points": (r or {}).get("expected_points"),
+                    "source": (r or {}).get("match_source"),
+                    "reason": None
+                    if r and r["expected_points"] is not None
+                    else (r or {}).get("reason", "no data"),
+                }
+            )
+        any_row = next(iter(rows.values()))
+        players.append(
+            {
+                "name": name,
+                "club": any_row["club"],
+                "position": any_row["position"],
+                "price": any_row["price"],
+                "tag": "analyst_estimate",
+                "matchdays": per_md,
+                "total": round(sum(m["expected_points"] or 0 for m in per_md), 2),
+                "complete": all(m["expected_points"] is not None for m in per_md),
+            }
+        )
+    return {"first": first, "last": last, "tag": "analyst_estimate", "players": players}
+
+
+def evaluate_move_view(
+    state: Any,
+    rules: RuleSet,
+    outs: list[str],
+    in_names: list[str],
+    matchday: int,
+    last: int | None = None,
+    data_dir: Any = None,
+) -> dict[str, Any]:
+    """Judge transfers at `matchday` against keeping the squad, over the matchdays up to
+    `last` (default: the last before the next free rebuild). Nothing is saved."""
+    from uclfa.horizon import canonical_state, evaluate_move
+    from uclfa.ingest.clubs import make_resolver
+    from uclfa.ingest.run import DATA_DIR, latest_snapshot
+    from uclfa.optimize import load_optimizer_settings
+
+    data_dir = DATA_DIR if data_dir is None else data_dir
+    last = last or horizon_end(matchday, rules)
+    resolve, _ = make_resolver(latest_snapshot("fixtures", data_dir), data_dir)
+    state = canonical_state(state, resolve)
+    owned = {sl.player.name for sl in state.squad.slots}
+    views = horizon_views(matchday, last, rules, data_dir, owned)
+    table = horizon_table(views)
+    ins, warnings = [], []
+    for name in in_names:
+        rows = table.get(name)
+        if not rows:
+            return {"tag": "unavailable", "note": f"Not in the player pool: {name}"}
+        row = next(iter(rows.values()))
+        if row["price"]["value"] is None:
+            return {"tag": "unavailable", "note": f"No price for {name}."}
+        if row["price"]["tag"] != "entered":
+            warnings.append(
+                f"{name}: price {row['price']['value']} is from a third-party site "
+                f"({row.get('price_date')}); check the game."
+            )
+        ins.append(
+            {
+                "name": name,
+                "club": resolve(row["club"]) or row["club"],
+                "position": row["position"],
+                "price": row["price"]["value"],
+            }
+        )
+    mds = list(range(matchday, last + 1))
+    xp_by_md = {
+        md: {n: rs[md]["expected_points"] for n, rs in table.items() if md in rs} for md in mds
+    }
+    sources = {
+        md: "odds"
+        if any(r.get("match_source") == "odds" for r in views[md]["players"])
+        else "projection"
+        for md in mds
+    }
+    try:
+        ev = evaluate_move(state, outs, ins, matchday, xp_by_md, sources, rules)
+    except ValueError as exc:
+        return {"tag": "unavailable", "note": str(exc)}
+    margin = load_optimizer_settings().verdict_margin
+    if ev.status != "valid":
+        verdict = "not possible as it stands"
+    elif ev.net_gain > margin:
+        verdict = "makes sense"
+    elif ev.net_gain > -margin:
+        verdict = "too close to call"
+    else:
+        verdict = "does not make sense"
+    unknown = sorted({n for lu in ev.keep + ev.move for n in lu.unknown})
+    return {
+        "tag": "analyst_estimate",
+        "move": [{"out": o, "in": i["name"]} for o, i in zip(outs, ins, strict=True)],
+        "matchdays": ev.matchdays,
+        "sources": ev.sources,
+        "rules_status": ev.status,
+        "rules_messages": ev.messages,
+        "free_transfers": ev.free_transfers,
+        "hit_points": ev.hit_points,
+        "bank_after": ev.bank_after,
+        "players": ev.player_rows,
+        "team_keep": [lu.points for lu in ev.keep],
+        "team_with_move": [lu.points for lu in ev.move],
+        "gain_by_matchday": ev.gain_by_matchday,
+        "net_gain": ev.net_gain,
+        "verdict": verdict,
+        "verdict_margin": margin,
+        "warnings": warnings
+        + ([f"No estimate for {', '.join(unknown)} (counted as 0)."] if unknown else []),
+        "note": (
+            "Team points are the best lineup and captain each matchday, with and without the "
+            "move. Projected matchdays (no odds yet) are rougher. The decision is Patrick's."
+        ),
     }

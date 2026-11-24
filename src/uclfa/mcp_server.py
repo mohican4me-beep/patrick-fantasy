@@ -100,6 +100,43 @@ def build_server(
         return service.player_points_view(matchday, current_rules(), data_dir=data_dir)
 
     @server.tool()
+    def team_outlook(first_matchday: int, last_matchday: int) -> dict[str, Any]:
+        """Every club's fixtures over a run of matchdays: opponent, expected goals for and
+        against, clean-sheet chance, and whether each number comes from odds or a
+        projection from team ratings. Analyst estimates."""
+        return service.team_outlook_view(first_matchday, last_matchday, data_dir=data_dir)
+
+    @server.tool()
+    def player_outlook(names: list[str], first_matchday: int, last_matchday: int) -> dict[str, Any]:
+        """Named players' expected points per matchday and in total over a run of
+        matchdays. Analyst estimates; projected matchdays are rougher."""
+        return service.player_outlook_view(
+            first_matchday, last_matchday, current_rules(), names, data_dir=data_dir
+        )
+
+    @server.tool()
+    def evaluate_move(
+        outs: list[str],
+        ins: list[str],
+        matchday: int,
+        last_matchday: int | None = None,
+    ) -> dict[str, Any]:
+        """Judge transfers (players out of the saved squad, pool players in) made at
+        `matchday` against keeping the squad, over the matchdays up to `last_matchday`
+        (default: the last before the next free rebuild). Includes the rules check, hit,
+        bank and a verdict. Analyst estimate; nothing is saved."""
+
+        def run(session: Any) -> dict[str, Any]:
+            state = store.latest_team_state(session)
+            if state is None:
+                return {"tag": "unavailable", "note": "No saved squad."}
+            return service.evaluate_move_view(
+                state, current_rules(), outs, ins, matchday, last_matchday, data_dir=data_dir
+            )
+
+        return with_session(run)
+
+    @server.tool()
     def get_rules() -> dict[str, Any]:
         """The 2026/27 rules as implemented, with each rule's verification status."""
         return service.rules_view(current_rules())
