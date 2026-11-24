@@ -13,6 +13,23 @@ arrive daily from GitHub Actions. ClubElo was dropped on 15 November (Patrick's 
 Release 2 Phase B (match model) was **accepted by Patrick on 15 November 2026** and merged
 into `main`.
 
+Release 2 Phases C (player expected points) and D (optimizer) were **accepted by Patrick on
+24 November 2026** and merged into `main`. They produced the Matchday 5 Wildcard squad.
+
+## Release 2 Phases C and D acceptance criteria (accepted 24 November 2026)
+
+| # | Criterion | Status | Evidence |
+|---|---|---|---|
+| 1 | All tests pass, lint clean | Met | 266 passed; `ruff check` clean |
+| 2 | Points formula matches hand-worked examples and the scoring engine | Met | `tests/test_player_model.py`, including a 40,000-match simulation per position |
+| 3 | Every optimizer plan passes the rules engine | Met | `tests/test_optimize.py`; real MD5 plans all `valid` |
+| 4 | Optimizer matches brute force on small cases | Met | `test_one_transfer_matches_brute_force` |
+| 5 | Every number tagged with source; missing inputs stay missing | Met | Pool prices `entered`/`third_party` with date; players without inputs get no number |
+| 6 | Method and limits written up | Met | `docs/model.md` |
+
+Known limits: one matchday at a time; ball recoveries are position averages; player of the
+match not modelled; inputs are baselines from league stats plus team news.
+
 ## Release 2 Phase B acceptance criteria (accepted 15 November 2026)
 
 | # | Criterion | Status | Evidence |
@@ -101,10 +118,10 @@ Done on 13 November: six in-game checks answered; matchday 5 deadline time recor
 Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host confirmed as
 "beast" (AMD Ryzen 5 5600X, 32 GB RAM).
 
-## Next, after Phase B is accepted
+## Next
 
-Release 2 Phase C: player-level expected points (minutes, goal and assist shares, defensive
-actions) from hand-entered data and the match model. Needs its own plan and approval.
+Release 2 Phase E: evaluate choices over the coming matchdays (fixture run), not only the
+next one. Plan presented to Patrick on 24 November; needs his approval.
 
 ## Known limits of Phase 1
 

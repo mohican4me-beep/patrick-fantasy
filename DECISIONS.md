@@ -93,3 +93,12 @@ Newest last. Each entry: the decision, who made it, and the reason.
 | Claude chooses the players and checks prices; Patrick no longer supplies names | Patrick | "The point is that you propose players" |
 | Prices and player stats may come from public third-party sites, read by Claude in chat sessions, tagged `third_party` with source and date | Patrick ("do it as you wish") | UEFA's game has no public price page; scripted requests to it stay ruled out (decision 1). The in-game price at purchase is the truth |
 | Player model is a formula, not a simulation | Claude | Explainable and testable; a simulation test checks it against the scoring engine |
+
+## 24 November 2026: Phases C and D accepted; how advice should look
+
+| Decision | By | Reason |
+|---|---|---|
+| Phases C and D accepted | Patrick | Used for the Matchday 5 Wildcard |
+| Wildcard played for Matchday 5; squad kept until Matchday 9, changed only with free transfers | Patrick | |
+| Advice evaluates a choice over the coming matchdays, not only the next one; the app judges whether a choice makes sense, Patrick decides | Patrick | "A goalkeeper could be perfect for this matchday but not good for the next" |
+| Between-days strategy: start Tuesday players, keep Wednesday players on the bench, swap in after Tuesday | Patrick | Incoming players' teams must still be to play (confirmed rule); Claude's earlier advice had this backwards |
