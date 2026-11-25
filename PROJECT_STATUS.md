@@ -131,7 +131,7 @@ Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host con
 
 | # | Criterion | Status | Evidence |
 |---|---|---|---|
-| 1 | All tests pass, lint clean | Met | 295 passed; `ruff check` clean |
+| 1 | All tests pass, lint clean | Met | 285 passed; `ruff check` clean |
 | 2 | `uclfa review --matchday 5` shows predicted against actual for the squad and pool | Pending | Code and tests done; needs the UCL stats file saved after Matchday 5 |
 | 3 | Updated inputs applied; Matchday 6 shows old and updated estimates | Pending | Same file |
 | 4 | Journal records Matchday 5's outcome | Pending | Needs Patrick's Matchday 5 total |
