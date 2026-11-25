@@ -118,10 +118,18 @@ Done on 13 November: six in-game checks answered; matchday 5 deadline time recor
 Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host confirmed as
 "beast" (AMD Ryzen 5 5600X, 32 GB RAM).
 
+## Release 2 Phase E (approved 24 November 2026): built, awaiting acceptance
+
+| # | Criterion | Status | Evidence |
+|---|---|---|---|
+| 1 | All tests pass, lint clean | Met | 277 passed; `ruff check` clean |
+| 2 | `uclfa outlook --from 6 --to 8` covers every club, odds-based and projected marked | Met | 36 clubs; `~` marks projections; `test_matches_without_odds_are_projected_and_marked` |
+| 3 | `uclfa evaluate` answers the goalkeeper example per matchday and in total | Met | Donnarumma -> Becker over MD6-8: +0.0, too close to call, because Joan García covers MD6 |
+| 4 | The Matchday 6 decision is made with it | Pending | Odds for MD6 expected about 1 December |
+
 ## Next
 
-Release 2 Phase E: evaluate choices over the coming matchdays (fixture run), not only the
-next one. Plan presented to Patrick on 24 November; needs his approval.
+Matchday 5 between-days swaps (25 Nov), then the Matchday 6 decision with Phase E.
 
 ## Known limits of Phase 1
 

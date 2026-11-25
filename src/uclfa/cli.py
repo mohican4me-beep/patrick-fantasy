@@ -10,6 +10,7 @@ import json
 import sys
 from collections.abc import Sequence
 from pathlib import Path
+from typing import Any
 
 import yaml
 from sqlalchemy.orm import Session
@@ -477,7 +478,173 @@ def cmd_fixtures(args: argparse.Namespace) -> int:
     return 0
 
 
+def _saved_state() -> Any:
+    engine = store.make_readonly_engine(store.db_path())
+    with Session(engine) as session:
+        state = store.latest_team_state(session)
+    engine.dispose()
+    return state
+
+
+def _span(args: argparse.Namespace, rules: Any, state: Any) -> tuple[int, int]:
+    first = args.first or (state.matchday + 1 if state else 1)
+    last = args.last or service.horizon_end(first, rules)
+    return first, last
+
+
+def _cell(entry: dict[str, Any] | None) -> str:
+    if entry is None:
+        return "no match"
+    head = f"{entry['opponent'][:12]} ({entry['venue']})"
+    if entry["tag"] == "unavailable":
+        return f"{head} ?"
+    mark = "" if entry["source"] == "odds" else "~"
+    return (
+        f"{head} {entry['goals_for']:.1f}-{entry['goals_against']:.1f} "
+        f"CS{entry['clean_sheet'] * 100:.0f}%{mark}"
+    )
+
+
+def cmd_team_outlook(args: argparse.Namespace) -> int:
+    rules = load_rules()
+    state = _saved_state() if store.db_path().exists() else None
+    first, last = _span(args, rules, state)
+    view = service.team_outlook_view(first, last)
+    if args.json:
+        print(json.dumps(view, indent=1, ensure_ascii=False))
+        return 0
+    clubs = view["clubs"]
+    if args.mine and state is not None:
+        from uclfa.ingest.clubs import make_resolver
+        from uclfa.ingest.run import DATA_DIR, latest_snapshot
+
+        resolve, _ = make_resolver(latest_snapshot("fixtures", DATA_DIR), DATA_DIR)
+        mine = {resolve(sl.player.club) for sl in state.squad.slots}
+        clubs = {c: v for c, v in clubs.items() if c in mine}
+
+    def strength(club: str) -> float:
+        rows = [e for e in clubs[club].values() if e["tag"] != "unavailable"]
+        return sum(e["goals_for"] - e["goals_against"] for e in rows)
+
+    print(
+        f"Fixture outlook, matchdays {first}-{last}. ANALYST ESTIMATE. "
+        f"Each cell: opponent, expected goals for-against, clean-sheet chance."
+    )
+    print("~ = projected from team ratings (no odds yet); rougher than odds-based numbers.")
+    print()
+    for club in sorted(clubs, key=lambda c: -strength(c)):
+        cells = [_cell(clubs[club].get(md)) for md in range(first, last + 1)]
+        print(
+            f"{club[:24]:24} "
+            + " | ".join(f"MD{md} {c}" for md, c in zip(range(first, last + 1), cells, strict=True))
+        )
+    return 0
+
+
+def cmd_player_outlook(args: argparse.Namespace) -> int:
+    rules = load_rules()
+    state = _saved_state() if store.db_path().exists() else None
+    first, last = _span(args, rules, state)
+    owned = {sl.player.name for sl in state.squad.slots} if state else set()
+    names = list(args.names or [])
+    if args.mine:
+        names += sorted(owned - set(names))
+    if not names:
+        print("Name at least one player, or use --mine.")
+        return 1
+    table = service.horizon_table(service.horizon_views(first, last, rules, squad_names=owned))
+    unknown = [n for n in names if n not in table]
+    if unknown:
+        print(f"Not in the player pool: {', '.join(unknown)}")
+        return 1
+    mds = list(range(first, last + 1))
+    print(f"Expected points, matchdays {first}-{last}. ANALYST ESTIMATE, not official data.")
+    print("~ = match projected from team ratings (no odds yet).")
+    print()
+    print(
+        f"{'Player':22} {'Pos':3} "
+        + " ".join(f"{'MD' + str(md):>20}" for md in mds)
+        + f" {'Total':>6}"
+    )
+    rows = []
+    for name in names:
+        cells, total = [], 0.0
+        for md in mds:
+            r = table[name].get(md)
+            if r is None or r["expected_points"] is None:
+                reason = (r or {}).get("reason", "no data")
+                cells.append(f"{'n/a':>20}")
+                if args.verbose:
+                    print(f"  {name} MD{md}: {reason}")
+                continue
+            mark = "~" if r.get("match_source") == "projection" else " "
+            opp = r.get("opponent", "")[:12]
+            cells.append(f"{opp:>12} {r['expected_points']:5.1f}{mark}")
+            total += r["expected_points"]
+        first_row = next(iter(table[name].values()))
+        rows.append(
+            (
+                total,
+                f"{name[:22]:22} {first_row['position']:3} " + " ".join(cells) + f" {total:6.1f}",
+            )
+        )
+    for _, line in sorted(rows, key=lambda x: -x[0]):
+        print(line)
+    return 0
+
+
+def cmd_evaluate(args: argparse.Namespace) -> int:
+    rules = load_rules()
+    state = _saved_state()
+    if state is None:
+        print("No saved squad. Run `uclfa load` first.")
+        return 1
+    ev = service.evaluate_move_view(state, rules, args.out, args.incoming, args.matchday, args.last)
+    if args.json:
+        print(json.dumps(ev, indent=1, ensure_ascii=False))
+        return 0 if ev["tag"] != "unavailable" else 1
+    if ev["tag"] == "unavailable":
+        print(ev["note"])
+        return 1
+    mds = ev["matchdays"]
+    move = ", ".join(f"{m['out']} -> {m['in']}" for m in ev["move"])
+    print(f"Evaluating {move} at matchday {mds[0]}, judged over matchdays {mds[0]}-{mds[-1]}.")
+    print("ANALYST ESTIMATE: best lineup and captain each matchday, with and without the move.")
+    print()
+    bank = "?" if ev["bank_after"] is None else f"{ev['bank_after']:.1f}m"
+    print(
+        f"Rules check: {ev['rules_status'].upper()}. Free transfers at MD{mds[0]}: "
+        f"{ev['free_transfers']}; hit: -{ev['hit_points']}; bank after: {bank}."
+    )
+    for message in ev["rules_messages"] + ev["warnings"]:
+        print(f"  ! {message}")
+    print()
+
+    def md_label(md: int) -> str:
+        return f"MD{md}" + ("" if ev["sources"][md] == "odds" else "~")
+
+    print(f"{'':24} " + " ".join(f"{md_label(md):>7}" for md in mds) + f" {'Total':>7}")
+    outs = {m["out"] for m in ev["move"]}
+    for name, vals in ev["players"].items():
+        cells = " ".join(f"{'n/a' if x is None else f'{x:.1f}':>7}" for x in vals)
+        label = ("out: " if name in outs else "in: ") + name
+        print(f"{label[:24]:24} {cells} {sum(x or 0 for x in vals):7.1f}")
+    for label, vals in (("team, keep", ev["team_keep"]), ("team, with move", ev["team_with_move"])):
+        print(f"{label:24} " + " ".join(f"{x:7.1f}" for x in vals) + f" {sum(vals):7.1f}")
+    gains = ev["gain_by_matchday"]
+    print(f"{'gain':24} " + " ".join(f"{g:+7.1f}" for g in gains) + f" {sum(gains):+7.1f}")
+    print()
+    print(
+        f"Verdict: {ev['verdict']} ({ev['net_gain']:+.1f} after any hit; "
+        f"within ±{ev['verdict_margin']:.0f} counts as too close to call)."
+    )
+    print("~ = projected matchday (no odds yet). Team points count only players who would start.")
+    return 0
+
+
 def cmd_outlook(args: argparse.Namespace) -> int:
+    if args.matchday is None:
+        return cmd_team_outlook(args)
     view = service.match_outlook_view(args.matchday)
     if args.json:
         print(json.dumps(view, indent=1, ensure_ascii=False))
@@ -619,6 +786,8 @@ def cmd_optimize(args: argparse.Namespace) -> int:
     )
     state = dataclasses.replace(state, squad=Squad(slots))
     names = {sl.player.name for sl in slots}
+    if args.last:
+        return _optimize_stretch(args, rules, state, names, resolve)
     view = service.player_points_view(args.matchday, rules, squad_names=names)
     if not view.get("players"):
         print(view.get("note", "Unavailable."))
@@ -662,6 +831,81 @@ def cmd_optimize(args: argparse.Namespace) -> int:
     if best.unknown_starters:
         print(f"  ! No estimate for: {', '.join(best.unknown_starters)}")
     print("* recommended. Net = expected points minus transfer hits. One matchday only.")
+    return 0
+
+
+def _optimize_stretch(
+    args: argparse.Namespace, rules: Any, state: Any, names: set[str], resolve: Any
+) -> int:
+    from uclfa.horizon import free_transfers_at
+    from uclfa.optimize import Candidate, load_optimizer_settings, optimise_horizon
+
+    first, last = args.matchday, args.last
+    views = service.horizon_views(first, last, rules, squad_names=names)
+    table = service.horizon_table(views)
+    owned = {sl.player.name: sl for sl in state.squad.slots}
+    missing = sorted(set(owned) - set(table))
+    if missing:
+        print(f"Squad players not in the pool: {', '.join(missing)}")
+        return 1
+    cands = []
+    for name, rows in table.items():
+        row = next(iter(rows.values()))
+        price = owned[name].player.price if name in owned else row["price"]["value"]
+        if price is None:
+            continue
+        cands.append(
+            Candidate(
+                name=name,
+                club=resolve(row["club"]) or row["club"],
+                position=Position(row["position"]),
+                price=float(price),
+                xp=0.0,
+                owned=name in owned,
+                known=True,
+                price_tag=row["price"]["tag"],
+            )
+        )
+    xp_by_md = {
+        md: {n: rs[md]["expected_points"] for n, rs in table.items() if md in rs}
+        for md in range(first, last + 1)
+    }
+    free = free_transfers_at(state, first, rules)
+    result = optimise_horizon(
+        cands,
+        xp_by_md,
+        state,
+        rules,
+        load_optimizer_settings(),
+        None if free in (None, "unlimited") else int(free),
+        frozenset(args.sell or []),
+    )
+    if args.json:
+        print(json.dumps(result, indent=1, ensure_ascii=False))
+        return 0
+    print(
+        f"Transfers at matchday {first}, judged over matchdays {first}-{last}. "
+        "ANALYST ESTIMATE, suggestions only."
+    )
+    print(f"Free transfers at MD{first}: {free}. Later matchdays' transfers are not planned here.")
+    print()
+    header = " ".join(f"{'MD' + str(md):>6}" for md in result["matchdays"])
+    print(f"{'Plan':15} {'Rules':8} {header} {'Hit':>4} {'Net':>6}  Changes")
+    for plan in result["plans"]:
+        mark = "*" if plan["label"] == result["best"] else " "
+        cells = " ".join(f"{x:6.1f}" for x in plan["points_by_matchday"])
+        moves = ", ".join(
+            f"{o} -> {i}" for o, i in zip(plan["transfers_out"], plan["transfers_in"], strict=True)
+        )
+        print(
+            f"{mark}{plan['label']:14} {plan['status']:8} {cells} {-plan['hit_points']:>4} "
+            f"{plan['net_points']:6.1f}  {moves or 'none'}"
+        )
+        for message in plan["messages"]:
+            print(f"{'':17}! {message}")
+    print()
+    print("* best net total. Prices of players not owned are third-party unless entered.")
+    print("Check any single move with `uclfa evaluate`.")
     return 0
 
 
@@ -939,9 +1183,26 @@ def build_parser() -> argparse.ArgumentParser:
     fx.add_argument("--matchday", type=int)
     fx.set_defaults(func=cmd_fixtures)
     outlook = sub.add_parser("outlook", help="team goal expectations for a matchday (estimate)")
-    outlook.add_argument("--matchday", type=int, required=True)
+    outlook.add_argument("--matchday", type=int, help="one matchday, match by match")
+    outlook.add_argument("--from", dest="first", type=int, help="fixture run: first matchday")
+    outlook.add_argument("--to", dest="last", type=int, help="fixture run: last matchday")
+    outlook.add_argument("--mine", action="store_true", help="only clubs in the saved squad")
     outlook.add_argument("--json", action="store_true", help="print the full view as JSON")
     outlook.set_defaults(func=cmd_outlook)
+    pout = sub.add_parser("player-outlook", help="players' expected points over matchdays")
+    pout.add_argument("names", nargs="*")
+    pout.add_argument("--mine", action="store_true", help="add every player in the squad")
+    pout.add_argument("--from", dest="first", type=int)
+    pout.add_argument("--to", dest="last", type=int)
+    pout.add_argument("--verbose", action="store_true", help="say why a number is missing")
+    pout.set_defaults(func=cmd_player_outlook)
+    evaluate = sub.add_parser("evaluate", help="judge transfers over the coming matchdays")
+    evaluate.add_argument("--out", action="append", required=True)
+    evaluate.add_argument("--in", dest="incoming", action="append", required=True)
+    evaluate.add_argument("--matchday", type=int, required=True, help="matchday of the move")
+    evaluate.add_argument("--to", dest="last", type=int, help="last matchday to judge over")
+    evaluate.add_argument("--json", action="store_true")
+    evaluate.set_defaults(func=cmd_evaluate)
     points = sub.add_parser("points", help="player expected points for a matchday (estimate)")
     points.add_argument("--matchday", type=int, required=True)
     points.add_argument("--position", choices=["GK", "DEF", "MID", "FWD"])
@@ -956,6 +1217,7 @@ def build_parser() -> argparse.ArgumentParser:
     optimize = sub.add_parser("optimize", help="best squad, transfers and captain (estimate)")
     optimize.add_argument("--matchday", type=int, required=True)
     optimize.add_argument("--json", action="store_true")
+    optimize.add_argument("--to", dest="last", type=int, help="judge over matchdays up to this one")
     optimize.add_argument(
         "--sell", action="append", help="player every plan must sell (repeatable)"
     )

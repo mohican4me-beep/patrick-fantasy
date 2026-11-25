@@ -1,23 +1,24 @@
 # Hand corrections on top of the generated baseline (uclfa pool build).
-# Key: the player's name exactly as in the source file. Any pool field can be set here;
+# Key: the player's name exactly as in the stats file. Any pool field can be set here;
 # add a `why` and a source. Prices Patrick read in the game are tagged entered.
+# Names are mapped to those in Patrick's squad file (squads/md05-2-wildcard.yaml).
 overrides:
-  "J. Pons": {name: "Joan Garcia", price: 5.0, price_tag: entered, price_date: "2026-11-13"}
-  "K. Gadou": {name: "J. Gadou", price: 4.0, price_tag: entered, price_date: "2026-11-13"}
-  "L. Geertruida": {price: 4.5, price_tag: entered, price_date: "2026-11-13"}
-  "M. Mittelstädt": {name: "M. Mittelstadt", price: 4.5, price_tag: entered, price_date: "2026-11-13"}
-  "C. Zopalato Neves": {name: "Carlos Augusto", price: 4.2, price_tag: entered, price_date: "2026-11-13"}
-  "B. Fernandes": {name: "Bruno Fernandes", price: 9.0, price_tag: entered, price_date: "2026-11-13"}
-  "J. Gonçalves Neves": {name: "Joao Neves", price: 5.9, price_tag: entered, price_date: "2026-11-13"}
-  "Raphinha": {price: 9.6, price_tag: entered, price_date: "2026-11-13"}
-  "H. Kane": {price: 11.2, price_tag: entered, price_date: "2026-11-13"}
-  "B. Mbeumo": {price: 7.0, price_tag: entered, price_date: "2026-11-13"}
-  "G. Kobel": {price: 5.0, price_tag: entered, price_date: "2026-11-13"}
-  "V. Júnior": {name: "Vinicius Junior", price: 9.5, price_tag: entered, price_date: "2026-11-13"}
-  "K. Mbappé": {name: "K. Mbappe", price: 11.1, price_tag: entered, price_date: "2026-11-13"}
-  "R. Calafiori": {price: 4.5, price_tag: entered, price_date: "2026-11-13"}
-# Players in Patrick's squad that the source does not list; they stay without inputs.
-extra:
-  - {name: "G. Zechiel", club: "Feyenoord", position: MID, price: 4.6, price_tag: entered,
-     price_source: "squads/md05-1-pre-deadline.yaml", price_date: "2026-11-13",
-     note: "Not found in the source table on 15 Nov 2026."}
+  # Patrick's squad after the Matchday 5 Wildcard.
+  "J. Pons": {name: "Joan Garcia", price: 5.0, price_tag: entered, price_date: "2026-11-23"}
+  "G. Donnarumma": {price: 6.0, price_tag: entered, price_date: "2026-11-23"}
+  "R. Calafiori": {price: 4.5, price_tag: entered, price_date: "2026-11-23"}
+  "J. Gvardiol": {price: 5.5, price_tag: entered, price_date: "2026-11-23"}
+  "A. Grimaldo García": {name: "A. Grimaldo", price: 5.5, price_tag: entered, price_date: "2026-11-23"}
+  "A. Hakimi Mouh": {name: "A. Hakimi", price: 6.0, price_tag: entered, price_date: "2026-11-23"}
+  "J. Naveros": {name: "J. Ramon", why: "Jacobo Ramón; the game shows J. Ramón (Como DEF)"}
+  "F. López Marín": {name: "Fermin Lopez", price: 7.0, price_tag: entered, price_date: "2026-11-23"}
+  "Raphinha": {price: 9.6, price_tag: entered, price_date: "2026-11-23"}
+  "A. Rodríguez": {name: "Alex Baena", price: 5.6, price_tag: entered, price_date: "2026-11-23", why: "Álex Baena; the game shows Álex Baena (Atlético MID) at 5.6"}
+  "M. Cherki": {name: "R. Cherki"}
+  "K. Mbappé": {name: "K. Mbappe", price: 11.1, price_tag: entered, price_date: "2026-11-23"}
+  "N. Jackson": {price: 7.3, price_tag: entered, price_date: "2026-11-23"}
+  "A. Isak": {price: 7.4, price_tag: entered, price_date: "2026-11-23"}
+  # Seen in the game on 23 November, not owned.
+  "C. Zopalato Neves": {name: "Carlos Augusto", price: 4.2, price_tag: entered, price_date: "2026-11-23"}
+  "F. Ruiz Peña": {price: 6.8, price_tag: entered, price_date: "2026-11-23"}
+  "N. Paz Martínez": {price: 7.1, price_tag: entered, price_date: "2026-11-23"}

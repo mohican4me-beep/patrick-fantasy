@@ -126,3 +126,59 @@ position, scores each with the rules engine, and checks the formula gives the sa
   in the formula. The command shows "points if he starts" beside the expected figure.
 - **Shares are season averages** and do not adapt to the opponent.
 - **No track record yet**, as for the match model.
+
+# Choices over the coming matchdays (Release 2 Phase E)
+
+Bookmakers price about one matchday ahead. To judge a choice over the matchdays that follow,
+the app needs its own estimate of each team.
+
+## Team ratings
+
+Every club gets an attack rating and a defence rating, plus one home advantage. Expected
+goals are `exp(base + home + attack[team] - defence[opponent])`. The ratings are fitted to:
+
+- **odds:** every match a daily snapshot has priced, at the market-implied goal rates,
+  weighted 3 times a played result;
+- **results:** every finished league-phase match, each team's goals capped at 3 so one 9-1
+  does not dominate;
+- older matchdays count less (weight halves every 4 matchdays), and every rating is pulled
+  towards average (shrinkage 2).
+
+All of these are in `model/settings.yaml` (`ratings`).
+
+**How good are the projections?** Fitted to Matchday 1-4 results only, they predicted the
+Matchday 5 market's goal rates with an average miss of 31%, against 44% for treating every
+team as equal (24 November 2026). Each new matchday of odds and results improves them.
+
+## How numbers are marked
+
+A matchday with odds uses them (`source: odds`). Without odds the match is projected from
+the ratings (`source: projection`, shown with `~`). Team news has a matchday range: an
+absence reported for one match counts there only; a long injury (Kane, out to MD10) counts
+across it.
+
+## Commands
+
+| Command | What it answers |
+|---|---|
+| `uclfa outlook --from 6 --to 8 [--mine]` | Each club's fixture run: expected goals for and against, clean-sheet chance |
+| `uclfa player-outlook NAME ... [--mine] --from 6 --to 8` | Players' expected points per matchday and in total |
+| `uclfa evaluate --out A --in B --matchday 6 [--to 8]` | Does this move make sense over the stretch? Rules check, hit, bank, gain per matchday, verdict |
+| `uclfa optimize --matchday 6 --to 8` | Suggested transfers at matchday 6, judged over 6-8 |
+
+The stretch defaults to the last matchday before the next one with unlimited transfers.
+The same views are read-only tools for Claude: `team_outlook`, `player_outlook`,
+`evaluate_move`.
+
+**How a move is judged.** For each matchday, the squad's best lineup and captain are found
+with and without the move; the gain is the difference, summed over the stretch, minus any
+hit. A move within 2 points (`verdict_margin`) is "too close to call". Because the lineup is
+re-picked every matchday, a player who would sit on the bench adds nothing, and two
+goalkeepers who cover each other's hard fixtures are valued as such.
+
+## Limits
+
+- Projections weeks ahead ignore injuries, form and rotation not yet known.
+- The stretch optimizer plans transfers at the first matchday only, then holds them.
+- The between-days option (swapping in Wednesday players after Tuesday) is not valued;
+  it favours squads with players on both days.

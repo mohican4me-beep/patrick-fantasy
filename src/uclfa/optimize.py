@@ -8,6 +8,7 @@ through the rules engine before it is returned. All numbers are analyst estimate
 
 from __future__ import annotations
 
+import dataclasses
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -30,6 +31,7 @@ class OptimizerSettings(BaseModel):
     bench_weight: float
     max_transfers: int
     wildcard_margin: float
+    verdict_margin: float = 2.0
 
 
 def load_optimizer_settings(path=DEFAULT_SETTINGS_PATH) -> OptimizerSettings:  # noqa: ANN001
@@ -77,57 +79,183 @@ def _solve(
     force_out: frozenset[str] = frozenset(),
 ) -> tuple[list[int], list[int], int] | None:
     """Return (squad indices, starter indices, captain index), or None if infeasible."""
-    n = len(cands)
     xp = np.array([c.xp for c in cands])
-    # Variables: x (squad), y (starter), c (captain).
-    obj = -np.concatenate([s.bench_weight * xp, (1 - s.bench_weight) * xp, xp])
+    sol = _solve_multi(cands, [xp], rules, matchday, budget, s, exact_transfers, force_out)
+    if sol is None:
+        return None
+    squad, starters, captains = sol
+    return squad, starters[0], captains[0]
+
+
+def _solve_multi(
+    cands: list[Candidate],
+    xp_cols: list[np.ndarray],
+    rules: RuleSet,
+    matchday: int,
+    budget: float,
+    s: OptimizerSettings,
+    exact_transfers: int | None,
+    force_out: frozenset[str] = frozenset(),
+) -> tuple[list[int], list[list[int]], list[int]] | None:
+    """One squad for several matchdays, with its own lineup and captain in each.
+
+    Variables: x (squad), then for each matchday y (starters) and c (captain). Returns
+    (squad indices, starters per matchday, captain per matchday) or None if infeasible."""
+    n, h = len(cands), len(xp_cols)
+    size = n * (1 + 2 * h)
+
+    def y(m: int, i: int) -> int:
+        return n + 2 * m * n + i
+
+    def c(m: int, i: int) -> int:
+        return n + (2 * m + 1) * n + i
+
+    obj = np.zeros(size)
+    for m, xp in enumerate(xp_cols):
+        obj[:n] -= s.bench_weight * xp
+        obj[y(m, 0) : y(m, 0) + n] -= (1 - s.bench_weight) * xp
+        obj[c(m, 0) : c(m, 0) + n] -= xp
     rows, lo, hi = [], [], []
 
     def add(coefs: dict[int, float], low: float, high: float) -> None:
-        row = np.zeros(3 * n)
+        row = np.zeros(size)
         for k, val in coefs.items():
             row[k] = val
         rows.append(row)
         lo.append(low)
         hi.append(high)
 
-    for i in range(n):
-        add({n + i: 1, i: -1}, -np.inf, 0)  # starter only if in squad
-        add({2 * n + i: 1, n + i: -1}, -np.inf, 0)  # captain only if starter
     for pos in POSITIONS:
-        idx = [i for i, c in enumerate(cands) if c.position is pos]
+        idx = [i for i, cand in enumerate(cands) if cand.position is pos]
         add({i: 1 for i in idx}, rules.squad.positions[pos], rules.squad.positions[pos])
-        starters = {n + i: 1 for i in idx}
-        if pos in rules.lineup.exact:
-            add(starters, rules.lineup.exact[pos], rules.lineup.exact[pos])
-        else:
-            add(starters, rules.lineup.minimum.get(pos, 0), np.inf)
-    add({n + i: 1 for i in range(n)}, rules.lineup.size, rules.lineup.size)
-    add({2 * n + i: 1 for i in range(n)}, 1, 1)
-    add({i: c.price for i, c in enumerate(cands)}, -np.inf, budget + 1e-6)
+        for m in range(h):
+            starters = {y(m, i): 1 for i in idx}
+            if pos in rules.lineup.exact:
+                add(starters, rules.lineup.exact[pos], rules.lineup.exact[pos])
+            else:
+                add(starters, rules.lineup.minimum.get(pos, 0), np.inf)
+    for m in range(h):
+        for i in range(n):
+            add({y(m, i): 1, i: -1}, -np.inf, 0)  # starter only if in squad
+            add({c(m, i): 1, y(m, i): -1}, -np.inf, 0)  # captain only if starter
+        add({y(m, i): 1 for i in range(n)}, rules.lineup.size, rules.lineup.size)
+        add({c(m, i): 1 for i in range(n)}, 1, 1)
+    add({i: cand.price for i, cand in enumerate(cands)}, -np.inf, budget + 1e-6)
     limit = rules.stages[rules.matchday(matchday).stage].club_limit
-    for club in {c.club for c in cands}:
-        add({i: 1 for i, c in enumerate(cands) if c.club == club}, -np.inf, limit)
+    for club in {cand.club for cand in cands}:
+        add({i: 1 for i, cand in enumerate(cands) if cand.club == club}, -np.inf, limit)
     if exact_transfers is not None:
-        add({i: 1 for i, c in enumerate(cands) if not c.owned}, exact_transfers, exact_transfers)
-    # Never buy a player the model cannot value.
-    upper = np.ones(3 * n)
-    for i, c in enumerate(cands):
-        if (not c.known and not c.owned) or c.name in force_out:
-            upper[i] = upper[n + i] = upper[2 * n + i] = 0
+        add(
+            {i: 1 for i, cand in enumerate(cands) if not cand.owned},
+            exact_transfers,
+            exact_transfers,
+        )
+    # Never buy a player the model cannot value; never keep a forced sale.
+    upper = np.ones(size)
+    for i, cand in enumerate(cands):
+        if (not cand.known and not cand.owned) or cand.name in force_out:
+            upper[i] = 0
+            for m in range(h):
+                upper[y(m, i)] = upper[c(m, i)] = 0
     res = milp(
         obj,
         constraints=LinearConstraint(np.array(rows), lo, hi),
-        integrality=np.ones(3 * n),
-        bounds=Bounds(np.zeros(3 * n), upper),
+        integrality=np.ones(size),
+        bounds=Bounds(np.zeros(size), upper),
     )
     if not res.success:
         return None
     x = res.x.round().astype(int)
     squad = [i for i in range(n) if x[i]]
-    starters = [i for i in range(n) if x[n + i]]
-    captain = next(i for i in range(n) if x[2 * n + i])
-    return squad, starters, captain
+    starters = [[i for i in range(n) if x[y(m, i)]] for m in range(h)]
+    captains = [next(i for i in range(n) if x[c(m, i)]) for m in range(h)]
+    return squad, starters, captains
+
+
+def optimise_horizon(
+    cands: list[Candidate],
+    xp_by_md: dict[int, dict[str, float | None]],
+    state: Any,
+    rules: RuleSet,
+    s: OptimizerSettings,
+    free_transfers: int | None,
+    force_out: frozenset[str] = frozenset(),
+) -> dict[str, Any]:
+    """Best transfers at the first matchday of `xp_by_md`, held to its last, judged on the
+    sum of each matchday's best lineup. One plan per number of transfers, each checked by
+    the rules engine. Transfers in later matchdays are not planned here."""
+    mds = sorted(xp_by_md)
+    first = mds[0]
+    cols = [np.array([xp_by_md[md].get(c.name) or 0.0 for c in cands]) for md in mds]
+    known = {c.name for c in cands if all(xp_by_md[md].get(c.name) is not None for md in mds)}
+    cands = [dataclasses.replace(c, known=c.name in known) for c in cands]
+    budget = state.bank + sum(c.price for c in cands if c.owned)
+    plans = []
+    for k in range(0, s.max_transfers + 1):
+        sol = _solve_multi(cands, cols, rules, first, budget, s, k, force_out)
+        if sol is None:
+            continue
+        squad_idx, starters, captains = sol
+        chosen = {cands[i].name for i in squad_idx}
+        owned = {sl.player.name: sl for sl in state.squad.slots}
+        outs = sorted(set(owned) - chosen)
+        ins = [cands[i] for i in squad_idx if not cands[i].owned]
+        pool = {p: [c for c in ins if c.position is p] for p in POSITIONS}
+        transfers = []
+        for name in outs:
+            incoming = pool[owned[name].player.position].pop(0)
+            transfers.append(
+                v.Transfer(
+                    out_id=owned[name].player.id,
+                    incoming=Player(
+                        id=f"new:{incoming.name}",
+                        name=incoming.name,
+                        club=incoming.club,
+                        position=incoming.position,
+                        price=incoming.price,
+                    ),
+                )
+            )
+        outcome = v.validate_transfers(
+            state.squad,
+            transfers,
+            matchday=first,
+            bank=state.bank,
+            free_transfers=free_transfers,
+            rules=rules,
+            chip=None,
+            chips_used=state.chips_used,
+        )
+        by_md = []
+        for m in range(len(mds)):
+            pts = sum(cols[m][i] for i in starters[m]) + cols[m][captains[m]] * (
+                rules.scoring.captain_multiplier - 1
+            )
+            by_md.append(round(float(pts), 2))
+        plans.append(
+            {
+                "label": f"{k} transfer(s)",
+                "transfers_out": outs,
+                "transfers_in": [t.incoming.name for t in transfers],
+                "points_by_matchday": by_md,
+                "expected_points": round(sum(by_md), 2),
+                "hit_points": outcome.points_cost,
+                "net_points": round(sum(by_md) - outcome.points_cost, 2),
+                "bank_after": outcome.bank_after,
+                "status": str(outcome.result.status),
+                "messages": [m.message for m in outcome.result.violations]
+                + [b.message for b in outcome.result.blocks],
+            }
+        )
+    valid = [p for p in plans if p["status"] == "valid"]
+    best = max(valid, key=lambda p: p["net_points"], default=None)
+    return {
+        "tag": "analyst_estimate",
+        "matchdays": mds,
+        "free_transfers": free_transfers,
+        "plans": plans,
+        "best": best["label"] if best else None,
+    }
 
 
 def _to_plan(

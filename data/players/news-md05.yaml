@@ -3,8 +3,10 @@
 matchday: 5
 read_on: "2026-11-23"
 source: "UEFA.com, 'Champions League predicted line-ups: Matchday 5 team news' (23 Nov 2026); Kane surgery: Bayern reports via LiveScore and Bavarian Football Works; Yamal: Barcelona squad list"
+# An entry is a name (this matchday only) or {name, until_matchday} when the absence is
+# reported to last longer.
 out:
-  - H. Kane
+  - {name: H. Kane, until_matchday: 10}   # torn ankle ligaments, surgery, about 3 months
   - L. Yamal Nasraoui Ebana
   - D. Raya Martin
   - B. Saka
