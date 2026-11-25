@@ -743,7 +743,38 @@ def cmd_pool_build(args: argparse.Namespace) -> int:
         return 1
     news_files = sorted(folder.glob("news-*.yaml"))
     news = yaml.safe_load(news_files[-1].read_text(encoding="utf-8")) if news_files else None
-    pool = build_pool(stats, folder / "overrides.yaml", load_baseline(), news)
+    ucl = None
+    ucl_files = sorted(folder.glob("ffscout-ucl-*.txt"))
+    if ucl_files:
+        from uclfa.ingest.clubs import make_resolver
+        from uclfa.ingest.run import latest_snapshot
+        from uclfa.model.calibration import load_calibration_settings, parse_ucl_stats
+
+        fixtures = latest_snapshot("fixtures", DATA_DIR)
+        resolve, _ = make_resolver(fixtures, DATA_DIR)
+        cutoff = ucl_files[-1].stem.split("-", 2)[2]  # date the file was saved
+        played: dict[str, list[int]] = {}
+        for f in fixtures["records"]:
+            if f.get("status") != "FINISHED" or f["kickoff_utc"][:10] > cutoff:
+                continue
+            for side, goals in ((f["home"], f["home_goals"]), (f["away"], f["away_goals"])):
+                played.setdefault(side, [0, 0])
+                played[side][0] += 1
+                played[side][1] += goals
+        rows = parse_ucl_stats(ucl_files[-1])
+        teams = {}
+        for _, club in rows:
+            canonical = resolve(club)
+            if canonical in played:
+                teams[club] = tuple(played[canonical])
+        ucl = {
+            "rows": rows,
+            "teams": teams,
+            "scoring": load_rules().scoring,
+            "settings": load_calibration_settings(),
+            "source": f"data/players/{ucl_files[-1].name}",
+        }
+    pool = build_pool(stats, folder / "overrides.yaml", load_baseline(), news, ucl=ucl)
     for player in pool["players"]:
         PlayerInputs.model_validate(player)  # refuse to write a pool the model cannot read
     header = (
@@ -757,6 +788,9 @@ def cmd_pool_build(args: argparse.Namespace) -> int:
     print(f"Wrote {len(pool['players'])} players from {stats.name}; {entered} with entered prices.")
     if news_files:
         print(f"Team news applied from {news_files[-1].name}.")
+    if ucl is not None:
+        blended = sum(1 for p in pool["players"] if p.get("baseline"))
+        print(f"UCL record blended in for {blended} players from {ucl_files[-1].name}.")
     return 0
 
 
@@ -906,6 +940,83 @@ def _optimize_stretch(
     print()
     print("* best net total. Prices of players not owned are third-party unless entered.")
     print("Check any single move with `uclfa evaluate`.")
+    return 0
+
+
+def cmd_predictions_save(args: argparse.Namespace) -> int:
+    from uclfa.ingest.run import DATA_DIR
+
+    rules = load_rules()
+    state = _saved_state() if store.db_path().exists() else None
+    names = {sl.player.name for sl in state.squad.slots} if state else None
+    frozen = service.freeze_predictions(args.matchday, args.as_of, rules, squad_names=names)
+    estimated = sum(p["expected_points"] is not None for p in frozen["players"])
+    if not estimated:
+        print("No estimates for that matchday and date; nothing saved.")
+        return 1
+    folder = DATA_DIR / "predictions"
+    folder.mkdir(exist_ok=True)
+    path = folder / f"md{args.matchday:02d}.json"
+    if path.exists() and not args.replace:
+        print(f"{path.name} already exists; predictions are frozen. Use --replace to overwrite.")
+        return 1
+    path.write_text(json.dumps(frozen, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(
+        f"Froze {estimated} players' estimates for matchday {args.matchday} "
+        f"(odds as of {args.as_of}) in data/predictions/{path.name}."
+    )
+    return 0
+
+
+def cmd_review(args: argparse.Namespace) -> int:
+    view = service.review_view(args.matchday)
+    if args.json:
+        print(json.dumps(view, indent=1, ensure_ascii=False))
+        return 0 if view["tag"] != "unavailable" else 1
+    if view["tag"] == "unavailable":
+        print(view["note"])
+        return 1
+    print(
+        f"Matchday {args.matchday}: Claude's estimates (frozen {view['predictions_as_of']}) "
+        f"against actual points ({' -> '.join(view['actual_from'])})."
+    )
+    print()
+
+    def line(label: str, s: dict) -> str:
+        if not s.get("players"):
+            return f"{label:10} no players"
+        corr = "n/a" if s["correlation"] is None else f"{s['correlation']:.2f}"
+        return (
+            f"{label:10} {s['players']:>4} {s['predicted_mean']:>7.2f} {s['actual_mean']:>7.2f} "
+            f"{s['bias']:>+6.2f} {s['mean_abs_error']:>7.2f} "
+            f"{s['mean_abs_error_flat_guess']:>8.2f} {corr:>6}"
+        )
+
+    print(
+        f"{'':10} {'n':>4} {'pred':>7} {'actual':>7} {'bias':>6} {'error':>7} "
+        f"{'flat err':>8} {'corr':>6}"
+    )
+    print(line("all", view["overall"]))
+    for pos, s in view["by_position"].items():
+        print(line(pos, s))
+    print(line("your squad", view["squad"]))
+    print()
+    print("bias > 0: the model was too low. error: average miss per player. flat err: the miss")
+    print("if every player were given the actual average; the model should beat it.")
+    print()
+    print("Your squad:")
+    for r in sorted((r for r in view["rows"] if r["in_squad"]), key=lambda r: -r["actual"]):
+        print(
+            f"  {r['name'][:22]:22} {r['position']:3} predicted {r['predicted']:5.1f}  "
+            f"actual {r['actual']:>3}  ({r['error']:+.1f})"
+        )
+    print()
+    print("Biggest misses in the pool:")
+    for r in view["rows"][: args.top]:
+        print(
+            f"  {r['name'][:22]:22} {r['position']:3} predicted {r['predicted']:5.1f}  "
+            f"actual {r['actual']:>3}  ({r['error']:+.1f})"
+        )
     return 0
 
 
@@ -1222,6 +1333,18 @@ def build_parser() -> argparse.ArgumentParser:
         "--sell", action="append", help="player every plan must sell (repeatable)"
     )
     optimize.set_defaults(func=cmd_optimize)
+    preds = sub.add_parser("predictions", help="frozen estimates, for review after a matchday")
+    preds_sub = preds.add_subparsers(dest="predictions_command", required=True)
+    psave = preds_sub.add_parser("save", help="freeze each player's estimate for a matchday")
+    psave.add_argument("--matchday", type=int, required=True)
+    psave.add_argument("--as-of", required=True, help="use snapshots saved up to YYYY-MM-DD")
+    psave.add_argument("--replace", action="store_true")
+    psave.set_defaults(func=cmd_predictions_save)
+    rev = sub.add_parser("review", help="estimates against actual points for a matchday")
+    rev.add_argument("--matchday", type=int, required=True)
+    rev.add_argument("--top", type=int, default=10, help="how many biggest misses to list")
+    rev.add_argument("--json", action="store_true")
+    rev.set_defaults(func=cmd_review)
     sub.add_parser("clubs", help="report club names that do not match across sources").set_defaults(
         func=cmd_clubs
     )

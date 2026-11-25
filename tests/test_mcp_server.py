@@ -30,6 +30,7 @@ EXPECTED_TOOLS = {
     "team_outlook",
     "player_outlook",
     "evaluate_move",
+    "review_matchday",
     "player_points",
     "get_rules",
     "get_journal",

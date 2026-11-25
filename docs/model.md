@@ -182,3 +182,45 @@ goalkeepers who cover each other's hard fixtures are valued as such.
 - The stretch optimizer plans transfers at the first matchday only, then holds them.
 - The between-days option (swapping in Wednesday players after Tuesday) is not valued;
   it favours squads with players on both days.
+
+# Learning from results (Release 2 Phase F)
+
+## Freezing estimates
+
+`uclfa predictions save --matchday N --as-of YYYY-MM-DD` stores every pool player's expected
+points for that matchday in `data/predictions/mdNN.json`, using only the fixtures and odds
+snapshots saved on or before that date. A frozen file is not overwritten without
+`--replace`, so the review always compares with what was known at the deadline.
+
+## Actual points
+
+Public columns of fantasyfootballscout's Champions League stats view (price, season UCL
+fantasy points, appearances, minutes, goals, assists) are saved as
+`data/players/ffscout-ucl-YYYY-MM-DD.txt` for the pool's players. A player's points in a
+matchday are his season points after it minus before it. Members-only columns
+(recoveries, saves and the like) are not taken.
+
+## Review
+
+`uclfa review --matchday N` shows, overall, by position and for the squad: average
+predicted and actual points, bias (positive means the model was too low), average miss per
+player, the miss of a flat guess that gives every player the actual average, and the
+correlation between predicted and actual. A useful model beats the flat guess. One
+matchday is a small sample.
+
+## Blending in the UCL record
+
+When a UCL stats file exists, `uclfa pool build` blends each player's league baseline with
+his Champions League record so far, with weight `UCL minutes / (UCL minutes + 360)`:
+
+- start chance, from his UCL minutes against his club's finished UCL matches;
+- goal and assist shares, from his UCL goals and assists against his club's UCL goals;
+- for midfielders and forwards, a per-player rate of points not explained by appearance,
+  60 minutes, goals and assists (recoveries, cards, player of the match, a midfielder's
+  clean-sheet point). It replaces the position-average recoveries by the same weight, and
+  a midfielder's modelled clean-sheet point too, so nothing counts twice. Goalkeepers and
+  defenders keep the position averages: their clean sheets and goals conceded cannot be
+  separated with public data.
+
+The league-only inputs are kept, and `uclfa points --json` shows both
+`expected_points` and `expected_points_baseline`.

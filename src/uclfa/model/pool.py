@@ -81,6 +81,28 @@ def apply_news(players: list[dict[str, Any]], news: dict[str, Any], s: NewsSetti
                 del p["sub_prob_by_matchday"]
 
 
+def apply_ucl(players: list[dict[str, Any]], ucl: dict[str, Any]) -> None:
+    """Blend each player's baseline with his UCL record (model/calibration.py)."""
+    from uclfa.model.calibration import blend_inputs
+
+    for p in players:
+        row = ucl["rows"].get((p["name"], p["club"]))
+        team = ucl["teams"].get(p["club"])
+        if row is None or team is None or "start_prob" not in p:
+            continue
+        change = blend_inputs(p, row, team[0], team[1], ucl["scoring"], ucl["settings"])
+        if not change:
+            continue
+        p["baseline"] = {k: p[k] for k in change if k in p}
+        p.update(change)
+        weight = round(row["minutes"] / (row["minutes"] + ucl["settings"].prior_minutes), 3)
+        p["sources"].append(
+            f"{ucl['source']}: UCL {row['apps']} apps, {row['minutes']} min, "
+            f"{row['goals']} goals, {row['assists']} assists, {row['ucl_points']} pts; "
+            f"blended with weight {weight}"
+        )
+
+
 class PoolBaseline(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -171,7 +193,10 @@ def build_pool(
     b: PoolBaseline,
     news: dict[str, Any] | None = None,
     news_settings: NewsSettings | None = None,
+    ucl: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    """`ucl`, when given, holds {"rows": parse_ucl_stats(...), "teams": {club: (matches,
+    goals)}, "scoring": rules.scoring, "settings": CalibrationSettings, "source": path}."""
     date = stats_path.stem.split("-", 1)[1]
     source = f"data/players/{stats_path.name}"
     data = {}
@@ -183,6 +208,7 @@ def build_pool(
     base = [
         {
             "name": row["name"],
+            "source_name": row["name"],
             "club": row["club"],
             "position": row["position"],
             "price": row["price"],
@@ -197,6 +223,8 @@ def build_pool(
         }
         for row in rows
     ]
+    if ucl is not None:
+        apply_ucl(base, ucl)
     if news is not None:
         apply_news(base, news, news_settings or load_news_settings())
     for player in base:

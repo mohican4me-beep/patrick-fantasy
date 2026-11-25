@@ -5,6 +5,7 @@ as_of: '2026-11-15'
 built_from: data/players/ffscout-2026-11-15.txt
 players:
 - name: F. Bem Relvas Vito Oliveira
+  source_name: F. Bem Relvas Vito Oliveira
   club: AEK Athens
   position: DEF
   price: 4.5
@@ -26,6 +27,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: H. Moukoudi
+  source_name: H. Moukoudi
   club: AEK Athens
   position: DEF
   price: 4.5
@@ -47,6 +49,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: S. Pilios
+  source_name: S. Pilios
   club: AEK Athens
   position: DEF
   price: 4.7
@@ -68,6 +71,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: L. Jović
+  source_name: L. Jović
   club: AEK Athens
   position: FWD
   price: 6.5
@@ -89,6 +93,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: A. Brignoli
+  source_name: A. Brignoli
   club: AEK Athens
   position: GK
   price: 4.0
@@ -108,6 +113,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 6 league apps, 540 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: R. Marin
+  source_name: R. Marin
   club: AEK Athens
   position: MID
   price: 5.6
@@ -129,6 +135,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: E. Konsa Ngoyo
+  source_name: E. Konsa Ngoyo
   club: Arsenal
   position: DEF
   price: 4.7
@@ -150,6 +157,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: G. dos Santos Magalhães
+  source_name: G. dos Santos Magalhães
   club: Arsenal
   position: DEF
   price: 6.0
@@ -171,6 +179,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: R. Calafiori
+  source_name: R. Calafiori
   club: Arsenal
   position: DEF
   price: 4.5
@@ -192,6 +201,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: K. Havertz
+  source_name: K. Havertz
   club: Arsenal
   position: FWD
   price: 8.0
@@ -213,6 +223,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: D. Raya Martin
+  source_name: D. Raya Martin
   club: Arsenal
   position: GK
   price: 6.0
@@ -237,6 +248,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: B. Saka
+  source_name: B. Saka
   club: Arsenal
   position: MID
   price: 8.5
@@ -260,6 +272,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: D. Rice
+  source_name: D. Rice
   club: Arsenal
   position: MID
   price: 7.5
@@ -281,6 +294,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: M. Ødegaard
+  source_name: M. Ødegaard
   club: Arsenal
   position: MID
   price: 7.1
@@ -302,6 +316,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: I. Maatsen
+  source_name: I. Maatsen
   club: Aston Villa
   position: DEF
   price: 4.4
@@ -320,6 +335,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 7 league apps, 600 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: M. Cash
+  source_name: M. Cash
   club: Aston Villa
   position: DEF
   price: 4.5
@@ -343,6 +359,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: V. Nilsson Lindelöf
+  source_name: V. Nilsson Lindelöf
   club: Aston Villa
   position: DEF
   price: 4.5
@@ -364,6 +381,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: N. Jackson
+  source_name: N. Jackson
   club: Aston Villa
   position: FWD
   price: 7.3
@@ -385,6 +403,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: Z. Suzuki
+  source_name: Z. Suzuki
   club: Aston Villa
   position: GK
   price: 4.0
@@ -407,6 +426,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: B. Kamara
+  source_name: B. Kamara
   club: Aston Villa
   position: MID
   price: 5.0
@@ -428,6 +448,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: J. McGinn
+  source_name: J. McGinn
   club: Aston Villa
   position: MID
   price: 6.7
@@ -449,6 +470,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: A. Grimaldo
+  source_name: A. Grimaldo García
   club: Atlético de Madrid
   position: DEF
   price: 5.5
@@ -470,6 +492,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: C. Romero
+  source_name: C. Romero
   club: Atlético de Madrid
   position: DEF
   price: 5.0
@@ -493,6 +516,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: D. Hancko
+  source_name: D. Hancko
   club: Atlético de Madrid
   position: DEF
   price: 4.5
@@ -514,6 +538,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: M. Pubill Pagès
+  source_name: M. Pubill Pagès
   club: Atlético de Madrid
   position: DEF
   price: 3.9
@@ -537,6 +562,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: A. Lookman
+  source_name: A. Lookman
   club: Atlético de Madrid
   position: MID
   price: 7.0
@@ -560,6 +586,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: Alex Baena
+  source_name: A. Rodríguez
   club: Atlético de Madrid
   position: MID
   price: 5.6
@@ -582,6 +609,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: G. Simeone
+  source_name: G. Simeone
   club: Atlético de Madrid
   position: MID
   price: 6.5
@@ -603,6 +631,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: K. Lee
+  source_name: K. Lee
   club: Atlético de Madrid
   position: MID
   price: 5.5
@@ -626,6 +655,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: M. Llorente Moreno
+  source_name: M. Llorente Moreno
   club: Atlético de Madrid
   position: MID
   price: 6.7
@@ -647,6 +677,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: Pablo Barrios Rivas
+  source_name: Pablo Barrios Rivas
   club: Atlético de Madrid
   position: MID
   price: 5.1
@@ -668,6 +699,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: J. Maurstad Gundersen
+  source_name: J. Maurstad Gundersen
   club: Bodø / Glimt
   position: DEF
   price: 4.0
@@ -689,6 +721,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: O. Brynhildsen
+  source_name: O. Brynhildsen
   club: Bodø / Glimt
   position: FWD
   price: 4.8
@@ -707,6 +740,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 20 league apps, 958 min, 4 goals, 0.19 assists/90; baseline
     rules in model/settings.yaml'
 - name: H. Evjen
+  source_name: H. Evjen
   club: Bodø / Glimt
   position: MID
   price: 4.5
@@ -730,6 +764,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: D. Svensson
+  source_name: D. Svensson
   club: Borussia Dortmund
   position: DEF
   price: 4.5
@@ -751,6 +786,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: K. Gadou
+  source_name: K. Gadou
   club: Borussia Dortmund
   position: DEF
   price: 4.0
@@ -772,6 +808,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: N. Schlotterbeck
+  source_name: N. Schlotterbeck
   club: Borussia Dortmund
   position: DEF
   price: 5.0
@@ -793,6 +830,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: W. Anton
+  source_name: W. Anton
   club: Borussia Dortmund
   position: DEF
   price: 4.5
@@ -814,6 +852,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: S. Guirassy
+  source_name: S. Guirassy
   club: Borussia Dortmund
   position: FWD
   price: 8.6
@@ -835,6 +874,7 @@ players:
   start_prob_by_matchday:
     5: 0.5
 - name: G. Kobel
+  source_name: G. Kobel
   club: Borussia Dortmund
   position: GK
   price: 5.0
@@ -857,6 +897,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: F. Nmecha
+  source_name: F. Nmecha
   club: Borussia Dortmund
   position: MID
   price: 6.5
@@ -878,6 +919,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: J. S. P. Bellingham
+  source_name: J. S. P. Bellingham
   club: Borussia Dortmund
   position: MID
   price: 6.0
@@ -899,6 +941,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: B. Mechele
+  source_name: B. Mechele
   club: Club Brugge
   position: DEF
   price: 4.5
@@ -920,6 +963,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: H. Lee
+  source_name: H. Lee
   club: Club Brugge
   position: DEF
   price: 3.9
@@ -938,6 +982,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 637 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: J. Seys
+  source_name: J. Seys
   club: Club Brugge
   position: DEF
   price: 4.6
@@ -959,6 +1004,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: K. Sabbe
+  source_name: K. Sabbe
   club: Club Brugge
   position: DEF
   price: 3.9
@@ -980,6 +1026,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: N. Tresoldi
+  source_name: N. Tresoldi
   club: Club Brugge
   position: FWD
   price: 7.3
@@ -1001,6 +1048,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: Y. Sommer
+  source_name: Y. Sommer
   club: Club Brugge
   position: GK
   price: 4.5
@@ -1023,6 +1071,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: C. Borges
+  source_name: C. Borges
   club: Club Brugge
   position: MID
   price: 6.3
@@ -1041,6 +1090,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 836 min, 3 goals, 0.54 assists/90; baseline
     rules in model/settings.yaml'
 - name: F. Potts
+  source_name: F. Potts
   club: Club Brugge
   position: MID
   price: 5.5
@@ -1062,6 +1112,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: H. Vanaken
+  source_name: H. Vanaken
   club: Club Brugge
   position: MID
   price: 6.6
@@ -1083,6 +1134,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: H. Vetlesen
+  source_name: H. Vetlesen
   club: Club Brugge
   position: MID
   price: 5.1
@@ -1104,6 +1156,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: J. Ramon
+  source_name: J. Naveros
   club: Como
   position: DEF
   price: 4.1
@@ -1126,6 +1179,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: Y. Couto
+  source_name: Y. Couto
   club: Como
   position: DEF
   price: 4.0
@@ -1147,6 +1201,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Douvikas
+  source_name: A. Douvikas
   club: Como
   position: FWD
   price: 6.6
@@ -1168,6 +1223,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: J. Butez
+  source_name: J. Butez
   club: Como
   position: GK
   price: 4.5
@@ -1190,6 +1246,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: L. Da Cunha
+  source_name: L. Da Cunha
   club: Como
   position: MID
   price: 5.0
@@ -1211,6 +1268,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: L. Milla Manzanares
+  source_name: L. Milla Manzanares
   club: Como
   position: MID
   price: 4.5
@@ -1232,6 +1290,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: N. Paz Martínez
+  source_name: N. Paz Martínez
   club: Como
   position: MID
   price: 7.1
@@ -1253,6 +1312,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: E. García
+  source_name: E. García
   club: FC Barcelona
   position: DEF
   price: 4.5
@@ -1276,6 +1336,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: G. Martín Langreo
+  source_name: G. Martín Langreo
   club: FC Barcelona
   position: DEF
   price: 4.0
@@ -1297,6 +1358,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: P. Cubarsí Paredes
+  source_name: P. Cubarsí Paredes
   club: FC Barcelona
   position: DEF
   price: 5.5
@@ -1318,6 +1380,7 @@ players:
   start_prob_by_matchday:
     5: 0.5
 - name: X. Espart Font
+  source_name: X. Espart Font
   club: FC Barcelona
   position: DEF
   price: 4.5
@@ -1341,6 +1404,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: Joan Garcia
+  source_name: J. Pons
   club: FC Barcelona
   position: GK
   price: 5.0
@@ -1363,6 +1427,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: L. Yamal Nasraoui Ebana
+  source_name: L. Yamal Nasraoui Ebana
   club: FC Barcelona
   position: MID
   price: 10.2
@@ -1386,6 +1451,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: Raphinha
+  source_name: Raphinha
   club: FC Barcelona
   position: MID
   price: 9.6
@@ -1407,6 +1473,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Gordon
+  source_name: A. Gordon
   club: FC Barcelona
   position: MID
   price: 8.0
@@ -1428,6 +1495,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: Fermin Lopez
+  source_name: F. López Marín
   club: FC Barcelona
   position: MID
   price: 7.0
@@ -1449,6 +1517,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: P. López
+  source_name: P. López
   club: FC Barcelona
   position: MID
   price: 7.5
@@ -1470,6 +1539,7 @@ players:
   start_prob_by_matchday:
     5: 0.94
 - name: Rodri
+  source_name: Rodri
   club: FC Barcelona
   position: MID
   price: 7.0
@@ -1493,6 +1563,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: D. Upamecano
+  source_name: D. Upamecano
   club: FC Bayern München
   position: DEF
   price: 5.6
@@ -1514,6 +1585,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: H. Kane
+  source_name: H. Kane
   club: FC Bayern München
   position: FWD
   price: 11.2
@@ -1547,6 +1619,7 @@ players:
     9: 0.0
     10: 0.0
 - name: M. Olise
+  source_name: M. Olise
   club: FC Bayern München
   position: MID
   price: 9.1
@@ -1570,6 +1643,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: J. Kimmich
+  source_name: J. Kimmich
   club: FC Bayern München
   position: MID
   price: 6.5
@@ -1591,6 +1665,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Pavlović
+  source_name: A. Pavlović
   club: FC Bayern München
   position: MID
   price: 5.0
@@ -1612,6 +1687,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Brown
+  source_name: A. Brown
   club: Fenerbahçe
   position: DEF
   price: 4.6
@@ -1633,6 +1709,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Škriniar
+  source_name: M. Škriniar
   club: Fenerbahçe
   position: DEF
   price: 5.0
@@ -1654,6 +1731,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: N. Aké
+  source_name: N. Aké
   club: Fenerbahçe
   position: DEF
   price: 4.9
@@ -1677,6 +1755,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: N. Cabral Semedo
+  source_name: N. Cabral Semedo
   club: Fenerbahçe
   position: DEF
   price: 4.9
@@ -1698,6 +1777,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: E. Santana de Moraes
+  source_name: E. Santana de Moraes
   club: Fenerbahçe
   position: GK
   price: 4.9
@@ -1720,6 +1800,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: İ. Kahveci
+  source_name: İ. Kahveci
   club: Fenerbahçe
   position: MID
   price: 5.5
@@ -1741,6 +1822,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Greenwood
+  source_name: M. Greenwood
   club: Fenerbahçe
   position: MID
   price: 7.5
@@ -1762,6 +1844,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Guendouzi Olié
+  source_name: M. Guendouzi Olié
   club: Fenerbahçe
   position: MID
   price: 5.9
@@ -1783,6 +1866,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: N. Kanté
+  source_name: N. Kanté
   club: Fenerbahçe
   position: MID
   price: 5.4
@@ -1804,6 +1888,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: O. Aydın
+  source_name: O. Aydın
   club: Fenerbahçe
   position: MID
   price: 5.0
@@ -1822,6 +1907,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 630 min, 3 goals, 0.71 assists/90; baseline
     rules in model/settings.yaml'
 - name: J. St. Juste
+  source_name: J. St. Juste
   club: Feyenoord
   position: DEF
   price: 4.5
@@ -1840,6 +1926,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 664 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: T. Watanabe
+  source_name: T. Watanabe
   club: Feyenoord
   position: DEF
   price: 4.3
@@ -1861,6 +1948,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: I. Ferri
+  source_name: I. Ferri
   club: Feyenoord
   position: FWD
   price: 5.5
@@ -1882,6 +1970,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Hadj
+  source_name: A. Hadj
   club: Feyenoord
   position: MID
   price: 6.7
@@ -1903,6 +1992,7 @@ players:
   start_prob_by_matchday:
     5: 0.5
 - name: C. Vanhoutte
+  source_name: C. Vanhoutte
   club: Feyenoord
   position: MID
   price: 4.5
@@ -1924,6 +2014,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: L. Valente
+  source_name: L. Valente
   club: Feyenoord
   position: MID
   price: 5.0
@@ -1945,6 +2036,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: O. Targhalline
+  source_name: O. Targhalline
   club: Feyenoord
   position: MID
   price: 5.0
@@ -1966,6 +2058,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Bardakcı
+  source_name: A. Bardakcı
   club: Galatasaray
   position: DEF
   price: 4.4
@@ -1987,6 +2080,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: D. Sánchez Mina
+  source_name: D. Sánchez Mina
   club: Galatasaray
   position: DEF
   price: 4.5
@@ -2008,6 +2102,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: I. Jakobs
+  source_name: I. Jakobs
   club: Galatasaray
   position: DEF
   price: 4.3
@@ -2029,6 +2124,7 @@ players:
   start_prob_by_matchday:
     5: 0.5
 - name: R. Sallai
+  source_name: R. Sallai
   club: Galatasaray
   position: DEF
   price: 5.0
@@ -2052,6 +2148,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: V. Osimhen
+  source_name: V. Osimhen
   club: Galatasaray
   position: FWD
   price: 7.9
@@ -2075,6 +2172,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: U. Çakır
+  source_name: U. Çakır
   club: Galatasaray
   position: GK
   price: 5.0
@@ -2097,6 +2195,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: B. Yılmaz
+  source_name: B. Yılmaz
   club: Galatasaray
   position: MID
   price: 5.5
@@ -2118,6 +2217,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: G. Gomes Sara
+  source_name: G. Gomes Sara
   club: Galatasaray
   position: MID
   price: 5.0
@@ -2139,6 +2239,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: L. Torreira Di Pascua
+  source_name: L. Torreira Di Pascua
   club: Galatasaray
   position: MID
   price: 6.1
@@ -2160,6 +2261,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: Y. Akgün
+  source_name: Y. Akgün
   club: Galatasaray
   position: MID
   price: 5.0
@@ -2181,6 +2283,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: A. Bastoni
+  source_name: A. Bastoni
   club: Inter
   position: DEF
   price: 4.9
@@ -2204,6 +2307,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: Carlos Augusto
+  source_name: C. Zopalato Neves
   club: Inter
   position: DEF
   price: 4.2
@@ -2225,6 +2329,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: F. Dimarco
+  source_name: F. Dimarco
   club: Inter
   position: DEF
   price: 5.0
@@ -2246,6 +2351,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Akanji
+  source_name: M. Akanji
   club: Inter
   position: DEF
   price: 4.9
@@ -2267,6 +2373,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: Y. Bisseck
+  source_name: Y. Bisseck
   club: Inter
   position: DEF
   price: 4.4
@@ -2288,6 +2395,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Thuram
+  source_name: M. Thuram
   club: Inter
   position: FWD
   price: 7.5
@@ -2311,6 +2419,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: J. Martínez Riera
+  source_name: J. Martínez Riera
   club: Inter
   position: GK
   price: 4.5
@@ -2333,6 +2442,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Diouf
+  source_name: A. Diouf
   club: Inter
   position: MID
   price: 5.0
@@ -2351,6 +2461,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 694 min, 0 goals, 0.52 assists/90; baseline
     rules in model/settings.yaml'
 - name: N. Barella
+  source_name: N. Barella
   club: Inter
   position: MID
   price: 6.5
@@ -2372,6 +2483,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: P. Zieliński
+  source_name: P. Zieliński
   club: Inter
   position: MID
   price: 5.0
@@ -2393,6 +2505,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Andrade Cedeño
+  source_name: A. Andrade Cedeño
   club: LASK
   position: DEF
   price: 4.5
@@ -2416,6 +2529,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: G. Bello
+  source_name: G. Bello
   club: LASK
   position: DEF
   price: 4.5
@@ -2439,6 +2553,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: J. Tornich
+  source_name: J. Tornich
   club: LASK
   position: DEF
   price: 3.9
@@ -2457,6 +2572,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 989 min, 1 goals, 0.18 assists/90; baseline
     rules in model/settings.yaml'
 - name: K. Mølgaard Jørgensen
+  source_name: K. Mølgaard Jørgensen
   club: LASK
   position: DEF
   price: 4.5
@@ -2478,6 +2594,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: C. Lang
+  source_name: C. Lang
   club: LASK
   position: MID
   price: 4.5
@@ -2496,6 +2613,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 726 min, 8 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: M. Bogarde
+  source_name: M. Bogarde
   club: LASK
   position: MID
   price: 4.4
@@ -2517,6 +2635,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: R. Ljubicic
+  source_name: R. Ljubicic
   club: LASK
   position: MID
   price: 5.6
@@ -2538,6 +2657,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: S. Horvath
+  source_name: S. Horvath
   club: LASK
   position: MID
   price: 4.8
@@ -2559,6 +2679,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: M. Udol
+  source_name: M. Udol
   club: Lens
   position: DEF
   price: 4.5
@@ -2580,6 +2701,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: R. Aguilar
+  source_name: R. Aguilar
   club: Lens
   position: DEF
   price: 4.6
@@ -2601,6 +2723,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: R. Risser
+  source_name: R. Risser
   club: Lens
   position: GK
   price: 4.5
@@ -2623,6 +2746,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: F. Thauvin
+  source_name: F. Thauvin
   club: Lens
   position: MID
   price: 6.7
@@ -2644,6 +2768,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: J. Jacquet
+  source_name: J. Jacquet
   club: Liverpool
   position: DEF
   price: 5.0
@@ -2665,6 +2790,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: Milos Kerkez
+  source_name: Milos Kerkez
   club: Liverpool
   position: DEF
   price: 5.0
@@ -2688,6 +2814,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: R. Araújo da Silva
+  source_name: R. Araújo da Silva
   club: Liverpool
   position: DEF
   price: 4.8
@@ -2709,6 +2836,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: V. van Dijk
+  source_name: V. van Dijk
   club: Liverpool
   position: DEF
   price: 6.0
@@ -2730,6 +2858,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: A. Isak
+  source_name: A. Isak
   club: Liverpool
   position: FWD
   price: 7.4
@@ -2751,6 +2880,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: C. Gakpo
+  source_name: C. Gakpo
   club: Liverpool
   position: FWD
   price: 7.5
@@ -2774,6 +2904,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: A. Becker
+  source_name: A. Becker
   club: Liverpool
   position: GK
   price: 5.9
@@ -2796,6 +2927,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: A. Mac Allister
+  source_name: A. Mac Allister
   club: Liverpool
   position: MID
   price: 6.7
@@ -2817,6 +2949,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: F. Wirtz
+  source_name: F. Wirtz
   club: Liverpool
   position: MID
   price: 8.5
@@ -2838,6 +2971,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: A. Souza Ribeiro
+  source_name: A. Souza Ribeiro
   club: LOSC Lille
   position: DEF
   price: 4.7
@@ -2856,6 +2990,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 810 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: N. Ngoy
+  source_name: N. Ngoy
   club: LOSC Lille
   position: DEF
   price: 4.5
@@ -2874,6 +3009,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 810 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: R. Perraud
+  source_name: R. Perraud
   club: LOSC Lille
   position: DEF
   price: 4.4
@@ -2892,6 +3028,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 713 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: B. Özer
+  source_name: B. Özer
   club: LOSC Lille
   position: GK
   price: 4.4
@@ -2911,6 +3048,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 810 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: H. Haraldsson
+  source_name: H. Haraldsson
   club: LOSC Lille
   position: MID
   price: 5.5
@@ -2929,6 +3067,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 747 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: N. Bentaleb
+  source_name: N. Bentaleb
   club: LOSC Lille
   position: MID
   price: 4.5
@@ -2947,6 +3086,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 765 min, 0 goals, 0.12 assists/90; baseline
     rules in model/settings.yaml'
 - name: N. Mukau
+  source_name: N. Mukau
   club: LOSC Lille
   position: MID
   price: 4.5
@@ -2965,6 +3105,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 647 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: J. Gvardiol
+  source_name: J. Gvardiol
   club: Manchester City
   position: DEF
   price: 5.5
@@ -2986,6 +3127,7 @@ players:
   start_prob_by_matchday:
     5: 0.94
 - name: M. Guehi
+  source_name: M. Guehi
   club: Manchester City
   position: DEF
   price: 5.0
@@ -3007,6 +3149,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Nunes
+  source_name: M. Nunes
   club: Manchester City
   position: DEF
   price: 4.9
@@ -3030,6 +3173,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: R. Santos Gato Alves Dias
+  source_name: R. Santos Gato Alves Dias
   club: Manchester City
   position: DEF
   price: 5.5
@@ -3051,6 +3195,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: A. Khusanov
+  source_name: A. Khusanov
   club: Manchester City
   position: DEF
   price: 4.5
@@ -3072,6 +3217,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: E. Haaland
+  source_name: E. Haaland
   club: Manchester City
   position: FWD
   price: 11.2
@@ -3093,6 +3239,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: G. Donnarumma
+  source_name: G. Donnarumma
   club: Manchester City
   position: GK
   price: 6.0
@@ -3115,6 +3262,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: E. Anderson
+  source_name: E. Anderson
   club: Manchester City
   position: MID
   price: 7.0
@@ -3136,6 +3284,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: E. Fernández
+  source_name: E. Fernández
   club: Manchester City
   position: MID
   price: 7.5
@@ -3157,6 +3306,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: I. Ndiaye
+  source_name: I. Ndiaye
   club: Manchester City
   position: MID
   price: 6.5
@@ -3178,6 +3328,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: R. Cherki
+  source_name: M. Cherki
   club: Manchester City
   position: MID
   price: 7.0
@@ -3199,6 +3350,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: H. Maguire
+  source_name: H. Maguire
   club: Manchester United
   position: DEF
   price: 4.9
@@ -3220,6 +3372,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: J. Dalot Teixeira
+  source_name: J. Dalot Teixeira
   club: Manchester United
   position: DEF
   price: 4.5
@@ -3241,6 +3394,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: B. Mbeumo
+  source_name: B. Mbeumo
   club: Manchester United
   position: FWD
   price: 7.0
@@ -3262,6 +3416,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: S. Lammens
+  source_name: S. Lammens
   club: Manchester United
   position: GK
   price: 4.5
@@ -3284,6 +3439,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: B. Fernandes
+  source_name: B. Fernandes
   club: Manchester United
   position: MID
   price: 9.0
@@ -3305,6 +3461,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Carneiro Da Cunha
+  source_name: M. Carneiro Da Cunha
   club: Manchester United
   position: MID
   price: 6.9
@@ -3323,6 +3480,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 707 min, 1 goals, 0.25 assists/90; baseline
     rules in model/settings.yaml'
 - name: Y. Tielemans
+  source_name: Y. Tielemans
   club: Manchester United
   position: MID
   price: 6.5
@@ -3344,6 +3502,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Rrahmani
+  source_name: A. Rrahmani
   club: Napoli
   position: DEF
   price: 4.6
@@ -3362,6 +3521,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 811 min, 0 goals, 0.11 assists/90; baseline
     rules in model/settings.yaml'
 - name: G. Di Lorenzo
+  source_name: G. Di Lorenzo
   club: Napoli
   position: DEF
   price: 4.9
@@ -3385,6 +3545,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: R. Marín Zamora
+  source_name: R. Marín Zamora
   club: Napoli
   position: DEF
   price: 4.5
@@ -3408,6 +3569,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: R. Højlund
+  source_name: R. Højlund
   club: Napoli
   position: FWD
   price: 8.0
@@ -3426,6 +3588,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 705 min, 3 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: A. Meret
+  source_name: A. Meret
   club: Napoli
   position: GK
   price: 4.3
@@ -3450,6 +3613,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: K. De Bruyne
+  source_name: K. De Bruyne
   club: Napoli
   position: MID
   price: 7.0
@@ -3468,6 +3632,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 623 min, 4 goals, 0.14 assists/90; baseline
     rules in model/settings.yaml'
 - name: S. Lobotka
+  source_name: S. Lobotka
   club: Napoli
   position: MID
   price: 5.4
@@ -3491,6 +3656,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: S. McTominay
+  source_name: S. McTominay
   club: Napoli
   position: MID
   price: 7.4
@@ -3509,6 +3675,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 8 league apps, 625 min, 2 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: A. Hakimi
+  source_name: A. Hakimi Mouh
   club: Paris Saint Germain
   position: DEF
   price: 6.0
@@ -3530,6 +3697,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: W. Pacho Tenorio
+  source_name: W. Pacho Tenorio
   club: Paris Saint Germain
   position: DEF
   price: 6.0
@@ -3551,6 +3719,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: L. Hernández Pi
+  source_name: L. Hernández Pi
   club: Paris Saint Germain
   position: DEF
   price: 4.4
@@ -3569,6 +3738,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 7 league apps, 501 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: F. Torres García
+  source_name: F. Torres García
   club: Paris Saint Germain
   position: FWD
   price: 7.2
@@ -3587,6 +3757,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 656 min, 4 goals, 0.14 assists/90; baseline
     rules in model/settings.yaml'
 - name: M. Safonov
+  source_name: M. Safonov
   club: Paris Saint Germain
   position: GK
   price: 5.5
@@ -3609,6 +3780,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: D. Doue
+  source_name: D. Doue
   club: Paris Saint Germain
   position: MID
   price: 8.6
@@ -3632,6 +3804,7 @@ players:
   sub_prob_by_matchday:
     5: 0.0
 - name: F. Ruiz Peña
+  source_name: F. Ruiz Peña
   club: Paris Saint Germain
   position: MID
   price: 6.8
@@ -3653,6 +3826,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: J. Gonçalves Neves
+  source_name: J. Gonçalves Neves
   club: Paris Saint Germain
   position: MID
   price: 5.9
@@ -3676,6 +3850,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: V. Machado Ferreira
+  source_name: V. Machado Ferreira
   club: Paris Saint Germain
   position: MID
   price: 7.7
@@ -3697,6 +3872,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: W. Zaire Emery
+  source_name: W. Zaire Emery
   club: Paris Saint Germain
   position: MID
   price: 5.0
@@ -3718,6 +3894,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: A. Costa
+  source_name: A. Costa
   club: Porto
   position: DEF
   price: 4.4
@@ -3739,6 +3916,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: J. Bednarek
+  source_name: J. Bednarek
   club: Porto
   position: DEF
   price: 4.5
@@ -3760,6 +3938,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: J. Kiwior
+  source_name: J. Kiwior
   club: Porto
   position: DEF
   price: 4.5
@@ -3781,6 +3960,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: A. Valente Silva
+  source_name: A. Valente Silva
   club: Porto
   position: FWD
   price: 5.9
@@ -3799,6 +3979,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 667 min, 4 goals, 0.27 assists/90; baseline
     rules in model/settings.yaml'
 - name: D. Meireles Costa
+  source_name: D. Meireles Costa
   club: Porto
   position: GK
   price: 5.0
@@ -3821,6 +4002,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: E. Aquino Cossa
+  source_name: E. Aquino Cossa
   club: Porto
   position: MID
   price: 6.0
@@ -3839,6 +4021,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 931 min, 0 goals, 0.58 assists/90; baseline
     rules in model/settings.yaml'
 - name: G. Veiga Novas
+  source_name: G. Veiga Novas
   club: Porto
   position: MID
   price: 5.1
@@ -3860,6 +4043,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: P. Rosario
+  source_name: P. Rosario
   club: Porto
   position: MID
   price: 4.5
@@ -3881,6 +4065,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: V. Froholdt
+  source_name: V. Froholdt
   club: Porto
   position: MID
   price: 4.4
@@ -3902,6 +4087,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: L. Geertruida
+  source_name: L. Geertruida
   club: PSV
   position: DEF
   price: 4.5
@@ -3923,6 +4109,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Ferreira dos Santos
+  source_name: M. Ferreira dos Santos
   club: PSV
   position: DEF
   price: 4.0
@@ -3941,6 +4128,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 990 min, 2 goals, 0.18 assists/90; baseline
     rules in model/settings.yaml'
 - name: S. Dest
+  source_name: S. Dest
   club: PSV
   position: DEF
   price: 5.1
@@ -3962,6 +4150,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: G. Til
+  source_name: G. Til
   club: PSV
   position: MID
   price: 5.5
@@ -3983,6 +4172,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: I. Perišić
+  source_name: I. Perišić
   club: PSV
   position: MID
   price: 6.5
@@ -4004,6 +4194,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: K. Sano
+  source_name: K. Sano
   club: PSV
   position: MID
   price: 4.5
@@ -4025,6 +4216,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: R. van Bommel
+  source_name: R. van Bommel
   club: PSV
   position: MID
   price: 5.4
@@ -4046,6 +4238,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: D. Raum
+  source_name: D. Raum
   club: RB Leipzig
   position: DEF
   price: 4.5
@@ -4067,6 +4260,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: W. Orban
+  source_name: W. Orban
   club: RB Leipzig
   position: DEF
   price: 4.5
@@ -4088,6 +4282,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: E. Banzuzi
+  source_name: E. Banzuzi
   club: RB Leipzig
   position: FWD
   price: 5.0
@@ -4109,6 +4304,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: M. Vandevoordt
+  source_name: M. Vandevoordt
   club: RB Leipzig
   position: GK
   price: 4.7
@@ -4131,6 +4327,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Nordby Nusa
+  source_name: A. Nordby Nusa
   club: RB Leipzig
   position: MID
   price: 6.0
@@ -4152,6 +4349,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: N. El Aynaoui
+  source_name: N. El Aynaoui
   club: RB Leipzig
   position: MID
   price: 5.0
@@ -4173,6 +4371,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: F. García Torres
+  source_name: F. García Torres
   club: Real Betis
   position: DEF
   price: 4.6
@@ -4196,6 +4395,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: H. Bellerín Moruno
+  source_name: H. Bellerín Moruno
   club: Real Betis
   position: DEF
   price: 4.4
@@ -4219,6 +4419,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: M. Bartra Aregall
+  source_name: M. Bartra Aregall
   club: Real Betis
   position: DEF
   price: 4.8
@@ -4242,6 +4443,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: Natan
+  source_name: Natan
   club: Real Betis
   position: DEF
   price: 4.0
@@ -4263,6 +4465,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. dos Santos
+  source_name: A. dos Santos
   club: Real Betis
   position: MID
   price: 7.0
@@ -4281,6 +4484,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 699 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: A. Ezzalzouli
+  source_name: A. Ezzalzouli
   club: Real Betis
   position: MID
   price: 6.5
@@ -4302,6 +4506,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: F. Alarcón Suárez
+  source_name: F. Alarcón Suárez
   club: Real Betis
   position: MID
   price: 6.8
@@ -4320,6 +4525,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 614 min, 2 goals, 0.15 assists/90; baseline
     rules in model/settings.yaml'
 - name: M. Roca Junqué
+  source_name: M. Roca Junqué
   club: Real Betis
   position: MID
   price: 4.4
@@ -4338,6 +4544,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 776 min, 0 goals, 0.12 assists/90; baseline rules
     in model/settings.yaml'
 - name: P. Fornals Malla
+  source_name: P. Fornals Malla
   club: Real Betis
   position: MID
   price: 5.0
@@ -4356,6 +4563,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 788 min, 1 goals, 0.11 assists/90; baseline
     rules in model/settings.yaml'
 - name: D. Huijsen
+  source_name: D. Huijsen
   club: Real Madrid
   position: DEF
   price: 4.4
@@ -4377,6 +4585,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: I. Konaté
+  source_name: I. Konaté
   club: Real Madrid
   position: DEF
   price: 5.0
@@ -4398,6 +4607,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Cucurella
+  source_name: M. Cucurella
   club: Real Madrid
   position: DEF
   price: 6.0
@@ -4419,6 +4629,7 @@ players:
   start_prob_by_matchday:
     5: 0.93
 - name: K. Mbappe
+  source_name: K. Mbappé
   club: Real Madrid
   position: FWD
   price: 11.1
@@ -4440,6 +4651,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: T. Courtois
+  source_name: T. Courtois
   club: Real Madrid
   position: GK
   price: 6.0
@@ -4462,6 +4674,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: A. Guler
+  source_name: A. Guler
   club: Real Madrid
   position: MID
   price: 6.6
@@ -4483,6 +4696,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Tchouaméni
+  source_name: A. Tchouaméni
   club: Real Madrid
   position: MID
   price: 6.0
@@ -4504,6 +4718,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: F. Valverde Dipetta
+  source_name: F. Valverde Dipetta
   club: Real Madrid
   position: MID
   price: 7.1
@@ -4525,6 +4740,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: J. Bellingham
+  source_name: J. Bellingham
   club: Real Madrid
   position: MID
   price: 8.5
@@ -4546,6 +4762,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: V. Júnior
+  source_name: V. Júnior
   club: Real Madrid
   position: MID
   price: 9.5
@@ -4567,6 +4784,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: Y. Diomande
+  source_name: Y. Diomande
   club: Real Madrid
   position: MID
   price: 7.5
@@ -4590,6 +4808,7 @@ players:
   sub_prob_by_matchday:
     5: 0.6
 - name: G. Mancini
+  source_name: G. Mancini
   club: Roma
   position: DEF
   price: 4.4
@@ -4611,6 +4830,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Hermoso Canseco
+  source_name: M. Hermoso Canseco
   club: Roma
   position: DEF
   price: 4.6
@@ -4632,6 +4852,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: O. N'Dicka
+  source_name: O. N'Dicka
   club: Roma
   position: DEF
   price: 4.5
@@ -4653,6 +4874,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: D. Malen
+  source_name: D. Malen
   club: Roma
   position: FWD
   price: 6.8
@@ -4674,6 +4896,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Malvano
+  source_name: M. Malvano
   club: Roma
   position: FWD
   price: 6.0
@@ -4692,6 +4915,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 762 min, 3 goals, 0.35 assists/90; baseline
     rules in model/settings.yaml'
 - name: M. Svilar
+  source_name: M. Svilar
   club: Roma
   position: GK
   price: 4.5
@@ -4714,6 +4938,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: B. Cristante
+  source_name: B. Cristante
   club: Roma
   position: MID
   price: 4.6
@@ -4735,6 +4960,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: T. Puchacz
+  source_name: T. Puchacz
   club: Sabah
   position: DEF
   price: 4.5
@@ -4756,6 +4982,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: S. Pokatilov
+  source_name: S. Pokatilov
   club: Sabah
   position: GK
   price: 4.5
@@ -4778,6 +5005,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: M. Matviyenko
+  source_name: M. Matviyenko
   club: Shakhtar Donetsk
   position: DEF
   price: 4.5
@@ -4799,6 +5027,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: P. Azevedo Pereira
+  source_name: P. Azevedo Pereira
   club: Shakhtar Donetsk
   position: DEF
   price: 4.0
@@ -4817,6 +5046,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 829 min, 1 goals, 0.11 assists/90; baseline
     rules in model/settings.yaml'
 - name: V. Bondar
+  source_name: V. Bondar
   club: Shakhtar Donetsk
   position: DEF
   price: 4.5
@@ -4838,6 +5068,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: V. Tobias da Silva
+  source_name: V. Tobias da Silva
   club: Shakhtar Donetsk
   position: DEF
   price: 4.0
@@ -4859,6 +5090,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: N. Martins da Silva
+  source_name: N. Martins da Silva
   club: Shakhtar Donetsk
   position: MID
   price: 5.5
@@ -4877,6 +5109,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 668 min, 2 goals, 0.27 assists/90; baseline
     rules in model/settings.yaml'
 - name: O. Ocheretko
+  source_name: O. Ocheretko
   club: Shakhtar Donetsk
   position: MID
   price: 4.5
@@ -4898,6 +5131,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: D. Zima
+  source_name: D. Zima
   club: Slavia Praha
   position: DEF
   price: 4.5
@@ -4919,6 +5153,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: T. Holeš
+  source_name: T. Holeš
   club: Slavia Praha
   position: DEF
   price: 4.3
@@ -4940,6 +5175,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: D. Šturm
+  source_name: D. Šturm
   club: Slavia Praha
   position: FWD
   price: 5.7
@@ -4958,6 +5194,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 14 league apps, 748 min, 2 goals, 0.48 assists/90; baseline
     rules in model/settings.yaml'
 - name: M. Chytil
+  source_name: M. Chytil
   club: Slavia Praha
   position: FWD
   price: 4.9
@@ -4979,6 +5216,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: E. Ayaosi
+  source_name: E. Ayaosi
   club: Slavia Praha
   position: MID
   price: 4.5
@@ -5000,6 +5238,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: W. Nowak
+  source_name: W. Nowak
   club: Slavia Praha
   position: MID
   price: 4.5
@@ -5021,6 +5260,7 @@ players:
   start_prob_by_matchday:
     5: 0.93
 - name: K. Bajrič
+  source_name: K. Bajrič
   club: Slovan Bratislava
   position: DEF
   price: 4.5
@@ -5042,6 +5282,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: K. Wimmer
+  source_name: K. Wimmer
   club: Slovan Bratislava
   position: DEF
   price: 3.8
@@ -5060,6 +5301,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 778 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: D. Takáč
+  source_name: D. Takáč
   club: Slovan Bratislava
   position: GK
   price: 4.5
@@ -5082,6 +5324,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: T. Barseghyan
+  source_name: T. Barseghyan
   club: Slovan Bratislava
   position: MID
   price: 4.9
@@ -5103,6 +5346,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: G. Inácio
+  source_name: G. Inácio
   club: Sporting CP
   position: DEF
   price: 4.5
@@ -5124,6 +5368,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: S. Altimira Clavell
+  source_name: S. Altimira Clavell
   club: Sporting CP
   position: DEF
   price: 4.0
@@ -5145,6 +5390,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: L. Suárez Charris
+  source_name: L. Suárez Charris
   club: Sporting CP
   position: FWD
   price: 7.4
@@ -5166,6 +5412,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: R. Dantas da Silva
+  source_name: R. Dantas da Silva
   club: Sporting CP
   position: GK
   price: 5.0
@@ -5188,6 +5435,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: G. Cipriano Catamo
+  source_name: G. Cipriano Catamo
   club: Sporting CP
   position: MID
   price: 6.7
@@ -5209,6 +5457,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: I. Doumbia
+  source_name: I. Doumbia
   club: Sporting CP
   position: MID
   price: 4.6
@@ -5227,6 +5476,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 848 min, 0 goals, 0.21 assists/90; baseline
     rules in model/settings.yaml'
 - name: M. Araújo Vilches
+  source_name: M. Araújo Vilches
   club: Sporting CP
   position: MID
   price: 5.5
@@ -5245,6 +5495,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 10 league apps, 830 min, 1 goals, 0.22 assists/90; baseline
     rules in model/settings.yaml'
 - name: J. Chabot
+  source_name: J. Chabot
   club: VfB Stuttgart
   position: DEF
   price: 4.6
@@ -5266,6 +5517,7 @@ players:
   start_prob_by_matchday:
     5: 0.95
 - name: J. Karaboue Vagnomann
+  source_name: J. Karaboue Vagnomann
   club: VfB Stuttgart
   position: DEF
   price: 4.2
@@ -5284,6 +5536,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 6 league apps, 531 min, 2 goals, 0.17 assists/90; baseline rules
     in model/settings.yaml'
 - name: M. Mittelstädt
+  source_name: M. Mittelstädt
   club: VfB Stuttgart
   position: DEF
   price: 4.5
@@ -5305,6 +5558,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: R. Hendriks
+  source_name: R. Hendriks
   club: VfB Stuttgart
   position: DEF
   price: 4.0
@@ -5326,6 +5580,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: D. Undav
+  source_name: D. Undav
   club: VfB Stuttgart
   position: FWD
   price: 7.2
@@ -5347,6 +5602,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: E. Demirović
+  source_name: E. Demirović
   club: VfB Stuttgart
   position: FWD
   price: 6.3
@@ -5368,6 +5624,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: D. Seimen
+  source_name: D. Seimen
   club: VfB Stuttgart
   position: GK
   price: 4.4
@@ -5387,6 +5644,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 5 league apps, 450 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: F. Jeltsch
+  source_name: F. Jeltsch
   club: VfB Stuttgart
   position: MID
   price: 4.5
@@ -5405,6 +5663,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 9 league apps, 618 min, 0 goals, 0.15 assists/90; baseline rules
     in model/settings.yaml'
 - name: Ľ. Belko
+  source_name: Ľ. Belko
   club: Viking
   position: GK
   price: 4.0
@@ -5424,6 +5683,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 990 min, 0 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: A. Freeman
+  source_name: A. Freeman
   club: Villarreal
   position: DEF
   price: 3.8
@@ -5442,6 +5702,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 620 min, 1 goals, 0.0 assists/90; baseline rules
     in model/settings.yaml'
 - name: R. Palma Veiga
+  source_name: R. Palma Veiga
   club: Villarreal
   position: DEF
   price: 4.4
@@ -5460,6 +5721,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 11 league apps, 990 min, 0 goals, 0.09 assists/90; baseline
     rules in model/settings.yaml'
 - name: A. Pérez Gutiérrez
+  source_name: A. Pérez Gutiérrez
   club: Villarreal
   position: FWD
   price: 6.0
@@ -5478,6 +5740,7 @@ players:
   - 'data/players/ffscout-2026-11-15.txt: 12 league apps, 648 min, 1 goals, 0.42 assists/90; baseline
     rules in model/settings.yaml'
 - name: G. Mikautadze
+  source_name: G. Mikautadze
   club: Villarreal
   position: FWD
   price: 6.0
@@ -5499,6 +5762,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: P. Gulácsi
+  source_name: P. Gulácsi
   club: Villarreal
   position: GK
   price: 3.8
@@ -5521,6 +5785,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: A. Moleiro González
+  source_name: A. Moleiro González
   club: Villarreal
   position: MID
   price: 5.0
@@ -5542,6 +5807,7 @@ players:
   start_prob_by_matchday:
     5: 0.92
 - name: P. Gueye
+  source_name: P. Gueye
   club: Villarreal
   position: MID
   price: 5.0

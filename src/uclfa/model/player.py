@@ -50,6 +50,7 @@ class PlayerInputs(BaseModel):
     name: str
     club: str
     position: Position
+    source_name: str | None = None  # the name in the stats file, before any renaming
     price: float | None = None
     price_tag: Literal["entered", "third_party"] | None = None
     price_source: str | None = None
@@ -69,8 +70,20 @@ class PlayerInputs(BaseModel):
     start_prob_by_matchday: dict[int, float] = Field(default_factory=dict)
     sub_prob_by_matchday: dict[int, float] = Field(default_factory=dict)
     minutes_if_sub: float = Field(default=20.0, ge=1, le=59)
+    # From Champions League results (Phase F): points per 90 not explained by appearance,
+    # 60 minutes, goals and assists, and the weight given to it (0 to 1).
+    bonus_p90_ucl: float | None = Field(default=None, ge=0)
+    bonus_weight: float = Field(default=0.0, ge=0, le=1)
+    # The league-baseline inputs before blending with UCL data, kept for comparison.
+    baseline: dict[str, float] = Field(default_factory=dict)
     sources: list[str] = Field(default_factory=list)
     note: str = ""
+
+    def as_baseline(self) -> PlayerInputs:
+        """This player as the league baseline alone, before any UCL blending."""
+        if not self.baseline and self.bonus_p90_ucl is None:
+            return self
+        return self.model_copy(update={**self.baseline, "bonus_p90_ucl": None, "bonus_weight": 0.0})
 
     def for_matchday(self, matchday: int) -> PlayerInputs:
         """This player's inputs with that matchday's team news applied."""
@@ -159,6 +172,14 @@ def _scenario(
         )
     if p.cards_p90 is not None:
         out["yellow_cards"] = sc.yellow_card * min(1.0, p.cards_p90 * f)
+    if p.bonus_p90_ucl is not None and p.bonus_weight > 0:
+        # The UCL rate already contains recoveries and, for a midfielder, his clean-sheet
+        # point: blend those modelled parts down by the same weight to avoid counting twice.
+        w = p.bonus_weight
+        out["balls_recovered"] *= 1 - w
+        if pos is Position.MID and "clean_sheet" in out:
+            out["clean_sheet"] *= 1 - w
+        out["bonus_ucl"] = w * p.bonus_p90_ucl * f
     return out
 
 

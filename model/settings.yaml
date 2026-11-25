@@ -91,3 +91,16 @@ ratings:
   # Matchday 1-4 results: cap 3 missed the market by 30.8% on average, no cap by 32.4%,
   # treating every team as equal by 43.6% (24 November 2026).
   max_goals_counted: 3
+
+# Learning from results (Release 2 Phase F). Claude's assumptions.
+calibration:
+  # Champions League minutes are blended with the league baseline; this many UCL minutes
+  # count as much as the baseline itself. Small samples move the inputs only a little.
+  prior_minutes: 360
+  # Points not explained by appearance, 60 minutes, goals and assists (recoveries, cards,
+  # player of the match, a midfielder's clean sheet) are estimated per player for MID and
+  # FWD from UCL points; GK and DEF keep the position averages because clean sheets and
+  # goals conceded cannot be separated with public data.
+  bonus_positions: [MID, FWD]
+  # A match counted as 60 minutes when the player's average per appearance reaches this.
+  sixty_if_average_at_least: 75

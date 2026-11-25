@@ -137,6 +137,13 @@ def build_server(
         return with_session(run)
 
     @server.tool()
+    def review_matchday(matchday: int) -> dict[str, Any]:
+        """Claude's frozen estimates for a finished matchday against players' actual points:
+        bias and average error overall, by position and for the squad, against a flat
+        guess. Analyst estimates against public stats; nothing is saved."""
+        return service.review_view(matchday, data_dir=data_dir)
+
+    @server.tool()
     def get_rules() -> dict[str, Any]:
         """The 2026/27 rules as implemented, with each rule's verification status."""
         return service.rules_view(current_rules())

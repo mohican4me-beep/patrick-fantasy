@@ -127,9 +127,20 @@ Done: repository created at github.com/mohican4me-beep/patrick-fantasy; host con
 | 3 | `uclfa evaluate` answers the goalkeeper example per matchday and in total | Met | Donnarumma -> Becker over MD6-8: +0.0, too close to call, because Joan García covers MD6 |
 | 4 | The Matchday 6 decision is made with it | Pending | Odds for MD6 expected about 1 December |
 
+## Release 2 Phase F (approved 25 November 2026): built, waiting for Matchday 5 data
+
+| # | Criterion | Status | Evidence |
+|---|---|---|---|
+| 1 | All tests pass, lint clean | Met | 295 passed; `ruff check` clean |
+| 2 | `uclfa review --matchday 5` shows predicted against actual for the squad and pool | Pending | Code and tests done; needs the UCL stats file saved after Matchday 5 |
+| 3 | Updated inputs applied; Matchday 6 shows old and updated estimates | Pending | Same file |
+| 4 | Journal records Matchday 5's outcome | Pending | Needs Patrick's Matchday 5 total |
+
+Matchday 5 estimates frozen in `data/predictions/md05.json` (odds of 24 Nov, 15:51 UTC).
+
 ## Next
 
-Matchday 5 between-days swaps (25 Nov), then the Matchday 6 decision with Phase E.
+Save the UCL stats after Matchday 5, run the review, then the Matchday 6 decision.
 
 ## Known limits of Phase 1
 

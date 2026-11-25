@@ -776,6 +776,7 @@ def player_points_view(
     for p in pool:
         row: dict[str, Any] = {
             "name": p.name,
+            "source_name": p.source_name or p.name,
             "club": p.club,
             "position": p.position.value,
             "price": tagged(p.price, p.price_tag) if p.price is not None else dict(UNAVAILABLE),
@@ -808,6 +809,11 @@ def player_points_view(
         )
         try:
             pts = expected_points(p.for_matchday(matchday), team, rules, settings)
+            base_pts = (
+                expected_points(p.as_baseline().for_matchday(matchday), team, rules, settings)
+                if p.baseline or p.bonus_p90_ucl is not None
+                else None
+            )
         except ValueError as exc:
             unavailable(str(exc))
             continue
@@ -822,6 +828,9 @@ def player_points_view(
                 **row,
                 "tag": "analyst_estimate",
                 "expected_points": round(pts.expected, 2),
+                "expected_points_baseline": (
+                    round(base_pts.expected, 2) if base_pts is not None else None
+                ),
                 "if_starts": round(pts.if_starts, 2),
                 "plays_prob": round(pts.plays_prob, 3),
                 "components": {k: round(v, 2) for k, v in pts.components.items()},
@@ -1054,3 +1063,117 @@ def evaluate_move_view(
             "move. Projected matchdays (no odds yet) are rougher. The decision is Patrick's."
         ),
     }
+
+
+# -- learning from results (Release 2 Phase F) ----------------------------------------
+
+
+def freeze_predictions(
+    matchday: int, as_of: str, rules: RuleSet, squad_names: Any = None, data_dir: Any = None
+) -> dict[str, Any]:
+    """Each pool player's expected points for `matchday` as they stood on `as_of`
+    (YYYY-MM-DD): only fixtures and odds snapshots saved on or before that date are used."""
+    import shutil
+    import tempfile
+    from pathlib import Path
+
+    from uclfa.ingest.run import DATA_DIR
+
+    data_dir = DATA_DIR if data_dir is None else data_dir
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        for source in ("fixtures", "odds"):
+            folder = root / "snapshots" / source
+            folder.mkdir(parents=True)
+            for f in (data_dir / "snapshots" / source).glob("*.json"):
+                if f.stem <= as_of:
+                    shutil.copy(f, folder / f.name)
+        shutil.copytree(data_dir / "players", root / "players")
+        aliases = data_dir / "club_aliases.yaml"
+        if aliases.exists():
+            shutil.copy(aliases, root / "club_aliases.yaml")
+        view = player_points_view(matchday, rules, data_dir=root, squad_names=squad_names)
+    keep = (
+        "name",
+        "source_name",
+        "club",
+        "position",
+        "in_squad",
+        "opponent",
+        "expected_points",
+        "if_starts",
+        "plays_prob",
+        "match_source",
+        "reason",
+    )
+    return {
+        "matchday": matchday,
+        "as_of": as_of,
+        "tag": "analyst_estimate",
+        "pool_as_of": view.get("pool_as_of"),
+        "odds_fetched_at": view.get("odds_fetched_at"),
+        "players": [
+            {**{k: r.get(k) for k in keep}, "source_club": r["club"]}
+            for r in view.get("players") or []
+        ],
+    }
+
+
+def review_view(matchday: int, data_dir: Any = None) -> dict[str, Any]:
+    """Frozen predictions for `matchday` against actual points. Actual points come from two
+    saved UCL stats files: the newest saved before the matchday's first kick-off and the
+    newest saved after its last."""
+    import json
+
+    from uclfa.ingest.run import DATA_DIR, latest_snapshot
+    from uclfa.model.calibration import matchday_actuals, parse_ucl_stats, review
+    from uclfa.model.pool import parse_stats_file
+
+    data_dir = DATA_DIR if data_dir is None else data_dir
+    pred_path = data_dir / "predictions" / f"md{matchday:02d}.json"
+    if not pred_path.exists():
+        return {
+            "matchday": matchday,
+            "tag": "unavailable",
+            "note": f"No frozen predictions for matchday {matchday}.",
+        }
+    predictions = json.loads(pred_path.read_text(encoding="utf-8"))
+    fixtures = latest_snapshot("fixtures", data_dir)
+    days = [f["kickoff_utc"][:10] for f in fixtures["records"] if f["matchday"] == matchday]
+    first, last = min(days), max(days)
+    if any(
+        f["matchday"] == matchday and f.get("status") != "FINISHED" for f in fixtures["records"]
+    ):
+        return {
+            "matchday": matchday,
+            "tag": "unavailable",
+            "note": "Not every match of this matchday is finished in the latest fixtures.",
+        }
+    folder = data_dir / "players"
+    before_files = [p for p in folder.glob("ffscout-*.txt") if _file_date(p) < first]
+    after_files = [p for p in folder.glob("ffscout-ucl-*.txt") if _file_date(p) > last]
+    if not before_files or not after_files:
+        return {
+            "matchday": matchday,
+            "tag": "unavailable",
+            "note": "Need a stats file saved before the matchday and a UCL stats file "
+            "saved after it.",
+        }
+    before_path = max(before_files, key=_file_date)
+    after_path = max(after_files, key=_file_date)
+    if before_path.name.startswith("ffscout-ucl-"):
+        before = {k: r["ucl_points"] for k, r in parse_ucl_stats(before_path).items()}
+    else:
+        before = {(r["name"], r["club"]): r["ucl_points"] for r in parse_stats_file(before_path)}
+    actuals = matchday_actuals(before, parse_ucl_stats(after_path))
+    result = review(predictions["players"], actuals)
+    return {
+        "matchday": matchday,
+        "predictions_as_of": predictions["as_of"],
+        "actual_from": [before_path.name, after_path.name],
+        **result,
+    }
+
+
+def _file_date(path: Any) -> str:
+    return path.stem.rsplit("-", 3)[-3] + "-" + "-".join(path.stem.rsplit("-", 2)[-2:])
