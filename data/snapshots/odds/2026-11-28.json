@@ -1,0 +1,628 @@
+{
+ "source": "odds",
+ "title": "The Odds API (Champions League match odds)",
+ "fetched_at": "2026-11-28T14:10:16.053466+00:00",
+ "url": "https://api.the-odds-api.com/v4/sports/soccer_uefa_champs_league/odds?regions=eu&markets=h2h%2Ctotals&oddsFormat=decimal&dateFormat=iso&apiKey=REDACTED",
+ "record_count": 18,
+ "problems": [],
+ "records": [
+  {
+   "source_id": "85c1782488b30523109ebc391efbd6b0",
+   "kickoff_utc": "2026-12-08T17:45:00+00:00",
+   "home": "Viking FK",
+   "away": "Feyenoord",
+   "bookmakers": 19,
+   "home_price": 2.65,
+   "draw_price": 3.8,
+   "away_price": 2.35,
+   "total_line": 3.5,
+   "total_bookmakers": 11,
+   "over_price": 1.93,
+   "under_price": 1.85,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.38,
+     "under_price": 3.08
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 11,
+     "over_price": 1.93,
+     "under_price": 1.85
+    }
+   ]
+  },
+  {
+   "source_id": "0e4ac9baa85b97d437b08b2f6a66e633",
+   "kickoff_utc": "2026-12-08T17:45:00+00:00",
+   "home": "Villarreal",
+   "away": "Sabah FK",
+   "bookmakers": 19,
+   "home_price": 1.2,
+   "draw_price": 7.48,
+   "away_price": 11.0,
+   "total_line": 3.5,
+   "total_bookmakers": 9,
+   "over_price": 1.68,
+   "under_price": 2.17,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.24,
+     "under_price": 4.0
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 9,
+     "over_price": 1.68,
+     "under_price": 2.17
+    },
+    {
+     "line": 3.75,
+     "bookmakers": 1,
+     "over_price": 1.78,
+     "under_price": 2.06
+    },
+    {
+     "line": 4.0,
+     "bookmakers": 1,
+     "over_price": 1.98,
+     "under_price": 1.8
+    }
+   ]
+  },
+  {
+   "source_id": "9aeb221243f84003c1857479e76c7c09",
+   "kickoff_utc": "2026-12-08T20:00:00+00:00",
+   "home": "AEK Athens",
+   "away": "Galatasaray",
+   "bookmakers": 19,
+   "home_price": 2.48,
+   "draw_price": 3.6,
+   "away_price": 2.58,
+   "total_line": 3.5,
+   "total_bookmakers": 9,
+   "over_price": 2.27,
+   "under_price": 1.63,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.52,
+     "under_price": 2.55
+    },
+    {
+     "line": 3.0,
+     "bookmakers": 1,
+     "over_price": 1.78,
+     "under_price": 2.01
+    },
+    {
+     "line": 3.25,
+     "bookmakers": 1,
+     "over_price": 2.05,
+     "under_price": 1.81
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 9,
+     "over_price": 2.27,
+     "under_price": 1.63
+    }
+   ]
+  },
+  {
+   "source_id": "c9c3058395e023c35505d79c505f7c23",
+   "kickoff_utc": "2026-12-08T20:00:00+00:00",
+   "home": "AS Roma",
+   "away": "Sporting Lisbon",
+   "bookmakers": 19,
+   "home_price": 1.6,
+   "draw_price": 4.4,
+   "away_price": 4.91,
+   "total_line": 3.5,
+   "total_bookmakers": 10,
+   "over_price": 2.08,
+   "under_price": 1.7,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.44,
+     "under_price": 2.78
+    },
+    {
+     "line": 3.25,
+     "bookmakers": 1,
+     "over_price": 1.93,
+     "under_price": 1.9
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 10,
+     "over_price": 2.08,
+     "under_price": 1.7
+    }
+   ]
+  },
+  {
+   "source_id": "c37eddcccf96c6e365db48d92361243e",
+   "kickoff_utc": "2026-12-08T20:00:00+00:00",
+   "home": "Aston Villa",
+   "away": "Paris Saint Germain",
+   "bookmakers": 20,
+   "home_price": 3.69,
+   "draw_price": 4.0,
+   "away_price": 1.85,
+   "total_line": 3.5,
+   "total_bookmakers": 10,
+   "over_price": 2.08,
+   "under_price": 1.745,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.44,
+     "under_price": 2.78
+    },
+    {
+     "line": 3.25,
+     "bookmakers": 1,
+     "over_price": 1.91,
+     "under_price": 1.93
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 10,
+     "over_price": 2.08,
+     "under_price": 1.745
+    }
+   ]
+  },
+  {
+   "source_id": "2f13c5da1a2d2a94e4ceb59feca66992",
+   "kickoff_utc": "2026-12-08T20:00:00+00:00",
+   "home": "Barcelona",
+   "away": "Manchester City",
+   "bookmakers": 20,
+   "home_price": 1.785,
+   "draw_price": 4.5,
+   "away_price": 3.59,
+   "total_line": 3.5,
+   "total_bookmakers": 9,
+   "over_price": 1.57,
+   "under_price": 2.34,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.23,
+     "under_price": 4.2
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 9,
+     "over_price": 1.57,
+     "under_price": 2.34
+    },
+    {
+     "line": 4.0,
+     "bookmakers": 2,
+     "over_price": 1.905,
+     "under_price": 1.905
+    }
+   ]
+  },
+  {
+   "source_id": "87632464088d5ba058a6778feb2dc1a7",
+   "kickoff_utc": "2026-12-08T20:00:00+00:00",
+   "home": "Bayern Munich",
+   "away": "Slavia Praha",
+   "bookmakers": 19,
+   "home_price": 1.14,
+   "draw_price": 8.96,
+   "away_price": 14.0,
+   "total_line": 4.5,
+   "total_bookmakers": 5,
+   "over_price": 2.33,
+   "under_price": 1.61,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.22,
+     "under_price": 4.33
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 4,
+     "over_price": 1.595,
+     "under_price": 2.255
+    },
+    {
+     "line": 4.0,
+     "bookmakers": 2,
+     "over_price": 1.895,
+     "under_price": 1.9
+    },
+    {
+     "line": 4.5,
+     "bookmakers": 5,
+     "over_price": 2.33,
+     "under_price": 1.61
+    }
+   ]
+  },
+  {
+   "source_id": "be2b45def43d95fa2344420b4290e22c",
+   "kickoff_utc": "2026-12-08T20:00:00+00:00",
+   "home": "Napoli",
+   "away": "Club Brugge",
+   "bookmakers": 19,
+   "home_price": 1.75,
+   "draw_price": 4.1,
+   "away_price": 4.0,
+   "total_line": 3.5,
+   "total_bookmakers": 10,
+   "over_price": 2.02,
+   "under_price": 1.77,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.41,
+     "under_price": 2.9
+    },
+    {
+     "line": 3.25,
+     "bookmakers": 1,
+     "over_price": 1.85,
+     "under_price": 2.0
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 10,
+     "over_price": 2.02,
+     "under_price": 1.77
+    }
+   ]
+  },
+  {
+   "source_id": "afc6d69dfe736e86d3cab235f91c2c27",
+   "kickoff_utc": "2026-12-08T20:00:00+00:00",
+   "home": "Manchester United",
+   "away": "RB Leipzig",
+   "bookmakers": 19,
+   "home_price": 1.8,
+   "draw_price": 4.2,
+   "away_price": 3.6,
+   "total_line": 3.5,
+   "total_bookmakers": 11,
+   "over_price": 1.79,
+   "under_price": 2.05,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.31,
+     "under_price": 3.45
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 11,
+     "over_price": 1.79,
+     "under_price": 2.05
+    }
+   ]
+  },
+  {
+   "source_id": "8742d72bd33f03a724809542a766f7d4",
+   "kickoff_utc": "2026-12-09T17:45:00+00:00",
+   "home": "Real Betis",
+   "away": "Como",
+   "bookmakers": 19,
+   "home_price": 2.63,
+   "draw_price": 3.7,
+   "away_price": 2.39,
+   "total_line": 3.5,
+   "total_bookmakers": 9,
+   "over_price": 2.35,
+   "under_price": 1.58,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.53,
+     "under_price": 2.5
+    },
+    {
+     "line": 3.0,
+     "bookmakers": 2,
+     "over_price": 1.84,
+     "under_price": 1.97
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 9,
+     "over_price": 2.35,
+     "under_price": 1.58
+    }
+   ]
+  },
+  {
+   "source_id": "02ef18ded1d7ed2c53c83802f1b260a4",
+   "kickoff_utc": "2026-12-09T17:45:00+00:00",
+   "home": "ŠK Slovan Bratislava",
+   "away": "Shakhtar Donetsk",
+   "bookmakers": 19,
+   "home_price": 4.6,
+   "draw_price": 4.1,
+   "away_price": 1.67,
+   "total_line": 2.5,
+   "total_bookmakers": 11,
+   "over_price": 1.56,
+   "under_price": 2.32,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 11,
+     "over_price": 1.56,
+     "under_price": 2.32
+    },
+    {
+     "line": 3.0,
+     "bookmakers": 2,
+     "over_price": 1.95,
+     "under_price": 1.86
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 1,
+     "over_price": 2.44,
+     "under_price": 1.57
+    }
+   ]
+  },
+  {
+   "source_id": "90941f0ac4b961cf3e119d5dce65ccfa",
+   "kickoff_utc": "2026-12-09T20:00:00+00:00",
+   "home": "Arsenal",
+   "away": "Real Madrid",
+   "bookmakers": 19,
+   "home_price": 2.19,
+   "draw_price": 3.8,
+   "away_price": 2.86,
+   "total_line": 3.5,
+   "total_bookmakers": 9,
+   "over_price": 2.31,
+   "under_price": 1.6,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.55,
+     "under_price": 2.47
+    },
+    {
+     "line": 3.0,
+     "bookmakers": 2,
+     "over_price": 1.86,
+     "under_price": 1.945
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 9,
+     "over_price": 2.31,
+     "under_price": 1.6
+    }
+   ]
+  },
+  {
+   "source_id": "30e99708798a975dc6d3c7ae8f72062f",
+   "kickoff_utc": "2026-12-09T20:00:00+00:00",
+   "home": "PSV Eindhoven",
+   "away": "Atlético Madrid",
+   "bookmakers": 19,
+   "home_price": 3.4,
+   "draw_price": 4.0,
+   "away_price": 1.91,
+   "total_line": 3.5,
+   "total_bookmakers": 11,
+   "over_price": 1.93,
+   "under_price": 1.88,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.37,
+     "under_price": 3.1
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 11,
+     "over_price": 1.93,
+     "under_price": 1.88
+    }
+   ]
+  },
+  {
+   "source_id": "a0b196dc9126e2ff5b24e07f0b7cbad1",
+   "kickoff_utc": "2026-12-09T20:00:00+00:00",
+   "home": "RC Lens",
+   "away": "Bodø/Glimt",
+   "bookmakers": 19,
+   "home_price": 2.2,
+   "draw_price": 3.75,
+   "away_price": 2.85,
+   "total_line": 3.5,
+   "total_bookmakers": 11,
+   "over_price": 1.96,
+   "under_price": 1.83,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.4,
+     "under_price": 2.95
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 11,
+     "over_price": 1.96,
+     "under_price": 1.83
+    }
+   ]
+  },
+  {
+   "source_id": "035ff956c73ea2a9700fef5aaa880268",
+   "kickoff_utc": "2026-12-09T20:00:00+00:00",
+   "home": "Borussia Dortmund",
+   "away": "Inter Milan",
+   "bookmakers": 18,
+   "home_price": 2.55,
+   "draw_price": 3.665,
+   "away_price": 2.55,
+   "total_line": 3.5,
+   "total_bookmakers": 10,
+   "over_price": 2.1,
+   "under_price": 1.71,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.45,
+     "under_price": 2.78
+    },
+    {
+     "line": 3.25,
+     "bookmakers": 1,
+     "over_price": 1.87,
+     "under_price": 1.96
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 10,
+     "over_price": 2.1,
+     "under_price": 1.71
+    }
+   ]
+  },
+  {
+   "source_id": "1acb765b628f5ee04071df556d5fe842",
+   "kickoff_utc": "2026-12-09T20:00:00+00:00",
+   "home": "LASK",
+   "away": "Fenerbahce",
+   "bookmakers": 19,
+   "home_price": 2.75,
+   "draw_price": 3.65,
+   "away_price": 2.35,
+   "total_line": 3.5,
+   "total_bookmakers": 9,
+   "over_price": 2.2,
+   "under_price": 1.66,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.49,
+     "under_price": 2.65
+    },
+    {
+     "line": 3.0,
+     "bookmakers": 1,
+     "over_price": 1.71,
+     "under_price": 2.1
+    },
+    {
+     "line": 3.25,
+     "bookmakers": 1,
+     "over_price": 1.99,
+     "under_price": 1.85
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 9,
+     "over_price": 2.2,
+     "under_price": 1.66
+    }
+   ]
+  },
+  {
+   "source_id": "2de9daab886f1298c62e23c7439b5a81",
+   "kickoff_utc": "2026-12-09T20:00:00+00:00",
+   "home": "VfB Stuttgart",
+   "away": "Lille",
+   "bookmakers": 19,
+   "home_price": 1.71,
+   "draw_price": 4.15,
+   "away_price": 4.2,
+   "total_line": 3.5,
+   "total_bookmakers": 10,
+   "over_price": 2.105,
+   "under_price": 1.68,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.48,
+     "under_price": 2.68
+    },
+    {
+     "line": 3.25,
+     "bookmakers": 1,
+     "over_price": 1.94,
+     "under_price": 1.88
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 10,
+     "over_price": 2.105,
+     "under_price": 1.68
+    }
+   ]
+  },
+  {
+   "source_id": "d4ac366d8f949adc772695474ea5487e",
+   "kickoff_utc": "2026-12-09T20:00:00+00:00",
+   "home": "Liverpool",
+   "away": "Porto",
+   "bookmakers": 19,
+   "home_price": 1.47,
+   "draw_price": 4.6,
+   "away_price": 5.84,
+   "total_line": 3.5,
+   "total_bookmakers": 9,
+   "over_price": 2.24,
+   "under_price": 1.65,
+   "totals": [
+    {
+     "line": 2.5,
+     "bookmakers": 3,
+     "over_price": 1.48,
+     "under_price": 2.65
+    },
+    {
+     "line": 3.0,
+     "bookmakers": 1,
+     "over_price": 1.71,
+     "under_price": 2.1
+    },
+    {
+     "line": 3.25,
+     "bookmakers": 1,
+     "over_price": 2.02,
+     "under_price": 1.83
+    },
+    {
+     "line": 3.5,
+     "bookmakers": 9,
+     "over_price": 2.24,
+     "under_price": 1.65
+    }
+   ]
+  }
+ ]
+}
